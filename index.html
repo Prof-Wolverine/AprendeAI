@@ -1350,25 +1350,6 @@ function renderQuestion(){
   const last=state.current===total-1;
   document.getElementById("btn-next").textContent=last?"Finalizar ✓":"Próxima →";
 }
-      
-    el.innerHTML=`<span class="letter">${letters[idx]}</span><span>${opt}</span>`;
-    
-    // Só permite o clique se a questão ainda não foi respondida
-    if(!isAnswered){
-      el.onclick=()=>{
-        state.answers[state.current]=idx;
-        renderQuestion(); // Recarrega a pergunta para mostrar travada
-      };
-    }
-    
-    box.appendChild(el);
-  });
-  
-  const prevBtn=document.getElementById("btn-prev");
-  prevBtn.style.visibility=state.mode==='exam'?"hidden":(state.current===0?"hidden":"visible");
-  const last=state.current===total-1;
-  document.getElementById("btn-next").textContent=last?"Finalizar ✓":"Próxima →";
-}
   
 function prevQ(){if(state.mode==='exam')return;if(state.current>0){state.current--;renderQuestion();}}
 function nextQ(){
