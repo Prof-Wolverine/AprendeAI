@@ -1293,13 +1293,39 @@ function renderQuestion(){
   
   q.o.forEach((opt, idx)=>{
     const el=document.createElement("div");
-    el.className="option"+(state.answers[state.current]===idx?" selected":"");
+    const isSelected = state.answers[state.current] === idx;
     
-    // Se já respondeu, escurece as opções não escolhidas
-    if(isAnswered && state.answers[state.current] !== idx){
-      el.style.opacity = '0.5';
+    el.className="option"+(isSelected?" selected":"");
+    
+    if(isAnswered) {
+      if(isSelected) {
+        // Se for a resposta certa, mostra o cadeado e desativa o cursor
+        el.style.cursor = 'default';
+        el.innerHTML=`<span class="letter">🔒</span><span>${opt}</span>`;
+      } else {
+        // Se for as outras, escurece e bloqueia o clique
+        el.style.opacity = '0.4';
+        el.style.pointerEvents = 'none'; // Bloqueio físico do clique
+        el.innerHTML=`<span class="letter">${letters[idx]}</span><span>${opt}</span>`;
+      }
+    } else {
+      // Se não respondeu ainda, permite o clique normal
+      el.innerHTML=`<span class="letter">${letters[idx]}</span><span>${opt}</span>`;
+      el.onclick=()=>{
+        state.answers[state.current]=idx;
+        renderQuestion();
+      };
     }
     
+    box.appendChild(el);
+  });
+  
+  const prevBtn=document.getElementById("btn-prev");
+  prevBtn.style.visibility=state.mode==='exam'?"hidden":(state.current===0?"hidden":"visible");
+  const last=state.current===total-1;
+  document.getElementById("btn-next").textContent=last?"Finalizar ✓":"Próxima →";
+}
+      
     el.innerHTML=`<span class="letter">${letters[idx]}</span><span>${opt}</span>`;
     
     // Só permite o clique se a questão ainda não foi respondida
