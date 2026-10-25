@@ -974,12 +974,11 @@ function addHistory(entry){const h=loadHistory();h.push(entry);if(h.length>1000)
    ============================================================ */
 
 function getGSConfig(){
-  // COLE SUA URL DO GOOGLE APPS SCRIPT ABAIXO, ENTRE AS ASPAS
+  // SUA URL DO GOOGLE APPS SCRIPT ESTÁ FIXADA AQUI
   const urlFixa = "https://script.google.com/macros/s/AKfycbzEcyQb0I3I841LPpU-vhZXGuIlRHMcPrmNmGXEq27f3GbrfYskCcV9YwQnb53gJqOr/exec"; 
   
   try {
     const local = JSON.parse(localStorage.getItem("aprendeai_gs")||'{"url":""}');
-    // Se você configurou no modo professor, usa a local. Se não, usa a fixa.
     return { url: local.url || urlFixa };
   } catch(e) {
     return { url: urlFixa };
@@ -1301,7 +1300,6 @@ function selectActivity(topicId){
   renderQuestion();
   showView("quiz");
 }
-
 function renderQuestion(){
   const q=state.questions[state.current];
   const total=state.questions.length;
@@ -1350,7 +1348,6 @@ function renderQuestion(){
   const last=state.current===total-1;
   document.getElementById("btn-next").textContent=last?"Finalizar ✓":"Próxima →";
 }
-  
 function prevQ(){if(state.mode==='exam')return;if(state.current>0){state.current--;renderQuestion();}}
 function nextQ(){
   if(state.answers[state.current]===null){alert("Escolha uma alternativa.");return;}
