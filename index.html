@@ -1204,29 +1204,54 @@ function renderHeaderChip(){
    REGISTER
    ============================================================ */
 function register(){
-  const name=document.getElementById("inp-name").value.trim();
-  const email=document.getElementById("inp-email").value.trim();
-  const turma=document.getElementById("inp-turma").value.trim();
-  const msg=document.getElementById("reg-msg");
-  const emailRegex=/^[^\s@]+@escola\.[^\s@]+$/i;
-  if(name.length<3){msg.className="status-msg err";msg.textContent="Digite seu nome completo.";return;}
-  if(!emailRegex.test(email)){msg.className="status-msg err";msg.textContent="Use um e-mail @escola.";return;}
-  if(turma.length<2){msg.className="status-msg err";msg.textContent="Informe sua turma.";return;}
-  let profile=getProfile(email);
-  if(!profile){
-    profile=createProfile(email,name,turma);
-    saveProfile(email,profile);
-    msg.className="status-msg ok";
-    msg.textContent=`Bilhete emitido! 🎟️ ${CONFIG.startingCoins} moedas + mascotes grátis!`;
-  } else {
-    profile.name=name; profile.turma=turma; profile.lastSeen=new Date().toISOString();
-    saveProfile(email,profile);
-    msg.className="status-msg ok"; msg.textContent=`Bem-vindo de volta, ${name.split(' ')[0]}! (Nível ${profile.level})`;
+  try {
+    const name=document.getElementById("inp-name").value.trim();
+    const email=document.getElementById("inp-email").value.trim();
+    const turma=document.getElementById("inp-turma").value.trim();
+    const msg=document.getElementById("reg-msg");
+    const emailRegex=/^[^\s@]+@escola\.[^\s@]+$/i;
+    
+    if(name.length<3){
+      msg.className="status-msg err"; 
+      msg.textContent="Digite seu nome completo."; 
+      return;
+    }
+    if(!emailRegex.test(email)){
+      msg.className="status-msg err"; 
+      msg.textContent="Use um e-mail que contenha @escola (ex: nome@escola.pr.gov.br)."; 
+      return;
+    }
+    if(turma.length<2){
+      msg.className="status-msg err"; 
+      msg.textContent="Informe sua turma."; 
+      return;
+    }
+    
+    let profile=getProfile(email);
+    if(!profile){
+      profile=createProfile(email,name,turma);
+      saveProfile(email,profile);
+      msg.className="status-msg ok";
+      msg.textContent=`Bilhete emitido! 🎟️ ${CONFIG.startingCoins} moedas + mascotes grátis!`;
+    } else {
+      profile.name=name; profile.turma=turma; profile.lastSeen=new Date().toISOString();
+      saveProfile(email,profile);
+      msg.className="status-msg ok"; 
+      msg.textContent=`Bem-vindo de volta, ${name.split(' ')[0]}! (Nível ${profile.level})`;
+    }
+    
+    state.user=profile;
+    document.getElementById("hero-name").textContent=name.split(" ")[0];
+    renderHeaderChip();
+    
+    // Força a entrada imediata sem esperar
+    showView("select");
+    
+  } catch (e) {
+    // Se o celular do aluno estiver bloqueando o salvamento (ex: aba anônima), avisa aqui
+    alert("Atenção: Seu navegador está bloqueando o salvamento. Desative o Modo Anônimo ou limpe o cache do celular e tente novamente.");
+    console.error(e);
   }
-  state.user=profile;
-  document.getElementById("hero-name").textContent=name.split(" ")[0];
-  renderHeaderChip();
-  setTimeout(()=>showView("select"),400);
 }
 
 /* ============================================================
