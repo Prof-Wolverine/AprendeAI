@@ -1276,27 +1276,49 @@ function selectActivity(topicId){
   renderQuestion();
   showView("quiz");
 }
+
 function renderQuestion(){
   const q=state.questions[state.current];
   const total=state.questions.length;
   document.getElementById("question-text").textContent=q.q;
   document.getElementById("q-counter").textContent=`Questão ${state.current+1} de ${total}  •  ${q.d}`;
   document.getElementById("progress-bar").style.width=`${((state.current+1)/total)*100}%`;
+  
   const box=document.getElementById("options-box");
   box.innerHTML="";
   const letters=["A","B","C","D","E"];
+  
+  // Verifica se a questão já foi respondida
+  const isAnswered = state.answers[state.current] !== null;
+  
   q.o.forEach((opt, idx)=>{
     const el=document.createElement("div");
     el.className="option"+(state.answers[state.current]===idx?" selected":"");
+    
+    // Se já respondeu, escurece as opções não escolhidas
+    if(isAnswered && state.answers[state.current] !== idx){
+      el.style.opacity = '0.5';
+    }
+    
     el.innerHTML=`<span class="letter">${letters[idx]}</span><span>${opt}</span>`;
-    el.onclick=()=>{state.answers[state.current]=idx;renderQuestion();};
+    
+    // Só permite o clique se a questão ainda não foi respondida
+    if(!isAnswered){
+      el.onclick=()=>{
+        state.answers[state.current]=idx;
+        renderQuestion(); // Recarrega a pergunta para mostrar travada
+      };
+    }
+    
     box.appendChild(el);
   });
+  
   const prevBtn=document.getElementById("btn-prev");
   prevBtn.style.visibility=state.mode==='exam'?"hidden":(state.current===0?"hidden":"visible");
   const last=state.current===total-1;
   document.getElementById("btn-next").textContent=last?"Finalizar ✓":"Próxima →";
 }
+  
 function prevQ(){if(state.mode==='exam')return;if(state.current>0){state.current--;renderQuestion();}}
 function nextQ(){
   if(state.answers[state.current]===null){alert("Escolha uma alternativa.");return;}
