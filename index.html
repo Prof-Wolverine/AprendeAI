@@ -972,9 +972,20 @@ function addHistory(entry){const h=loadHistory();h.push(entry);if(h.length>1000)
 /* ============================================================
    GOOGLE SHEETS
    ============================================================ */
+
 function getGSConfig(){
-  try{return JSON.parse(localStorage.getItem("aprendeai_gs")||'{"url":""}');}catch(e){return {url:""};}
+  // COLE SUA URL DO GOOGLE APPS SCRIPT ABAIXO, ENTRE AS ASPAS
+  const urlFixa = "https://script.google.com/macros/s/AKfycbzEcyQb0I3I841LPpU-vhZXGuIlRHMcPrmNmGXEq27f3GbrfYskCcV9YwQnb53gJqOr/exec"; 
+  
+  try {
+    const local = JSON.parse(localStorage.getItem("aprendeai_gs")||'{"url":""}');
+    // Se você configurou no modo professor, usa a local. Se não, usa a fixa.
+    return { url: local.url || urlFixa };
+  } catch(e) {
+    return { url: urlFixa };
+  }
 }
+  
 function saveGSConfig(){
   const url = document.getElementById("gs-url").value.trim();
   const msg = document.getElementById("gs-msg");
