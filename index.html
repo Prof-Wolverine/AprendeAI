@@ -109,7 +109,6 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .avatar-box{position:relative;display:inline-block;line-height:0;}
 .avatar-box svg{width:100%;height:100%;display:block;overflow:visible;}
 .avatar-hat{position:absolute;top:-9%;left:50%;transform:translateX(-50%);line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));pointer-events:none;z-index:3;}
-.avatar-acc{position:absolute;bottom:30%;right:-8%;line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));pointer-events:none;z-index:3;}
 .avatar-mascot{position:absolute;bottom:2%;right:-22%;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));pointer-events:none;animation:mascotBob 3s ease-in-out infinite;z-index:2;}
 @keyframes mascotBob{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-4px) rotate(4deg);}}
 .avatar-wing{position:absolute;bottom:40%;font-size:40px;z-index:0;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
@@ -120,7 +119,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .avatar-aura{position:absolute;inset:-10%;border-radius:50%;z-index:0;opacity:0.6;filter:blur(10px);animation:pulseAura 2s infinite alternate;}
 @keyframes pulseAura{0%{transform:scale(0.9);opacity:0.4;}100%{transform:scale(1.1);opacity:0.8;}}
 
-/* --- LOJA E MODAIS --- */
+/* --- LOJA --- */
 .mode-selector{background:linear-gradient(135deg,#FFF9E6,#FFF3C7);border:3px dashed var(--dark);border-radius:16px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
 .mode-selector h3{font-size:15px;margin:0;flex-shrink:0;}
 .mode-btn{padding:10px 18px;border-radius:12px;border:3px solid var(--dark);background:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:.15s;color:var(--dark);box-shadow:3px 3px 0 var(--dark);}
@@ -178,9 +177,6 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 
 .avatar-preview-area{display:flex;gap:32px;align-items:center;flex-wrap:wrap;justify-content:center;}
 .avatar-big{background:linear-gradient(180deg,#E0F5FF,#FFF9F0);border:4px solid var(--dark);border-radius:24px;padding:24px 28px;box-shadow:inset 0 0 20px rgba(77,150,255,.2);transition:background .3s;}
-.avatar-big.scene-sunset{background:linear-gradient(180deg,#FFB88C,#DE6262);}
-.avatar-big.scene-night{background:linear-gradient(180deg,#0F0C29,#302B63);}
-.avatar-big.scene-space{background:linear-gradient(180deg,#1a0033,#6b1d91);}
 .avatar-stats{display:flex;flex-direction:column;gap:10px;min-width:240px;}
 .stat-chip{display:flex;align-items:center;gap:10px;padding:12px 18px;background:#fff;border:3px solid var(--dark);border-radius:14px;font-size:14px;font-weight:800;box-shadow:3px 3px 0 rgba(45,27,78,.15);}
 .stat-chip b{font-family:'Fredoka',sans-serif;font-size:20px;color:var(--purple);}
@@ -203,25 +199,18 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .shop-item.equipped{border-color:var(--green);background:#F0FDF4;}
 .shop-item.locked{opacity:.75;}
 .discount-badge{position:absolute;top:-10px;left:-10px;background:#DC2626;color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:10px;border:2px solid var(--dark);z-index:5;transform:rotate(-8deg);box-shadow:2px 2px 0 var(--dark);}
-.level-unlock-badge{position:absolute;top:-10px;right:-10px;background:linear-gradient(135deg,var(--yellow),var(--orange));color:var(--dark);font-size:10px;font-weight:800;padding:4px 8px;border-radius:10px;border:2px solid var(--dark);z-index:5;box-shadow:2px 2px 0 var(--dark);}
 .shop-preview{display:flex;justify-content:center;margin-bottom:8px;height:105px;align-items:flex-end;}
 .shop-item-name{font-size:12px;font-weight:800;color:var(--dark);line-height:1.2;margin-bottom:4px;}
-.shop-item-desc{font-size:10px;color:var(--muted);font-style:italic;margin-bottom:6px;line-height:1.2;min-height:20px;font-weight:600;}
 .shop-item-rarity{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
 .shop-item-rarity.gratis{color:#6b7280;}
 .shop-item-rarity.comum{color:#3b82f6;}
 .shop-item-rarity.raro{color:#8b5cf6;}
 .shop-item-rarity.epico{color:#ec4899;}
 .shop-item-rarity.lendario{color:#f59e0b;}
-.shop-item-rarity.mitico{color:#dc2626;text-shadow:0 0 8px rgba(220,38,38,.3);}
-.shop-price{font-size:12px;font-weight:800;margin-bottom:6px;}
-.shop-price .old{text-decoration:line-through;color:#9CA3AF;font-size:11px;margin-right:6px;}
-.shop-price .new{color:#DC2626;font-family:'Fredoka';font-size:14px;}
 .shop-action{padding:8px 10px;border-radius:10px;font-family:'Fredoka',sans-serif;font-size:13px;font-weight:700;border:2px solid var(--dark);}
 .shop-action.equipped{background:var(--green);color:#fff;}
 .shop-action.use{background:var(--blue);color:#fff;}
 .shop-action.buy{background:var(--yellow);color:var(--dark);}
-.shop-action.locked{background:#E5E7EB;color:#6b7280;border-color:#9CA3AF;}
 
 /* AVISO FLUTUANTE (TOAST) */
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--dark);color:#fff;padding:12px 24px;border-radius:30px;font-family:'Fredoka';font-size:16px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:100;transition:transform .3s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;gap:8px;}
@@ -537,7 +526,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
         <p class="subtitle">Configure o endpoint do Google Apps Script para sincronizar alunos em tempo real.</p>
         <div class="field">
           <label>URL do Google Apps Script (Web App)</label>
-          <input type="url" id="gs-url" placeholder="https://script.google.com/macros/s/AKfycbxVLPMt-xioPEeB77rJ7fU3HiH3LTSn8nWNYFg2t2tzCB9I_JFtF3fdMou62yRs7Nra/exec">
+          <input type="url" id="gs-url" placeholder="https://script.google.com/macros/s/.../exec">
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <button class="btn blue" onclick="saveGSConfig()">💾 Salvar URL</button>
@@ -627,7 +616,7 @@ function MQ(q, correct, wrongs, diff='médio'){
 }
 
 /* ============================================================
-   AVATARES E LOJA (MUITO MAIS ITENS!)
+   AVATARES E LOJA (ITENS CORRIGIDOS)
    ============================================================ */
 const SKINS = {light:{name:'Pele Clara',price:0,color:'#FFE0BD',rarity:'Grátis'},medium:{name:'Pele Morena',price:0,color:'#F5C99A',rarity:'Grátis'},dark:{name:'Pele Negra',price:0,color:'#8D5524',rarity:'Grátis'}};
 const HAIRS = {none:{name:'Careca',price:0,color:'transparent',rarity:'Grátis'},short:{name:'Curtinho',price:0,color:'#6F4E37',rarity:'Grátis'},long:{name:'Comprido',price:50,color:'#1C1C1C',rarity:'Comum'},spiky:{name:'Moicano',price:100,color:'#FF69B4',rarity:'Raro'},curly:{name:'Cacheado',price:100,color:'#F4D03F',rarity:'Raro'}};
@@ -645,6 +634,7 @@ const SHOP_CATEGORIES = [
   {id:'hats',name:'Chapéus',emoji:'🧢'},{id:'shoes',name:'Sapatos',emoji:'👟'},{id:'skins',name:'Pele',emoji:'🎨'}
 ];
 const SHOP_ITEMS = {mascots:MASCOTS,hairs:HAIRS,eyes:EYES,shirts:SHIRTS,wings:WINGS,auras:AURAS,hats:HATS,shoes:SHOES,skins:SKINS};
+const AVATAR_KEYS = {mascots:'mascot',hairs:'hair',eyes:'eyes',shirts:'shirt',wings:'wing',auras:'aura',hats:'hat',shoes:'shoes',skins:'skin'};
 
 /* ============================================================
    TEMAS E GERADORES DE QUESTÃO
@@ -660,7 +650,6 @@ const GENS = {
   porcent:()=>{const p=pk([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,90]);const n=rd(2,50)*10;const c=p*n/100;return MQ(`${p}% de ${n} = ?`,c,[c+10,c-10,c+5],p<=25?'fácil':'médio');},
   eq1:()=>{const t=rd(0,1),x=rd(2,15);if(t===0){const a=rd(1,10),b=rd(1,20),c=a*x+b;return MQ(`Resolva: ${a}x + ${b} = ${c}`,x,[x+1,x-1,x+2],'médio');}const a=rd(1,15),c=a*x;return MQ(`Resolva: ${a}x = ${c}`,x,[x+1,x-1,x+2],'fácil');},
   areas:()=>{const t=rd(0,3);if(t===0){const l=rd(2,15);return MQ(`Área de um quadrado de lado ${l}:`,l*l,[l*l+1,4*l,l+l],'fácil');}if(t===1){const a=rd(2,15),b=rd(2,15);return MQ(`Área de um retângulo ${a} × ${b}:`,a*b,[a*b+2,2*(a+b),a+b],'fácil');}if(t===2){const b=rd(4,16),h=rd(2,10);return MQ(`Área de um triângulo base ${b} e altura ${h}:`,(b*h)/2,[b*h,(b*h)/2+2,(b+h)/2],'médio');}const l=rd(2,15);return MQ(`Perímetro de um quadrado de lado ${l}:`,4*l,[4*l+1,l*l,2*l],'fácil');},
-  // Novas matérias de conhecimentos gerais
   dinheiro:()=>{const t=rd(0,2);if(t===0){const v=rd(10,100),p=pk([10,20,30]),c=v-(v*p/100);return MQ(`Produto de R$${v} com ${p}% de desconto:`,c,[c+10,c-10,v],'médio');}if(t===1){const v=rd(50,200),p=pk([10,20]);return MQ(`Gorjeta de ${p}% sobre R$${v}:`,v*p/100,[v*p/100+5,v*p/100-5,v],'médio');}return MQ(`Quanto é R$50 + R$30?`,80,[70,90,100],'fácil');},
   historia:()=>{const qs=[{q:"Em que ano o Brasil foi descoberto?",o:["1500","1800","1900","1400"],a:0},{q:"Quem proclamou a independência?",o:["Dom Pedro I","Dom Pedro II","Tiradentes","Getúlio"],a:0}]; const item=pk(qs); return MQ(item.q, item.o[item.a], item.o.filter(o=>o!==item.o[item.a]), 'fácil');},
   ciencias:()=>{const qs=[{q:"Qual o planeta mais próximo do Sol?",o:["Mercúrio","Vênus","Terra","Marte"],a:0},{q:"Qual é o estado da água a 0°C?",o:["Sólido","Líquido","Gasoso","Plasma"],a:0}]; const item=pk(qs); return MQ(item.q, item.o[item.a], item.o.filter(o=>o!==item.o[item.a]), 'fácil');}
@@ -689,7 +678,6 @@ function migrateProfile(p){
   if(typeof p.level === 'undefined') p.level = getLevelFromXP(p.xp);
   if(!p.inventory) p.inventory = [];
   if(!p.avatar) p.avatar = {};
-  // Novos itens
   if(!p.avatar.hair) p.avatar.hair = 'short';
   if(!p.avatar.eyes) p.avatar.eyes = 'normal';
   if(!p.avatar.wing) p.avatar.wing = 'none';
@@ -737,47 +725,39 @@ async function syncUserToGlobal(){
 
 async function clearAllHistory(){
   if(!confirm("🚨 ATENÇÃO: Isso apagará TODO o histórico e ranking (local e na nuvem). Os alunos manterão suas moedas e avatares. Continuar?")) return;
-  
-  // 1. Limpa local
   localStorage.removeItem("aprendeai_history");
-  
-  // 2. Limpa nuvem
   const cfg = getGSConfig();
-  if(cfg.url) {
-    showToast("Limpando a nuvem...", "info");
-    await submitToGlobal({ action: 'clear_all' });
-  }
-  
+  if(cfg.url) { showToast("Limpando a nuvem...", "info"); await submitToGlobal({ action: 'clear_all' }); }
   showToast("✅ Histórico apagado com sucesso!", "success");
-  showView('select'); // Volta para o menu
+  showView('select');
 }
 
 /* ============================================================
-   DESENHO DO AVATAR (MELHORADO)
+   DESENHO DO AVATAR (CORRIGIDO SEM ERROS)
    ============================================================ */
 function getAvatarHTML(avatar, size){
+  // Garantir que temos todos os dados necessários para não travar
   const skin = (SKINS[avatar.skin]||SKINS.medium).color;
   const shirt = (SHIRTS[avatar.shirt]||SHIRTS.blue).color;
   const shoes = (SHOES[avatar.shoes]||SHOES.black).color;
   const hairData = HAIRS[avatar.hair]||HAIRS.short;
   const eyesData = EYES[avatar.eyes]||EYES.normal;
-  const hat = HATS[avatar.hat]; const acc = ACCS[avatar.accessory]; const mascot = MASCOTS[avatar.mascot];
-  const wing = WINGS[avatar.wing]; const aura = AURAS[avatar.aura];
+  const hat = HATS[avatar.hat] || HATS.none; 
+  const mascot = MASCOTS[avatar.mascot] || MASCOTS.none;
+  const wing = WINGS[avatar.wing] || WINGS.none; 
+  const aura = AURAS[avatar.aura] || AURAS.none;
   
-  const hatEmoji = hat && hat.emoji ? hat.emoji : '';
-  const accEmoji = acc && acc.emoji ? acc.emoji : '';
-  const mascotEmoji = mascot && mascot.emoji ? mascot.emoji : '';
-  const wingEmoji = wing && wing.emoji ? wing.emoji : '';
-  const auraStyle = aura && aura.color ? `background: radial-gradient(circle, ${aura.color} 0%, transparent 70%);` : '';
+  const hatEmoji = hat.emoji || '';
+  const mascotEmoji = mascot.emoji || '';
+  const wingEmoji = wing.emoji || '';
+  const auraStyle = aura.color ? `background: radial-gradient(circle, ${aura.color} 0%, transparent 70%);` : '';
 
-  // Desenhando os olhos
   let eyesSVG = '';
   if (eyesData.style === 'normal') eyesSVG = `<circle cx="42" cy="38" r="3" fill="#2D1B4E"/><circle cx="58" cy="38" r="3" fill="#2D1B4E"/>`;
   else if (eyesData.style === 'happy') eyesSVG = `<path d="M 39 38 Q 42 34 45 38" stroke="#2D1B4E" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M 55 38 Q 58 34 61 38" stroke="#2D1B4E" stroke-width="2" fill="none" stroke-linecap="round"/>`;
   else if (eyesData.style === 'star') eyesSVG = `<text x="42" y="42" font-size="8" text-anchor="middle">⭐</text><text x="58" y="42" font-size="8" text-anchor="middle">⭐</text>`;
   else if (eyesData.style === 'cool') eyesSVG = `<rect x="35" y="34" width="12" height="6" rx="2" fill="#111" /><rect x="53" y="34" width="12" height="6" rx="2" fill="#111" /><line x1="47" y1="37" x2="53" y2="37" stroke="#111" stroke-width="2"/>`;
 
-  // Desenhando o cabelo
   let hairSVG = '';
   if (avatar.hair !== 'none') {
     if (avatar.hair === 'spiky') hairSVG = `<polygon points="25,30 35,10 45,25 50,5 55,25 65,10 75,30" fill="${hairData.color}"/>`;
@@ -797,13 +777,9 @@ function getAvatarHTML(avatar, size){
         <rect x="52" y="100" width="8" height="26" rx="3" fill="${skin}"/>
         <ellipse cx="44" cy="128" rx="7" ry="4" fill="${shoes}"/>
         <ellipse cx="56" cy="128" rx="7" ry="4" fill="${shoes}"/>
-        
-        <!-- Braços e Tronco -->
         <rect x="26" y="64" width="7" height="36" rx="3.5" fill="${skin}"/>
         <rect x="67" y="64" width="7" height="36" rx="3.5" fill="${skin}"/>
         <rect x="33" y="62" width="34" height="42" rx="8" fill="${shirt}"/>
-        
-        <!-- Cabeça -->
         <circle cx="50" cy="38" r="23" fill="${skin}"/>
         ${hairSVG}
         ${eyesSVG}
@@ -813,7 +789,6 @@ function getAvatarHTML(avatar, size){
       </svg>
       
       ${hatEmoji ? `<div class="avatar-hat" style="font-size:${size*0.5}px;">${hatEmoji}</div>` : ''}
-      ${accEmoji ? `<div class="avatar-acc" style="font-size:${size*0.35}px;">${accEmoji}</div>` : ''}
       ${mascotEmoji ? `<div class="avatar-mascot" style="font-size:${size*0.42}px;">${mascotEmoji}</div>` : ''}
     </div>`;
 }
@@ -911,14 +886,21 @@ function finishQuiz(){
   const levelResult=addXP(profile, xpEarned); saveProfile(profile.email, profile); state.user=profile; renderHeaderChip();
   if(coinsEarned>0) playSound('coin'); if(levelResult.leveledUp) setTimeout(()=>playSound('levelup'), 300);
   
-  const entry = { name:profile.name, email:profile.email, turma:profile.turma, activity:state.activity.name, mode:state.mode, correct, total, grade, coinsEarned, xp:xpEarned, date:new Date().toISOString() };
+  const entry = { name:profile.name, email:profile.email, turma:profile.turma, activity:state.activity.name, emoji: state.activity.emoji, mode:state.mode, correct, total, grade, coinsEarned, xp:xpEarned, date:new Date().toISOString() };
   const h = JSON.parse(localStorage.getItem("aprendeai_history")||"[]"); h.push(entry); localStorage.setItem("aprendeai_history", JSON.stringify(h));
   
   submitToGlobal({ name: profile.name, email: profile.email, turma: profile.turma, activity: state.activity.name, mode: state.mode, correct, total, grade, coins: coinsEarned, xp: xpEarned, date: entry.date });
   
   document.getElementById("res-score").textContent=correct; document.getElementById("res-total").textContent=total; document.getElementById("res-grade").textContent=grade; document.getElementById("res-coins").textContent=coinsEarned; document.getElementById("res-xp").textContent=xpEarned; document.getElementById("res-name").textContent=profile.name; document.getElementById("res-activity").textContent=state.activity.name; document.getElementById("res-correct").textContent=correct; document.getElementById("res-wrong").textContent=total-correct; document.getElementById("result-hero").classList.toggle("low", correct/total < 0.6);
   
-  const banner = document.getElementById("levelup-banner"); if(levelResult.leveledUp){ banner.classList.remove("hidden"); document.getElementById("new-level").textContent = levelResult.newLevel; } else { banner.classList.add("hidden"); }
+  const banner = document.getElementById("levelup-banner"); 
+  if(levelResult.leveledUp){ 
+    banner.classList.remove("hidden"); 
+    document.getElementById("new-level").textContent = levelResult.newLevel; 
+    const list = document.getElementById("unlock-list");
+    if(levelResult.unlocked.length > 0){ list.innerHTML = levelResult.unlocked.map(mid => `<div class="unlock-item">${MASCOTS[mid].emoji} ${MASCOTS[mid].name}</div>`).join(''); } 
+    else { list.innerHTML = `<div class="unlock-item">🎉 Continue assim!</div>`; }
+  } else { banner.classList.add("hidden"); }
   showView("result");
 }
 function retryQuiz(){selectActivity(state.activity.id);}
@@ -941,11 +923,10 @@ function renderShopTabs(){const box=document.getElementById("shop-tabs"); if(!bo
 function switchShopTab(id){currentShopTab=id;renderShopTabs();renderShopGrid(id);}
 
 function renderShopGrid(category){
-  const grid=document.getElementById("shop-grid"); if(!grid) return; const items=SHOP_ITEMS[category]; const p=state.user; const avatarKey=category.substring(0, category.length-1); // Ex: hats -> hat
+  const grid=document.getElementById("shop-grid"); if(!grid) return; const items=SHOP_ITEMS[category]; const p=state.user; const avatarKey=AVATAR_KEYS[category];
   
   grid.innerHTML = Object.entries(items).map(([id, item]) => {
     const key=`${category}:${id}`; const owned=id==='none'||item.price===0||p.inventory.includes(key); const equipped=p.avatar[avatarKey]===id;
-    // Para preview de roupas e olhos, ajustamos o objeto temporariamente
     let previewAvatar = {...p.avatar, [avatarKey]: id};
     if(category === 'eyes') previewAvatar.eyes = id;
 
@@ -966,7 +947,7 @@ function renderShopGrid(category){
 }
 
 function handleShopClick(category, id){
-  const p=state.user; const item=SHOP_ITEMS[category][id]; const key=`${category}:${id}`; const avatarKey=category.substring(0, category.length-1);
+  const p=state.user; const item=SHOP_ITEMS[category][id]; const key=`${category}:${id}`; const avatarKey=AVATAR_KEYS[category];
   
   if(p.avatar[avatarKey]===id){ showToast("Esse item já está em uso!", "error"); return; }
   
@@ -982,7 +963,6 @@ function handleShopClick(category, id){
   
   if(p.coins < item.price){ showToast(`Faltam ${item.price - p.coins} moedas! Jogue mais quizzes.`, "error"); return; }
   
-  // COMPRA DIRETA (SEM CONFIRM CHATO)
   p.coins -= item.price; 
   p.inventory.push(key); 
   p.avatar[avatarKey] = id; 
@@ -1046,16 +1026,42 @@ async function renderMountain(){
    RANKING
    ============================================================ */
 async function renderRanking(filter){
-  const content=document.getElementById("ranking-content"); if(!content) return;
-  const globalData = await fetchGlobalRanking();
-  if(!globalData || globalData.length === 0){ content.innerHTML=`<div class="empty-ranking"><h3>Nenhum resultado registrado ainda.</h3></div>`; return; }
+  const content=document.getElementById("ranking-content"); const filtersBox=document.getElementById("ranking-filters");
+  if(!content||!filtersBox) return;
   
-  const entries = globalData.map(e => ({name:e.name, turma:e.turma, activity:e.activity, grade:e.grade, date:e.date}));
+  filtersBox.innerHTML=`
+    <button class="filter-btn ${filter==='all'?'active':''}" onclick="renderRanking('all')">🌍 Todos</button>
+    <button class="filter-btn ${filter==='turma'?'active':''}" onclick="renderRanking('turma')">🏫 Minha Turma</button>
+  `;
+
+  let entries = [];
+  const hasGlobal = !!getGSConfig().url;
+  
+  if(hasGlobal) {
+    const globalData = await fetchGlobalRanking();
+    if(globalData && globalData.length > 0) {
+      entries = globalData.map(e => ({name:e.name, turma:e.turma, activity:e.activity, grade:e.grade, date:e.date}));
+    }
+  } else {
+     entries = JSON.parse(localStorage.getItem("aprendeai_history")||"[]");
+  }
+  
+  if(filter === 'turma' && state.user) {
+    entries = entries.filter(e => e.turma === state.user.turma);
+  }
+
+  if(entries.length === 0){ content.innerHTML=`<div class="empty-ranking"><h3>Nenhum resultado registrado ainda.</h3></div>`; return; }
+
   entries.sort((a,b)=>{const ga=parseFloat(String(a.grade).replace(',','.'));const gb=parseFloat(String(b.grade).replace(',','.'));if(gb!==ga) return gb-ga;return new Date(b.date)-new Date(a.date);});
   entries=entries.slice(0,50);
   
   const medals=['🥇','🥈','🥉'];
-  const rows=entries.map((e, i)=>{const pos=i+1;const posDisplay=pos<=3?`<span class="rank-medal">${medals[pos-1]}</span>`:`<span class="rank-pos">${pos}º</span>`;return `<tr class="top-${pos<=3?pos:''}"><td>${posDisplay}</td><td class="rank-name">${esc(e.name)}<span class="rank-turma">${esc(e.turma||'—')}</span></td><td>${esc(e.activity)}</td><td><span class="rank-score">${esc(e.grade)}</span></td></tr>`;}).join('');
+  const rows=entries.map((e, i)=>{
+    const pos=i+1;
+    const posDisplay=pos<=3?`<span class="rank-medal">${medals[pos-1]}</span>`:`<span class="rank-pos">${pos}º</span>`;
+    const date = e.date ? new Date(e.date).toLocaleDateString('pt-BR') : '';
+    return `<tr class="top-${pos<=3?pos:''}"><td>${posDisplay}</td><td class="rank-name">${esc(e.name)}<span class="rank-turma">${esc(e.turma||'—')}</span></td><td>${esc(e.activity)}<span class="rank-turma">${date}</span></td><td><span class="rank-score">${esc(e.grade)}</span></td></tr>`;
+  }).join('');
   content.innerHTML=`<table class="ranking-table"><thead><tr><th>Pos</th><th>Estudante</th><th>Atividade</th><th>Nota</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
