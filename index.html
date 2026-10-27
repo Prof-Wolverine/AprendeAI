@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🎢 Learn AI — Parque do Conhecimento</title>
+<title>🎢 Aprende AI — Parque do Conhecimento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
@@ -282,7 +282,7 @@ textarea{font-family:'Courier New',monospace;font-size:12px;min-height:120px;res
 
 <header class="nav">
   <div class="logo-wrap">
-    <div class="logo"><span class="logo-icon">🎢</span>Learn AI</div>
+    <div class="logo"><span class="logo-icon">🎢</span>Aprende AI</div>
     <div class="tagline">Parque do Conhecimento</div>
   </div>
   <div class="header-right">
@@ -317,7 +317,7 @@ textarea{font-family:'Courier New',monospace;font-size:12px;min-height:120px;res
   <main>
     <section id="view-register">
       <div class="section hero">
-        <h2>🎪 Bem-vindo ao Learn AI!</h2>
+        <h2>🎪 Bem-vindo ao Aprende AI!</h2>
         <p>O parque onde aprender matemática é a maior diversão</p>
       </div>
       <div class="ticket">
@@ -443,6 +443,7 @@ textarea{font-family:'Courier New',monospace;font-size:12px;min-height:120px;res
       <div class="section hero" style="background:linear-gradient(135deg,#B5E8FF,#6B5B95);color:#fff;">
         <h2>⛰️ Montanha do Conhecimento</h2>
         <p>Escalone com sua turma e mostre quem sabe mais!</p>
+        <p id="sync-status" style="font-size:12px; margin-top:10px; opacity:0.8;"></p>
       </div>
       <div class="section">
         <div class="turma-header" id="turma-header"></div>
@@ -524,26 +525,13 @@ textarea{font-family:'Courier New',monospace;font-size:12px;min-height:120px;res
         <p class="subtitle">Configure o endpoint do Google Apps Script. Assim, TODOS os alunos em TODOS os dispositivos aparecem no mesmo ranking.</p>
         <div class="field">
           <label>URL do Google Apps Script (Web App)</label>
-          <input type="url" id="gs-url" placeholder="https://script.google.com/macros/s/AKfycbzb9Bilb2_yqV2HXqGgoRLrEYhVWJqyThfx2m_xg2Mjk4CPoaoIvL-cx058Ezaz0mak/exec">
+          <input type="url" id="gs-url" placeholder="https://script.google.com/macros/s/.../exec">
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <button class="btn blue" onclick="saveGSConfig()">💾 Salvar URL</button>
           <button class="btn ghost" onclick="testGSConfig()">🧪 Testar Conexão</button>
-          <button class="btn ghost" onclick="showGSSetup()">📖 Como configurar</button>
         </div>
         <div class="status-msg" id="gs-msg"></div>
-        <div id="gs-setup" class="hidden" style="margin-top:16px;padding:16px;background:#FEF3C7;border:3px dashed var(--orange);border-radius:14px;font-size:13px;font-weight:600;">
-          <h3 style="margin-bottom:8px;">📖 Passo a passo:</h3>
-          <ol style="padding-left:20px;line-height:1.6;">
-            <li>Crie uma planilha no <b>Google Sheets</b> (ex: "Ranking Learn AI")</li>
-            <li>Menu <b>Extensões → Apps Script</b></li>
-            <li>Apague o código e cole o script que está na resposta do assistente</li>
-            <li>Clique em <b>Implantar → Nova implantação → Web App</b></li>
-            <li>Execute como: <b>Eu</b> · Quem tem acesso: <b>Qualquer pessoa</b></li>
-            <li>Copie a <b>URL /exec</b> gerada e cole no campo acima</li>
-            <li>Clique em <b>Salvar URL</b> e depois <b>Testar Conexão</b></li>
-          </ol>
-        </div>
       </div>
       <div class="section">
         <button class="btn ghost small" onclick="showView('select')">← Voltar ao Parque</button>
@@ -576,38 +564,17 @@ const CONFIG = {
    SISTEMA DE NÍVEIS
    ============================================================ */
 const LEVELS = [
-  {level:1,  xp:0,     unlock:null},
-  {level:2,  xp:100,   unlock:'elephant'},
-  {level:3,  xp:300,   unlock:'giraffe'},
-  {level:4,  xp:600,   unlock:'turtle'},
-  {level:5,  xp:1000,  unlock:'snake'},
-  {level:6,  xp:1500,  unlock:'koala'},
-  {level:7,  xp:2100,  unlock:'rhino'},
-  {level:8,  xp:2800,  unlock:'tiger'},
-  {level:9,  xp:3600,  unlock:'jaguar'},
-  {level:10, xp:4500,  unlock:'hyena'},
-  {level:11, xp:5500,  unlock:'owl'},
-  {level:12, xp:6800,  unlock:'eagle'},
-  {level:13, xp:8300,  unlock:'ostrich'},
-  {level:14, xp:10000, unlock:'dolphin'},
-  {level:15, xp:12000, unlock:'fox'},
-  {level:16, xp:14300, unlock:'wolf'},
-  {level:17, xp:17000, unlock:'panda'},
-  {level:18, xp:20000, unlock:'dragon'},
-  {level:19, xp:23500, unlock:'unicorn'},
-  {level:20, xp:27500, unlock:'phoenix'}
+  {level:1,  xp:0,     unlock:null},{level:2,  xp:100,   unlock:'elephant'},{level:3,  xp:300,   unlock:'giraffe'},
+  {level:4,  xp:600,   unlock:'turtle'},{level:5,  xp:1000,  unlock:'snake'},{level:6,  xp:1500,  unlock:'koala'},
+  {level:7,  xp:2100,  unlock:'rhino'},{level:8,  xp:2800,  unlock:'tiger'},{level:9,  xp:3600,  unlock:'jaguar'},
+  {level:10, xp:4500,  unlock:'hyena'},{level:11, xp:5500,  unlock:'owl'},{level:12, xp:6800,  unlock:'eagle'},
+  {level:13, xp:8300,  unlock:'ostrich'},{level:14, xp:10000, unlock:'dolphin'},{level:15, xp:12000, unlock:'fox'},
+  {level:16, xp:14300, unlock:'wolf'},{level:17, xp:17000, unlock:'panda'},{level:18, xp:20000, unlock:'dragon'},
+  {level:19, xp:23500, unlock:'unicorn'},{level:20, xp:27500, unlock:'phoenix'}
 ];
 
-function getLevelFromXP(xp){
-  let lvl = 1;
-  for(const l of LEVELS) if(xp >= l.xp) lvl = l.level;
-  return lvl;
-}
+function getLevelFromXP(xp){let lvl = 1;for(const l of LEVELS) if(xp >= l.xp) lvl = l.level;return lvl;}
 function getLevelInfo(level){ return LEVELS.find(l => l.level === level) || LEVELS[0]; }
-function getNextLevelXP(level){
-  const next = LEVELS.find(l => l.level === level + 1);
-  return next ? next.xp : null;
-}
 function getLevelProgress(profile){
   const cur = getLevelInfo(profile.level);
   const next = LEVELS.find(l => l.level === profile.level + 1);
@@ -627,10 +594,7 @@ function addXP(profile, amount){
       const info = getLevelInfo(l);
       if(info.unlock){
         const key = `mascots:${info.unlock}`;
-        if(!profile.inventory.includes(key)){
-          profile.inventory.push(key);
-          unlocked.push(info.unlock);
-        }
+        if(!profile.inventory.includes(key)){profile.inventory.push(key);unlocked.push(info.unlock);}
       }
     }
   }
@@ -639,119 +603,48 @@ function addXP(profile, amount){
 }
 
 /* ============================================================
-   SONS (Web Audio API - sintetizados)
+   SONS
    ============================================================ */
 let audioCtx = null;
-function getAudioCtx(){
-  if(!audioCtx){
-    try{ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){}
-  }
-  return audioCtx;
-}
+function getAudioCtx(){if(!audioCtx){try{ audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }catch(e){}}return audioCtx;}
 function playSound(type){
   if(!state.user || !state.user.soundEnabled) return;
-  const ctx = getAudioCtx();
-  if(!ctx) return;
+  const ctx = getAudioCtx(); if(!ctx) return;
   if(ctx.state === 'suspended') ctx.resume();
-  const sounds = {
-    purchase: {notes:[523.25, 659.25, 783.99], type:'sine', dur:0.11, vol:0.28},
-    equip: {notes:[440, 660], type:'triangle', dur:0.09, vol:0.2},
-    coin: {notes:[988, 1319], type:'square', dur:0.08, vol:0.13},
-    levelup: {notes:[523.25, 659.25, 783.99, 1046.50], type:'sine', dur:0.13, vol:0.3},
-    correct: {notes:[659.25, 880], type:'sine', dur:0.09, vol:0.18},
-    wrong: {notes:[220, 165], type:'sawtooth', dur:0.12, vol:0.15}
-  };
-  const s = sounds[type];
-  if(!s) return;
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-  osc.connect(gain); gain.connect(ctx.destination);
-  osc.type = s.type;
+  const sounds = {purchase:{notes:[523.25,659.25,783.99],type:'sine',dur:0.11,vol:0.28},equip:{notes:[440,660],type:'triangle',dur:0.09,vol:0.2},coin:{notes:[988,1319],type:'square',dur:0.08,vol:0.13},levelup:{notes:[523.25,659.25,783.99,1046.50],type:'sine',dur:0.13,vol:0.3}};
+  const s = sounds[type]; if(!s) return;
+  const osc = ctx.createOscillator(); const gain = ctx.createGain();
+  osc.connect(gain); gain.connect(ctx.destination); osc.type = s.type;
   s.notes.forEach((f, i) => osc.frequency.setValueAtTime(f, ctx.currentTime + i * s.dur));
   const total = s.notes.length * s.dur + 0.1;
   gain.gain.setValueAtTime(s.vol, ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + total);
-  osc.start();
-  osc.stop(ctx.currentTime + total);
+  osc.start(); osc.stop(ctx.currentTime + total);
 }
-function toggleSound(){
-  if(!state.user){ return; }
-  state.user.soundEnabled = !state.user.soundEnabled;
-  saveProfile(state.user.email, state.user);
-  updateSoundButton();
-  if(state.user.soundEnabled) playSound('equip');
-}
-function updateSoundButton(){
-  const btn = document.getElementById("sound-toggle");
-  if(!btn) return;
-  btn.textContent = (!state.user || state.user.soundEnabled) ? '🔊' : '🔇';
-  btn.title = (!state.user || state.user.soundEnabled) ? 'Desligar sons' : 'Ligar sons';
-}
+function toggleSound(){if(!state.user){ return; }state.user.soundEnabled = !state.user.soundEnabled;saveProfile(state.user.email, state.user);updateSoundButton();if(state.user.soundEnabled) playSound('equip');}
+function updateSoundButton(){const btn = document.getElementById("sound-toggle");if(!btn) return;btn.textContent = (!state.user || state.user.soundEnabled) ? '🔊' : '🔇';}
 
 /* ============================================================
-   OFERTAS SEMANAIS
-   ============================================================ */
-function getWeekNumber(){
-  const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 1);
-  const days = Math.floor((now - start) / 86400000);
-  return Math.floor((days + start.getDay()) / 7);
-}
-function seededShuffle(arr, seed){
-  const a = [...arr];
-  let s = seed;
-  for(let i = a.length - 1; i > 0; i--){
-    s = (s * 9301 + 49297) % 233280;
-    const j = Math.floor((s / 233280) * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-function getWeeklyOffers(){
-  const week = getWeekNumber();
-  const items = [];
-  ['mascots','hats','shirts','shoes','accessories'].forEach(cat => {
-    Object.entries(SHOP_ITEMS[cat]).forEach(([id, item]) => {
-      if(item.price > 0) items.push({cat, id});
-    });
-  });
-  const shuffled = seededShuffle(items, week + 42);
-  const picked = shuffled.slice(0, 6);
-  const offers = {};
-  picked.forEach((p, i) => {
-    const discount = 20 + ((week * 13 + i * 7) % 21);
-    offers[`${p.cat}:${p.id}`] = discount;
-  });
-  return offers;
-}
-function getDiscount(cat, id){
-  const offers = getWeeklyOffers();
-  return offers[`${cat}:${id}`] || 0;
-}
-function getEffectivePrice(cat, id){
-  const item = SHOP_ITEMS[cat][id];
-  const discount = getDiscount(cat, id);
-  if(discount === 0) return {price: item.price, original: item.price, discount: 0};
-  return {price: Math.round(item.price * (1 - discount/100)), original: item.price, discount};
-}
-function getDaysUntilRotation(){
-  const now = new Date();
-  const days = now.getDay();
-  const daysUntilMonday = days === 1 ? 7 : (8 - days) % 7 || 7;
-  return daysUntilMonday;
-}
-
-/* ============================================================
-   UTILITÁRIOS
+   UTILITÁRIOS - CORREÇÃO DE DUPLICATAS AQUI
    ============================================================ */
 const rd = (a,b)=>Math.floor(Math.random()*(b-a+1))+a;
 const pk = a=>a[Math.floor(Math.random()*a.length)];
 const sh = a=>{const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;};
 const esc = s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
 function MQ(q, correct, wrongs, diff='médio'){
   const correctS = String(correct);
-  const ws = [...new Set(wrongs.map(String).filter(w=>w!==correctS))];
-  while(ws.length < 3) ws.push('?'.repeat(ws.length+1));
+  // Remove duplicatas e a resposta certa
+  let ws = [...new Set(wrongs.map(String).filter(w=>w!==correctS))];
+  // Se faltarem opções por causa de duplicatas, gera números aleatórios para preencher
+  while(ws.length < 3) {
+    let offset = Math.floor(Math.random() * 20) + 2; // Gera um número longe da resposta
+    let fakeWrong = String(Number(correct) + (Math.random() > 0.5 ? offset : -offset));
+    if (!ws.includes(fakeWrong) && fakeWrong !== correctS) {
+      ws.push(fakeWrong);
+    }
+  }
+  ws = ws.slice(0, 3); // Garante que teremos exatamente 3 alternativas erradas
   const all = sh([correctS, ws[0], ws[1], ws[2]]);
   return {q, o:all, a:all.indexOf(correctS), d:diff};
 }
@@ -759,132 +652,34 @@ function MQ(q, correct, wrongs, diff='médio'){
 /* ============================================================
    AVATAR / MASCOTES / LOJA
    ============================================================ */
-const SKINS = {
-  light:{name:'Pele Clara', price:0, color:'#FFE0BD', rarity:'Grátis'},
-  medium:{name:'Pele Morena', price:0, color:'#F5C99A', rarity:'Grátis'},
-  tan:{name:'Pele Bronze', price:0, color:'#E0AC69', rarity:'Grátis'},
-  brown:{name:'Pele Parda', price:0, color:'#C68642', rarity:'Grátis'},
-  dark:{name:'Pele Negra', price:0, color:'#8D5524', rarity:'Grátis'}
-};
-const HAIRS = {
-  brown:{name:'Castanho', price:0, color:'#6F4E37', rarity:'Grátis'},
-  black:{name:'Preto', price:0, color:'#1C1C1C', rarity:'Grátis'},
-  blonde:{name:'Loiro', price:0, color:'#F4D03F', rarity:'Grátis'},
-  red:{name:'Ruivo', price:0, color:'#C0392B', rarity:'Grátis'},
-  pink:{name:'Rosa', price:0, color:'#FF69B4', rarity:'Grátis'},
-  blue:{name:'Azul', price:0, color:'#4D96FF', rarity:'Grátis'}
-};
-const SHIRTS = {
-  blue:{name:'Camisa Azul', price:0, color:'#4D96FF', rarity:'Grátis'},
-  red:{name:'Camisa Rosa', price:150, color:'#FF4D8D', rarity:'Comum'},
-  green:{name:'Camisa Verde', price:150, color:'#4ECB71', rarity:'Comum'},
-  yellow:{name:'Camisa Amarela', price:200, color:'#FFD93D', rarity:'Comum'},
-  purple:{name:'Camisa Roxa', price:400, color:'#A45DEB', rarity:'Raro'},
-  gold:{name:'Camisa Dourada', price:1200, color:'#FFD700', rarity:'Lendário'}
-};
-const SHOES = {
-  black:{name:'Tênis Preto', price:0, color:'#2D1B4E', rarity:'Grátis'},
-  white:{name:'Tênis Branco', price:100, color:'#FFFFFF', rarity:'Comum'},
-  brown:{name:'Botas Marrons', price:300, color:'#8B4513', rarity:'Raro'},
-  cyan:{name:'Tênis Neon', price:700, color:'#00FFFF', rarity:'Épico'},
-  gold:{name:'Sapatos Dourados', price:1500, color:'#FFD700', rarity:'Lendário'}
-};
-const HATS = {
-  none:{name:'Sem chapéu', price:0, emoji:'', rarity:'—'},
-  cap:{name:'Boné', price:100, emoji:'🧢', rarity:'Comum'},
-  tophat:{name:'Cartola', price:350, emoji:'🎩', rarity:'Raro'},
-  grad:{name:'Capelo', price:600, emoji:'🎓', rarity:'Raro'},
-  crown:{name:'Coroa Real', price:1200, emoji:'👑', rarity:'Épico'},
-  helmet:{name:'Capacete', price:2000, emoji:'🪖', rarity:'Lendário'}
-};
-const ACCS = {
-  none:{name:'Sem acessório', price:0, emoji:'', rarity:'—'},
-  glasses:{name:'Óculos', price:200, emoji:'🕶️', rarity:'Comum'},
-  backpack:{name:'Mochila', price:450, emoji:'🎒', rarity:'Raro'},
-  wand:{name:'Varinha', price:900, emoji:'🪄', rarity:'Épico'},
-  sword:{name:'Espada', price:1000, emoji:'⚔️', rarity:'Épico'},
-  star:{name:'Aura Estelar', price:2500, emoji:'🌟', rarity:'Lendário'}
-};
+const SKINS = {light:{name:'Pele Clara', price:0, color:'#FFE0BD', rarity:'Grátis'},medium:{name:'Pele Morena', price:0, color:'#F5C99A', rarity:'Grátis'},tan:{name:'Pele Bronze', price:0, color:'#E0AC69', rarity:'Grátis'},brown:{name:'Pele Parda', price:0, color:'#C68642', rarity:'Grátis'},dark:{name:'Pele Negra', price:0, color:'#8D5524', rarity:'Grátis'}};
+const HAIRS = {brown:{name:'Castanho', price:0, color:'#6F4E37', rarity:'Grátis'},black:{name:'Preto', price:0, color:'#1C1C1C', rarity:'Grátis'},blonde:{name:'Loiro', price:0, color:'#F4D03F', rarity:'Grátis'},red:{name:'Ruivo', price:0, color:'#C0392B', rarity:'Grátis'},pink:{name:'Rosa', price:0, color:'#FF69B4', rarity:'Grátis'},blue:{name:'Azul', price:0, color:'#4D96FF', rarity:'Grátis'}};
+const SHIRTS = {blue:{name:'Camisa Azul', price:0, color:'#4D96FF', rarity:'Grátis'},red:{name:'Camisa Rosa', price:150, color:'#FF4D8D', rarity:'Comum'},green:{name:'Camisa Verde', price:150, color:'#4ECB71', rarity:'Comum'},yellow:{name:'Camisa Amarela', price:200, color:'#FFD93D', rarity:'Comum'},purple:{name:'Camisa Roxa', price:400, color:'#A45DEB', rarity:'Raro'},gold:{name:'Camisa Dourada', price:1200, color:'#FFD700', rarity:'Lendário'}};
+const SHOES = {black:{name:'Tênis Preto', price:0, color:'#2D1B4E', rarity:'Grátis'},white:{name:'Tênis Branco', price:100, color:'#FFFFFF', rarity:'Comum'},brown:{name:'Botas Marrons', price:300, color:'#8B4513', rarity:'Raro'},cyan:{name:'Tênis Neon', price:700, color:'#00FFFF', rarity:'Épico'},gold:{name:'Sapatos Dourados', price:1500, color:'#FFD700', rarity:'Lendário'}};
+const HATS = {none:{name:'Sem chapéu', price:0, emoji:'', rarity:'—'},cap:{name:'Boné', price:100, emoji:'🧢', rarity:'Comum'},tophat:{name:'Cartola', price:350, emoji:'🎩', rarity:'Raro'},grad:{name:'Capelo', price:600, emoji:'🎓', rarity:'Raro'},crown:{name:'Coroa Real', price:1200, emoji:'👑', rarity:'Épico'},helmet:{name:'Capacete', price:2000, emoji:'🪖', rarity:'Lendário'}};
+const ACCS = {none:{name:'Sem acessório', price:0, emoji:'', rarity:'—'},glasses:{name:'Óculos', price:200, emoji:'🕶️', rarity:'Comum'},backpack:{name:'Mochila', price:450, emoji:'🎒', rarity:'Raro'},wand:{name:'Varinha', price:900, emoji:'🪄', rarity:'Épico'},sword:{name:'Espada', price:1000, emoji:'⚔️', rarity:'Épico'},star:{name:'Aura Estelar', price:2500, emoji:'🌟', rarity:'Lendário'}};
 const MASCOTS = {
-  none:{name:'Sem mascote', price:0, emoji:'', rarity:'—', desc:'Escolha um companheiro'},
-  frog:{name:'Sapo', price:0, emoji:'🐸', rarity:'Grátis', desc:'Pula alto como sua nota!'},
-  capybara:{name:'Capivara', price:0, emoji:'🦫', rarity:'Grátis', desc:'A rainha da calma'},
-  cat:{name:'Gato', price:0, emoji:'🐱', rarity:'Grátis', desc:'Curioso como um bom matemático'},
-  dog:{name:'Cachorro', price:0, emoji:'🐶', rarity:'Grátis', desc:'Seu fiel companheiro'},
-  elephant:{name:'Elefante', price:300, emoji:'🐘', rarity:'Comum', desc:'Memória de elefante!'},
-  giraffe:{name:'Girafa', price:300, emoji:'🦒', rarity:'Comum', desc:'Enxerga longe!'},
-  turtle:{name:'Tartaruga', price:350, emoji:'🐢', rarity:'Comum', desc:'Devagar e sempre'},
-  snake:{name:'Cobra', price:400, emoji:'🐍', rarity:'Comum', desc:'Ágil e esperta'},
-  koala:{name:'Coala', price:400, emoji:'🐨', rarity:'Comum', desc:'Fofo e tranquilo'},
-  rhino:{name:'Rinoceronte', price:550, emoji:'🦏', rarity:'Raro', desc:'Força bruta nos cálculos'},
-  tiger:{name:'Tigre', price:600, emoji:'🐯', rarity:'Raro', desc:'Listrado e valente'},
-  jaguar:{name:'Onça', price:650, emoji:'🐆', rarity:'Raro', desc:'A rainha das matas'},
-  hyena:{name:'Hiena', price:700, emoji:'🐕', rarity:'Raro', desc:'Sorriso esperto'},
-  owl:{name:'Coruja', price:800, emoji:'🦉', rarity:'Raro', desc:'Sábia como a matemática'},
-  eagle:{name:'Águia', price:900, emoji:'🦅', rarity:'Épico', desc:'Visão afiada'},
-  ostrich:{name:'Avestruz', price:900, emoji:'🦩', rarity:'Épico', desc:'Rápida como você'},
-  dolphin:{name:'Golfinho', price:1100, emoji:'🐬', rarity:'Épico', desc:'Inteligente e brincalhão'},
-  fox:{name:'Raposa', price:1200, emoji:'🦊', rarity:'Épico', desc:'Astuta e veloz'},
-  wolf:{name:'Lobo', price:1400, emoji:'🐺', rarity:'Lendário', desc:'Líder da matilha'},
-  panda:{name:'Panda', price:1600, emoji:'🐼', rarity:'Lendário', desc:'Raro e adorado'},
-  dragon:{name:'Dragão', price:2500, emoji:'🐲', rarity:'Lendário', desc:'Poder mágico'},
-  unicorn:{name:'Unicórnio', price:3000, emoji:'🦄', rarity:'Mítico', desc:'Mágico e único'},
-  phoenix:{name:'Fênix', price:4000, emoji:'🔥', rarity:'Mítico', desc:'Renasce dos erros'}
+  none:{name:'Sem mascote', price:0, emoji:'', rarity:'—', desc:'Escolha um companheiro'},frog:{name:'Sapo', price:0, emoji:'🐸', rarity:'Grátis', desc:'Pula alto como sua nota!'},capybara:{name:'Capivara', price:0, emoji:'🦫', rarity:'Grátis', desc:'A rainha da calma'},cat:{name:'Gato', price:0, emoji:'🐱', rarity:'Grátis', desc:'Curioso como um bom matemático'},dog:{name:'Cachorro', price:0, emoji:'🐶', rarity:'Grátis', desc:'Seu fiel companheiro'},
+  elephant:{name:'Elefante', price:300, emoji:'🐘', rarity:'Comum', desc:'Memória de elefante!'},giraffe:{name:'Girafa', price:300, emoji:'🦒', rarity:'Comum', desc:'Enxerga longe!'},turtle:{name:'Tartaruga', price:350, emoji:'🐢', rarity:'Comum', desc:'Devagar e sempre'},snake:{name:'Cobra', price:400, emoji:'🐍', rarity:'Comum', desc:'Ágil e esperta'},koala:{name:'Coala', price:400, emoji:'🐨', rarity:'Comum', desc:'Fofo e tranquilo'},
+  rhino:{name:'Rinoceronte', price:550, emoji:'🦏', rarity:'Raro', desc:'Força bruta nos cálculos'},tiger:{name:'Tigre', price:600, emoji:'🐯', rarity:'Raro', desc:'Listrado e valente'},jaguar:{name:'Onça', price:650, emoji:'🐆', rarity:'Raro', desc:'A rainha das matas'},hyena:{name:'Hiena', price:700, emoji:'🐕', rarity:'Raro', desc:'Sorriso esperto'},owl:{name:'Coruja', price:800, emoji:'🦉', rarity:'Raro', desc:'Sábia como a matemática'},
+  eagle:{name:'Águia', price:900, emoji:'🦅', rarity:'Épico', desc:'Visão afiada'},ostrich:{name:'Avestruz', price:900, emoji:'🦩', rarity:'Épico', desc:'Rápida como você'},dolphin:{name:'Golfinho', price:1100, emoji:'🐬', rarity:'Épico', desc:'Inteligente e brincalhão'},fox:{name:'Raposa', price:1200, emoji:'🦊', rarity:'Épico', desc:'Astuta e veloz'},
+  wolf:{name:'Lobo', price:1400, emoji:'🐺', rarity:'Lendário', desc:'Líder da matilha'},panda:{name:'Panda', price:1600, emoji:'🐼', rarity:'Lendário', desc:'Raro e adorado'},dragon:{name:'Dragão', price:2500, emoji:'🐲', rarity:'Lendário', desc:'Poder mágico'},
+  unicorn:{name:'Unicórnio', price:3000, emoji:'🦄', rarity:'Mítico', desc:'Mágico e único'},phoenix:{name:'Fênix', price:4000, emoji:'🔥', rarity:'Mítico', desc:'Renasce dos erros'}
 };
-const SHOP_CATEGORIES = [
-  {id:'mascots', name:'Mascotes', emoji:'🐾'},
-  {id:'hats', name:'Chapéus', emoji:'🧢'},
-  {id:'shirts', name:'Roupas', emoji:'👕'},
-  {id:'shoes', name:'Sapatos', emoji:'👟'},
-  {id:'accessories', name:'Acessórios', emoji:'🕶️'},
-  {id:'skins', name:'Pele', emoji:'🎨'},
-  {id:'hairs', name:'Cabelo', emoji:'💇'}
-];
+const SHOP_CATEGORIES = [{id:'mascots', name:'Mascotes', emoji:'🐾'},{id:'hats', name:'Chapéus', emoji:'🧢'},{id:'shirts', name:'Roupas', emoji:'👕'},{id:'shoes', name:'Sapatos', emoji:'👟'},{id:'accessories', name:'Acessórios', emoji:'🕶️'},{id:'skins', name:'Pele', emoji:'🎨'},{id:'hairs', name:'Cabelo', emoji:'💇'}];
 const SHOP_ITEMS = {mascots:MASCOTS, hats:HATS, shirts:SHIRTS, shoes:SHOES, accessories:ACCS, skins:SKINS, hairs:HAIRS};
 
 /* ============================================================
-   TEMAS
+   TEMAS E GERADORES
    ============================================================ */
 const TOPICS = [
-  {group:"Números e Operações", items:[
-    {id:"naturais", name:"Operações com Naturais", emoji:"🔢", color:"#4D96FF"},
-    {id:"divisores", name:"Divisibilidade, MMC e MDC", emoji:"➗", color:"#A45DEB"},
-    {id:"fracoes", name:"Frações", emoji:"🍕", color:"#FF4D8D"},
-    {id:"decimais", name:"Números Decimais", emoji:"💰", color:"#FFA53D"},
-    {id:"porcent", name:"Porcentagem", emoji:"🏷️", color:"#4ECB71"},
-    {id:"inteiros", name:"Números Inteiros", emoji:"🌡️", color:"#FF4D8D"},
-    {id:"potencia", name:"Potenciação e Radiciação", emoji:"⚡", color:"#4D96FF"},
-    {id:"razao", name:"Razão e Proporção", emoji:"⚖️", color:"#A45DEB"}
-  ]},
-  {group:"Álgebra", items:[
-    {id:"expressoes", name:"Expressões Algébricas", emoji:"🧩", color:"#A45DEB"},
-    {id:"eq1", name:"Equações do 1º Grau", emoji:"📐", color:"#4D96FF"},
-    {id:"sistemas", name:"Sistemas de Equações", emoji:"🎯", color:"#FF4D8D"},
-    {id:"produtos", name:"Produtos Notáveis", emoji:"🧮", color:"#FFA53D"},
-    {id:"eq2", name:"Equações do 2º Grau", emoji:"📈", color:"#4ECB71"},
-    {id:"funcoes", name:"Funções", emoji:"🎢", color:"#FF4D8D"}
-  ]},
-  {group:"Geometria", items:[
-    {id:"planas", name:"Figuras Planas", emoji:"🔺", color:"#4D96FF"},
-    {id:"angulos", name:"Ângulos e Retas", emoji:"📐", color:"#A45DEB"},
-    {id:"areas", name:"Áreas e Perímetros", emoji:"📏", color:"#FF4D8D"},
-    {id:"espacial", name:"Geometria Espacial", emoji:"🧊", color:"#FFA53D"},
-    {id:"pitagoras", name:"Teorema de Pitágoras", emoji:"📐", color:"#4ECB71"}
-  ]},
-  {group:"Grandezas e Medidas", items:[
-    {id:"medidas", name:"Unidades de Medida", emoji:"📏", color:"#4D96FF"},
-    {id:"volume", name:"Volume e Capacidade", emoji:"🧴", color:"#A45DEB"}
-  ]},
-  {group:"Estatística e Probabilidade", items:[
-    {id:"graficos", name:"Gráficos e Tabelas", emoji:"📊", color:"#4D96FF"},
-    {id:"media", name:"Média, Moda e Mediana", emoji:"📈", color:"#A45DEB"},
-    {id:"probab", name:"Probabilidade", emoji:"🎲", color:"#FF4D8D"}
-  ]}
+  {group:"Números e Operações", items:[{id:"naturais", name:"Operações com Naturais", emoji:"🔢", color:"#4D96FF"},{id:"divisores", name:"Divisibilidade, MMC e MDC", emoji:"➗", color:"#A45DEB"},{id:"fracoes", name:"Frações", emoji:"🍕", color:"#FF4D8D"},{id:"decimais", name:"Números Decimais", emoji:"💰", color:"#FFA53D"},{id:"porcent", name:"Porcentagem", emoji:"🏷️", color:"#4ECB71"},{id:"inteiros", name:"Números Inteiros", emoji:"🌡️", color:"#FF4D8D"},{id:"potencia", name:"Potenciação e Radiciação", emoji:"⚡", color:"#4D96FF"},{id:"razao", name:"Razão e Proporção", emoji:"⚖️", color:"#A45DEB"}]},
+  {group:"Álgebra", items:[{id:"expressoes", name:"Expressões Algébricas", emoji:"🧩", color:"#A45DEB"},{id:"eq1", name:"Equações do 1º Grau", emoji:"📐", color:"#4D96FF"},{id:"sistemas", name:"Sistemas de Equações", emoji:"🎯", color:"#FF4D8D"},{id:"produtos", name:"Produtos Notáveis", emoji:"🧮", color:"#FFA53D"},{id:"eq2", name:"Equações do 2º Grau", emoji:"📈", color:"#4ECB71"},{id:"funcoes", name:"Funções", emoji:"🎢", color:"#FF4D8D"}]},
+  {group:"Geometria", items:[{id:"planas", name:"Figuras Planas", emoji:"🔺", color:"#4D96FF"},{id:"angulos", name:"Ângulos e Retas", emoji:"📐", color:"#A45DEB"},{id:"areas", name:"Áreas e Perímetros", emoji:"📏", color:"#FF4D8D"},{id:"espacial", name:"Geometria Espacial", emoji:"🧊", color:"#FFA53D"},{id:"pitagoras", name:"Teorema de Pitágoras", emoji:"📐", color:"#4ECB71"}]},
+  {group:"Grandezas e Medidas", items:[{id:"medidas", name:"Unidades de Medida", emoji:"📏", color:"#4D96FF"},{id:"volume", name:"Volume e Capacidade", emoji:"🧴", color:"#A45DEB"}]},
+  {group:"Estatística e Probabilidade", items:[{id:"graficos", name:"Gráficos e Tabelas", emoji:"📊", color:"#4D96FF"},{id:"media", name:"Média, Moda e Mediana", emoji:"📈", color:"#A45DEB"},{id:"probab", name:"Probabilidade", emoji:"🎲", color:"#FF4D8D"}]}
 ];
 
-/* ============================================================
-   GERADORES
-   ============================================================ */
 const GENS = {
   naturais:()=>{const t=rd(0,3);if(t===0){const a=rd(10,99),b=rd(10,99);return MQ(`${a} + ${b} = ?`,a+b,[a+b+1,a+b-1,a+b+10],a<50?'fácil':'médio');}if(t===1){const a=rd(50,99),b=rd(10,a);return MQ(`${a} - ${b} = ?`,a-b,[a-b+1,a-b+10,a-b-1],a<70?'fácil':'médio');}if(t===2){const a=rd(2,12),b=rd(2,12);return MQ(`${a} × ${b} = ?`,a*b,[a*b+a,a*b+1,a*b-a],a<6?'fácil':'médio');}const b=rd(2,10),c=rd(2,12),a=b*c;return MQ(`${a} ÷ ${b} = ?`,c,[c+1,c+2,c-1],'fácil');},
   divisores:()=>{const t=rd(0,2);if(t===0){const d=pk([2,3,4,5,6,9,10]);const correct=d*rd(2,30);const ws=[];while(ws.length<3){const n=rd(20,500);if(n%d!==0&&!ws.includes(n))ws.push(n);}return MQ(`Qual número é divisível por ${d}?`,correct,ws,'fácil');}const a=rd(2,20),b=rd(2,20);const gcd=(x,y)=>y?gcd(y,x%y):x;const g=gcd(a,b),mmc=a*b/g;if(t===1)return MQ(`MMC(${a}, ${b}) = ?`,mmc,[mmc+2,g,a+b],'médio');return MQ(`MDC(${a}, ${b}) = ?`,g,[g+1,mmc,Math.min(a,b)],'médio');},
@@ -912,9 +707,6 @@ const GENS = {
   probab:()=>{const t=rd(0,2);if(t===0)return MQ(`Probabilidade de sair cara ao jogar moeda:`,'1/2',['1/4','1/3','1'],'fácil');if(t===1){const f=rd(2,6);return MQ(`Chance de sair ${f} num dado de 6:`, '1/6',['1/3','1/2',`1/${f}`],'fácil');}return MQ(`Chance de sair número par num dado:`,'1/2',['1/6','1/3','2/3'],'fácil');}
 };
 
-/* ============================================================
-   BANCO
-   ============================================================ */
 const bankCache = {};
 const customCache = {};
 function loadCustom(){try{return JSON.parse(localStorage.getItem("aprendeai_custom")||"{}");}catch(e){return {};}}
@@ -926,12 +718,7 @@ function getBank(topicId){
   const n = CONFIG.questionsPerBank;
   const seen = new Set(); const bank = [];
   let t = 0;
-  while(bank.length < n){
-    t++;
-    const q = gen();
-    if(!q) continue;
-    if(!seen.has(q.q) || t > n*25){seen.add(q.q);bank.push(q);}
-  }
+  while(bank.length < n){t++;const q = gen();if(!q) continue;if(!seen.has(q.q) || t > n*25){seen.add(q.q);bank.push(q);}}
   if(!customCache[topicId]) customCache[topicId] = loadCustom()[topicId] || [];
   bank.push(...customCache[topicId].map(q=>({...q, d:'médio'})));
   bankCache[topicId] = bank;
@@ -939,7 +726,7 @@ function getBank(topicId){
 }
 
 /* ============================================================
-   STORAGE
+   STORAGE E GOOGLE SHEETS
    ============================================================ */
 function loadProfiles(){try{const p=JSON.parse(localStorage.getItem("aprendeai_profiles")||"{}");return p&&typeof p==='object'?p:{};}catch(e){return {};}}
 function saveProfiles(profiles){localStorage.setItem("aprendeai_profiles", JSON.stringify(profiles));}
@@ -960,189 +747,81 @@ function createProfile(email, name, turma){
     xp: 0, level: 1,
     avatar: {skin:'medium', hair:'brown', shirt:'blue', hat:'none', shoes:'black', accessory:'none', mascot:'frog'},
     inventory: ['shirts:blue','shoes:black','skins:medium','hairs:brown','mascots:frog'],
-    favoriteMascotBySubject: {},
-    soundEnabled: true,
-    createdAt: new Date().toISOString(), lastSeen: new Date().toISOString()
+    favoriteMascotBySubject: {}, soundEnabled: true, createdAt: new Date().toISOString(), lastSeen: new Date().toISOString()
   };
 }
 function getTurmaMembers(turma){const profiles=loadProfiles();return Object.values(profiles).filter(p=>(p.turma||'')===turma).map(migrateProfile);}
-function loadHistory(){try{return JSON.parse(localStorage.getItem("aprendeai_history")||"[]");}catch(e){return [];}}
-function addHistory(entry){const h=loadHistory();h.push(entry);if(h.length>1000)h.splice(0,h.length-1000);localStorage.setItem("aprendeai_history",JSON.stringify(h));}
-
-/* ============================================================
-   GOOGLE SHEETS
-   ============================================================ */
 
 function getGSConfig(){
-  // SUA URL DO GOOGLE APPS SCRIPT ESTÁ FIXADA AQUI
   const urlFixa = "https://script.google.com/macros/s/AKfycbzEcyQb0I3I841LPpU-vhZXGuIlRHMcPrmNmGXEq27f3GbrfYskCcV9YwQnb53gJqOr/exec"; 
-  
-  try {
-    const local = JSON.parse(localStorage.getItem("aprendeai_gs")||'{"url":""}');
-    return { url: local.url || urlFixa };
-  } catch(e) {
-    return { url: urlFixa };
-  }
+  try { const local = JSON.parse(localStorage.getItem("aprendeai_gs")||'{"url":""}'); return { url: local.url || urlFixa }; } catch(e) { return { url: urlFixa }; }
 }
-  
-function saveGSConfig(){
-  const url = document.getElementById("gs-url").value.trim();
-  const msg = document.getElementById("gs-msg");
-  if(url && !url.startsWith("https://script.google.com/")){
-    msg.className="status-msg err"; msg.textContent="URL inválida. Deve começar com https://script.google.com/"; return;
-  }
-  localStorage.setItem("aprendeai_gs", JSON.stringify({url}));
-  msg.className="status-msg ok";
-  msg.textContent = url ? "✅ URL salva! Ranking global ativado." : "⚠️ URL removida. Ranking apenas local.";
+function saveGSConfig(){const url = document.getElementById("gs-url").value.trim();const msg = document.getElementById("gs-msg");localStorage.setItem("aprendeai_gs", JSON.stringify({url}));msg.className="status-msg ok";msg.textContent = url ? "✅ URL salva!" : "⚠️ URL removida.";}
+function loadGSConfigToUI(){const cfg = getGSConfig();const input = document.getElementById("gs-url");if(input) input.value = cfg.url || "";}
+async function testGSConfig(){const cfg = getGSConfig();const msg = document.getElementById("gs-msg");msg.className="status-msg info"; msg.textContent="Testando...";try{const res = await fetch(cfg.url);const data = await res.json();msg.className="status-msg ok";msg.textContent = `✅ Conexão OK!`;}catch(e){msg.className="status-msg err";msg.textContent = `❌ Falha: ${e.message}`;}}
+
+async function syncUserToGlobal(){
+  const cfg = getGSConfig(); if(!cfg.url) return;
+  await submitToGlobal({
+    action: 'profile',
+    name: state.user.name, email: state.user.email, turma: state.user.turma,
+    xp: state.user.xp, level: state.user.level,
+    avatar: JSON.stringify(state.user.avatar),
+    date: new Date().toISOString()
+  });
 }
-function loadGSConfigToUI(){
-  const cfg = getGSConfig();
-  const input = document.getElementById("gs-url");
-  if(input) input.value = cfg.url || "";
-}
-async function testGSConfig(){
-  const cfg = getGSConfig();
-  const msg = document.getElementById("gs-msg");
-  if(!cfg.url){ msg.className="status-msg err"; msg.textContent="Cole a URL primeiro."; return; }
-  msg.className="status-msg info"; msg.textContent="Testando conexão...";
-  try{
-    const res = await fetch(cfg.url);
-    const data = await res.json();
-    if(Array.isArray(data)){
-      msg.className="status-msg ok";
-      msg.textContent = `✅ Conexão OK! ${data.length} resultados na planilha.`;
-    } else {
-      msg.className="status-msg err";
-      msg.textContent = "Resposta inesperada. Verifique a implantação do script.";
-    }
-  }catch(e){
-    msg.className="status-msg err";
-    msg.textContent = `❌ Falha: ${e.message}. Confira se o Web App está público.`;
-  }
-}
-function showGSSetup(){ document.getElementById("gs-setup").classList.toggle("hidden"); }
 
 async function submitToGlobal(payload){
-  const cfg = getGSConfig();
-  if(!cfg.url) return false;
-  try{
-    await fetch(cfg.url, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {'Content-Type':'text/plain'},
-      body: JSON.stringify(payload)
-    });
-    return true;
-  }catch(e){
-    console.warn("GS submit failed:", e);
-    return false;
-  }
+  const cfg = getGSConfig(); if(!cfg.url) return false;
+  try{ await fetch(cfg.url, {method: 'POST',mode: 'no-cors',headers: {'Content-Type':'text/plain'},body: JSON.stringify(payload)}); return true; }catch(e){ return false; }
 }
 
 async function fetchGlobalRanking(){
-  const cfg = getGSConfig();
-  if(!cfg.url) return null;
-  try{
-    const res = await fetch(cfg.url);
-    const data = await res.json();
-    if(!Array.isArray(data)) return null;
-    if(data.length > 0 && Array.isArray(data[0])){
-      const headers = data[0];
-      return data.slice(1).map(row => {
-        const obj = {};
-        headers.forEach((h, i) => obj[h] = row[i]);
-        return obj;
-      });
-    }
-    return data;
-  }catch(e){
-    console.warn("GS fetch failed:", e);
-    return null;
-  }
+  const cfg = getGSConfig(); if(!cfg.url) return null;
+  try{ const res = await fetch(cfg.url); const data = await res.json(); if(!Array.isArray(data)) return null; return data; }catch(e){ return null; }
 }
 
 async function syncAllToGlobal(){
-  const cfg = getGSConfig();
-  if(!cfg.url){ alert("Configure a URL do Google Sheets no Painel do Professor primeiro."); return; }
+  const cfg = getGSConfig(); if(!cfg.url){ alert("Configure a URL."); return; }
   const history = loadHistory();
-  if(history.length === 0){ alert("Nenhum resultado local para sincronizar."); return; }
-  if(!confirm(`Enviar ${history.length} resultado(s) para o ranking global?`)) return;
+  if(!confirm(`Enviar ${history.length} resultado(s)?`)) return;
   let ok = 0;
   for(const h of history){
-    const success = await submitToGlobal({
-      name: h.name, email: h.email, turma: h.turma,
-      activity: h.activity, mode: h.mode,
-      correct: h.correct, total: h.total, grade: h.grade,
-      coins: h.coinsEarned, xp: h.xp || 0,
-      mascot: (MASCOTS[h.mascot]||{}).name || '',
-      date: h.date
-    });
-    if(success) ok++;
-    await new Promise(r => setTimeout(r, 100));
+    await submitToGlobal({ name: h.name, email: h.email, turma: h.turma, activity: h.activity, mode: h.mode, correct: h.correct, total: h.total, grade: h.grade, coins: h.coinsEarned, xp: h.xp || 0, mascot: (MASCOTS[h.mascot]||{}).name || '', date: h.date });
+    ok++;
   }
-  alert(`✅ ${ok}/${history.length} resultado(s) enviados ao ranking global.`);
+  alert(`✅ Enviados!`);
 }
+
+function loadHistory(){try{return JSON.parse(localStorage.getItem("aprendeai_history")||"[]");}catch(e){return [];}}
+function addHistory(entry){const h=loadHistory();h.push(entry);if(h.length>1000)h.splice(0,h.length-1000);localStorage.setItem("aprendeai_history",JSON.stringify(h));}
 
 /* ============================================================
    AVATAR RENDER
    ============================================================ */
 function getAvatarKey(cat){return {hats:'hat',shirts:'shirt',shoes:'shoes',accessories:'accessory',skins:'skin',hairs:'hair',mascots:'mascot'}[cat];}
 function getAvatarHTML(avatar, size){
-  const skin = (SKINS[avatar.skin]||SKINS.medium).color;
-  const hair = (HAIRS[avatar.hair]||HAIRS.brown).color;
-  const shirt = (SHIRTS[avatar.shirt]||SHIRTS.blue).color;
-  const shoes = (SHOES[avatar.shoes]||SHOES.black).color;
+  const skin = (SKINS[avatar.skin]||SKINS.medium).color; const hair = (HAIRS[avatar.hair]||HAIRS.brown).color;
+  const shirt = (SHIRTS[avatar.shirt]||SHIRTS.blue).color; const shoes = (SHOES[avatar.shoes]||SHOES.black).color;
   const hat = HATS[avatar.hat]; const acc = ACCS[avatar.accessory]; const mascot = MASCOTS[avatar.mascot];
-  const hatEmoji = hat && hat.emoji ? hat.emoji : '';
-  const accEmoji = acc && acc.emoji ? acc.emoji : '';
-  const mascotEmoji = mascot && mascot.emoji ? mascot.emoji : '';
+  const hatEmoji = hat && hat.emoji ? hat.emoji : ''; const accEmoji = acc && acc.emoji ? acc.emoji : ''; const mascotEmoji = mascot && mascot.emoji ? mascot.emoji : '';
   const shirtStyle = (avatar.shirt === 'gold') ? 'filter:drop-shadow(0 0 4px #FFD700);' : '';
   const shoesStyle = (avatar.shoes === 'gold' || avatar.shoes === 'cyan') ? `filter:drop-shadow(0 0 3px ${shoes});` : '';
-  return `<div class="avatar-box" style="width:${size}px; height:${size*1.4}px;">
-    <svg viewBox="0 0 100 140" preserveAspectRatio="xMidYMid meet">
-      <ellipse cx="50" cy="134" rx="22" ry="4" fill="rgba(0,0,0,0.18)"/>
-      <rect x="40" y="100" width="8" height="26" rx="3" fill="${skin}"/>
-      <rect x="52" y="100" width="8" height="26" rx="3" fill="${skin}"/>
-      <ellipse cx="44" cy="128" rx="7" ry="4" fill="${shoes}" style="${shoesStyle}"/>
-      <ellipse cx="56" cy="128" rx="7" ry="4" fill="${shoes}" style="${shoesStyle}"/>
-      <rect x="26" y="64" width="7" height="36" rx="3.5" fill="${skin}"/>
-      <rect x="67" y="64" width="7" height="36" rx="3.5" fill="${skin}"/>
-      <rect x="33" y="62" width="34" height="42" rx="8" fill="${shirt}" style="${shirtStyle}"/>
-      <circle cx="50" cy="38" r="23" fill="${skin}"/>
-      <path d="M 27 38 Q 27 12 50 12 Q 73 12 73 38 L 73 30 Q 73 22 65 20 Q 55 16 50 18 Q 45 16 35 20 Q 27 22 27 30 Z" fill="${hair}"/>
-      <circle cx="42" cy="38" r="2.5" fill="#2D1B4E"/>
-      <circle cx="58" cy="38" r="2.5" fill="#2D1B4E"/>
-      <path d="M 44 46 Q 50 51 56 46" stroke="#2D1B4E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <circle cx="35" cy="43" r="3" fill="#FFB3C6" opacity="0.5"/>
-      <circle cx="65" cy="43" r="3" fill="#FFB3C6" opacity="0.5"/>
-    </svg>
-    ${hatEmoji ? `<div class="avatar-hat" style="font-size:${size*0.5}px;">${hatEmoji}</div>` : ''}
-    ${accEmoji ? `<div class="avatar-acc" style="font-size:${size*0.35}px;">${accEmoji}</div>` : ''}
-    ${mascotEmoji ? `<div class="avatar-mascot" style="font-size:${size*0.42}px;">${mascotEmoji}</div>` : ''}
-  </div>`;
+  return `<div class="avatar-box" style="width:${size}px; height:${size*1.4}px;"><svg viewBox="0 0 100 140" preserveAspectRatio="xMidYMid meet"><ellipse cx="50" cy="134" rx="22" ry="4" fill="rgba(0,0,0,0.18)"/><rect x="40" y="100" width="8" height="26" rx="3" fill="${skin}"/><rect x="52" y="100" width="8" height="26" rx="3" fill="${skin}"/><ellipse cx="44" cy="128" rx="7" ry="4" fill="${shoes}" style="${shoesStyle}"/><ellipse cx="56" cy="128" rx="7" ry="4" fill="${shoes}" style="${shoesStyle}"/><rect x="26" y="64" width="7" height="36" rx="3.5" fill="${skin}"/><rect x="67" y="64" width="7" height="36" rx="3.5" fill="${skin}"/><rect x="33" y="62" width="34" height="42" rx="8" fill="${shirt}" style="${shirtStyle}"/><circle cx="50" cy="38" r="23" fill="${skin}"/><path d="M 27 38 Q 27 12 50 12 Q 73 12 73 38 L 73 30 Q 73 22 65 20 Q 55 16 50 18 Q 45 16 35 20 Q 27 22 27 30 Z" fill="${hair}"/><circle cx="42" cy="38" r="2.5" fill="#2D1B4E"/><circle cx="58" cy="38" r="2.5" fill="#2D1B4E"/><path d="M 44 46 Q 50 51 56 46" stroke="#2D1B4E" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="35" cy="43" r="3" fill="#FFB3C6" opacity="0.5"/><circle cx="65" cy="43" r="3" fill="#FFB3C6" opacity="0.5"/></svg>${hatEmoji ? `<div class="avatar-hat" style="font-size:${size*0.5}px;">${hatEmoji}</div>` : ''}${accEmoji ? `<div class="avatar-acc" style="font-size:${size*0.35}px;">${accEmoji}</div>` : ''}${mascotEmoji ? `<div class="avatar-mascot" style="font-size:${size*0.42}px;">${mascotEmoji}</div>` : ''}</div>`;
 }
 
 /* ============================================================
-   STATE
+   STATE E NAVEGAÇÃO
    ============================================================ */
-const state = {
-  user:null, activity:null, questions:[], answers:[], current:0,
-  lastResult:null, mode:'practice', selectedMode:'practice',
-  timer:null, timeLeft:0, sending:false
-};
-let currentRankingFilter = 'all';
-let currentShopTab = 'mascots';
+const state = {user:null, activity:null, questions:[], answers:[], current:0, lastResult:null, mode:'practice', selectedMode:'practice', timer:null, timeLeft:0, sending:false};
+let currentRankingFilter = 'all'; let currentShopTab = 'mascots'; let mountainInterval = null;
 
-/* ============================================================
-   NAVEGAÇÃO
-   ============================================================ */
 function toggleSidebar(){document.getElementById("sidebar").classList.toggle("open");}
 function closeSidebar(){if(window.innerWidth<900)document.getElementById("sidebar").classList.remove("open");}
 function showView(name){
   if(name!=="quiz") stopTimer();
-  ["register","select","quiz","result","teacher","ranking","avatar","turma"].forEach(v=>{
-    const el=document.getElementById("view-"+v); if(el) el.classList.add("hidden");
-  });
+  if(name!=="turma" && mountainInterval){ clearInterval(mountainInterval); mountainInterval=null; }
+  ["register","select","quiz","result","teacher","ranking","avatar","turma"].forEach(v=>{const el=document.getElementById("view-"+v); if(el) el.classList.add("hidden");});
   const el=document.getElementById("view-"+name); if(el) el.classList.remove("hidden");
   closeSidebar();
   if(name==="select"){renderSidebar();renderAttractions();updateModeSelector();renderHeaderChip();}
@@ -1151,706 +830,205 @@ function showView(name){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function setMode(mode){state.selectedMode=mode;updateModeSelector();}
-function updateModeSelector(){
-  document.querySelectorAll(".mode-btn").forEach(b=>{b.classList.toggle("active", b.dataset.mode === state.selectedMode);});
-  const desc=document.getElementById("mode-desc");
-  if(desc) desc.textContent = state.selectedMode === 'exam'
-    ? "⏱️ Na Prova o tempo corre (20 min), não dá para voltar, mas cada acerto vale 30 🪙 + 15 XP!"
-    : "💡 No Treino você pode voltar questões sem pressa. Cada acerto vale 20 🪙 + 10 XP.";
-}
-function renderSidebar(){
-  const box=document.getElementById("sidebar-topics"); if(!box) return;
-  box.innerHTML="";
-  TOPICS.forEach(group=>{
-    const g=document.createElement("div"); g.className="map-group";
-    g.innerHTML=`<div class="map-group-title">${group.group}</div>`;
-    group.items.forEach(item=>{
-      const btn=document.createElement("button");
-      btn.className="topic-btn"; btn.dataset.id=item.id;
-      btn.innerHTML=`<span class="topic-emoji">${item.emoji}</span><span>${item.name}</span>`;
-      btn.onclick=()=>selectActivity(item.id);
-      g.appendChild(btn);
-    });
-    box.appendChild(g);
-  });
-}
-function renderAttractions(){
-  const grid=document.getElementById("attractions-grid"); if(!grid) return;
-  grid.innerHTML="";
-  TOPICS.forEach(group=>{
-    group.items.forEach(item=>{
-      const card=document.createElement("div");
-      card.className="attraction";
-      card.innerHTML=`<div class="attraction-top" style="background:linear-gradient(135deg,${item.color}22,${item.color}44);"><div class="attraction-emoji">${item.emoji}</div><h3>${item.name}</h3></div><div class="attraction-bottom"><span class="badge">500 questões</span><span class="badge y">fácil/médio</span></div>`;
-      card.onclick=()=>selectActivity(item.id);
-      grid.appendChild(card);
-    });
-  });
-}
-function renderHeaderChip(){
-  const chip=document.getElementById("user-chip"); if(!chip) return;
-  if(!state.user){chip.classList.add("hidden");updateSoundButton();return;}
-  chip.classList.remove("hidden");
-  document.getElementById("header-avatar").innerHTML=getAvatarHTML(state.user.avatar, 44);
-  document.getElementById("header-name").textContent=state.user.name;
-  document.getElementById("header-coins").textContent=state.user.coins;
-  document.getElementById("header-points").textContent=state.user.totalPoints;
-  document.getElementById("header-level").textContent=state.user.level;
-  updateSoundButton();
-}
+function updateModeSelector(){document.querySelectorAll(".mode-btn").forEach(b=>{b.classList.toggle("active", b.dataset.mode === state.selectedMode);});const desc=document.getElementById("mode-desc");if(desc) desc.textContent = state.selectedMode === 'exam' ? "⏱️ Na Prova o tempo corre (20 min) e não dá para voltar!" : "💡 No Treino você pode voltar questões sem pressa.";}
+function renderSidebar(){const box=document.getElementById("sidebar-topics"); if(!box) return;box.innerHTML="";TOPICS.forEach(group=>{const g=document.createElement("div"); g.className="map-group";g.innerHTML=`<div class="map-group-title">${group.group}</div>`;group.items.forEach(item=>{const btn=document.createElement("button");btn.className="topic-btn"; btn.dataset.id=item.id;btn.innerHTML=`<span class="topic-emoji">${item.emoji}</span><span>${item.name}</span>`;btn.onclick=()=>selectActivity(item.id);g.appendChild(btn);});box.appendChild(g);});}
+function renderAttractions(){const grid=document.getElementById("attractions-grid"); if(!grid) return;grid.innerHTML="";TOPICS.forEach(group=>{group.items.forEach(item=>{const card=document.createElement("div");card.className="attraction";card.innerHTML=`<div class="attraction-top" style="background:linear-gradient(135deg,${item.color}22,${item.color}44);"><div class="attraction-emoji">${item.emoji}</div><h3>${item.name}</h3></div><div class="attraction-bottom"><span class="badge">500 questões</span><span class="badge y">fácil/médio</span></div>`;card.onclick=()=>selectActivity(item.id);grid.appendChild(card);});});}
+function renderHeaderChip(){const chip=document.getElementById("user-chip"); if(!chip) return;if(!state.user){chip.classList.add("hidden");updateSoundButton();return;}chip.classList.remove("hidden");document.getElementById("header-avatar").innerHTML=getAvatarHTML(state.user.avatar, 44);document.getElementById("header-name").textContent=state.user.name;document.getElementById("header-coins").textContent=state.user.coins;document.getElementById("header-points").textContent=state.user.totalPoints;document.getElementById("header-level").textContent=state.user.level;updateSoundButton();}
 
 /* ============================================================
-   REGISTER
+   REGISTER E QUIZ
    ============================================================ */
 function register(){
   try {
-    const name=document.getElementById("inp-name").value.trim();
-    const email=document.getElementById("inp-email").value.trim();
-    const turma=document.getElementById("inp-turma").value.trim();
-    const msg=document.getElementById("reg-msg");
+    const name=document.getElementById("inp-name").value.trim(); const email=document.getElementById("inp-email").value.trim(); const turma=document.getElementById("inp-turma").value.trim(); const msg=document.getElementById("reg-msg");
     const emailRegex=/^[^\s@]+@escola\.[^\s@]+$/i;
-    
-    if(name.length<3){
-      msg.className="status-msg err"; 
-      msg.textContent="Digite seu nome completo."; 
-      return;
-    }
-    if(!emailRegex.test(email)){
-      msg.className="status-msg err"; 
-      msg.textContent="Use um e-mail que contenha @escola (ex: nome@escola.pr.gov.br)."; 
-      return;
-    }
-    if(turma.length<2){
-      msg.className="status-msg err"; 
-      msg.textContent="Informe sua turma."; 
-      return;
-    }
+    if(name.length<3){msg.className="status-msg err"; msg.textContent="Digite seu nome completo."; return;}
+    if(!emailRegex.test(email)){msg.className="status-msg err"; msg.textContent="Use um e-mail @escola."; return;}
+    if(turma.length<2){msg.className="status-msg err"; msg.textContent="Informe sua turma."; return;}
     
     let profile=getProfile(email);
-    if(!profile){
-      profile=createProfile(email,name,turma);
-      saveProfile(email,profile);
-      msg.className="status-msg ok";
-      msg.textContent=`Bilhete emitido! 🎟️ ${CONFIG.startingCoins} moedas + mascotes grátis!`;
-    } else {
-      profile.name=name; profile.turma=turma; profile.lastSeen=new Date().toISOString();
-      saveProfile(email,profile);
-      msg.className="status-msg ok"; 
-      msg.textContent=`Bem-vindo de volta, ${name.split(' ')[0]}! (Nível ${profile.level})`;
-    }
+    if(!profile){ profile=createProfile(email,name,turma); saveProfile(email,profile); msg.className="status-msg ok"; msg.textContent=`Bilhete emitido! 🎟️`; } 
+    else { profile.name=name; profile.turma=turma; profile.lastSeen=new Date().toISOString(); saveProfile(email,profile); msg.className="status-msg ok"; msg.textContent=`Bem-vindo de volta!`; }
     
-    state.user=profile;
-    document.getElementById("hero-name").textContent=name.split(" ")[0];
-    renderHeaderChip();
-    
-    // Força a entrada imediata sem esperar
+    state.user=profile; document.getElementById("hero-name").textContent=name.split(" ")[0]; renderHeaderChip();
+    syncUserToGlobal(); // Envia para a nuvem assim que loga
     showView("select");
-    
-  } catch (e) {
-    // Se o celular do aluno estiver bloqueando o salvamento (ex: aba anônima), avisa aqui
-    alert("Atenção: Seu navegador está bloqueando o salvamento. Desative o Modo Anônimo ou limpe o cache do celular e tente novamente.");
-    console.error(e);
-  }
+  } catch (e) { alert("Erro ao entrar: Desative o Modo Anônimo ou limpe o cache do celular."); console.error(e); }
 }
 
-/* ============================================================
-   QUIZ
-   ============================================================ */
 function selectActivity(topicId){
   if(!state.user){alert("Cadastre-se primeiro!");showView("register");return;}
-  const bank=getBank(topicId);
-  if(bank.length===0){alert("Atração ainda não pronta!");return;}
-  let meta=null;
-  TOPICS.forEach(g=>g.items.forEach(i=>{if(i.id===topicId) meta=i;}));
-  if(!meta) return;
-  state.activity={id:topicId, ...meta};
-  state.mode=state.selectedMode;
-  const cfg=state.mode==='exam'?CONFIG.examMode:CONFIG.practiceMode;
-  const n=Math.min(cfg.questions, bank.length);
-  const shuffled=sh(bank).slice(0,n).map(q=>{
-    const opts=sh(q.o);
-    return {q:q.q, o:opts, a:opts.indexOf(q.o[q.a]), d:q.d||'médio'};
-  });
-  state.questions=shuffled;
-  state.answers=new Array(n).fill(null);
-  state.current=0;
-
+  const bank=getBank(topicId); if(bank.length===0){alert("Atração ainda não pronta!");return;}
+  let meta=null; TOPICS.forEach(g=>g.items.forEach(i=>{if(i.id===topicId) meta=i;})); if(!meta) return;
+  state.activity={id:topicId, ...meta}; state.mode=state.selectedMode;
+  const cfg=state.mode==='exam'?CONFIG.examMode:CONFIG.practiceMode; const n=Math.min(cfg.questions, bank.length);
+  const shuffled=sh(bank).slice(0,n).map(q=>{const opts=sh(q.o);return {q:q.q, o:opts, a:opts.indexOf(q.o[q.a]), d:q.d||'médio'};});
+  state.questions=shuffled; state.answers=new Array(n).fill(null); state.current=0;
   document.getElementById("quiz-title").textContent=`${meta.emoji} ${meta.name}`;
-  const badge=document.getElementById("quiz-mode-badge");
-  badge.textContent=state.mode==='exam'?'📝 PROVA':'🎮 TREINO';
-  badge.classList.toggle("practice", state.mode === 'practice');
-
-  // Mostra mascote da matéria ou principal
-  const subjectMascot = state.user.favoriteMascotBySubject[topicId];
-  const mascotId = subjectMascot || state.user.avatar.mascot;
-  const mascot = MASCOTS[mascotId] || MASCOTS.none;
-  if(mascot.emoji){
-    document.getElementById("quiz-mascot").classList.remove("hidden");
-    document.getElementById("quiz-mascot-emoji").textContent = mascot.emoji;
-    document.getElementById("quiz-mascot-name").textContent = mascot.name;
-  } else {
-    document.getElementById("quiz-mascot").classList.add("hidden");
-  }
-
-  const timerBox=document.getElementById("timer");
-  if(state.mode==='exam'){timerBox.classList.remove("hidden");startTimer();}
-  else {timerBox.classList.add("hidden");stopTimer();}
-
+  const badge=document.getElementById("quiz-mode-badge"); badge.textContent=state.mode==='exam'?'📝 PROVA':'🎮 TREINO'; badge.classList.toggle("practice", state.mode === 'practice');
+  const subjectMascot = state.user.favoriteMascotBySubject[topicId]; const mascotId = subjectMascot || state.user.avatar.mascot; const mascot = MASCOTS[mascotId] || MASCOTS.none;
+  if(mascot.emoji){ document.getElementById("quiz-mascot").classList.remove("hidden"); document.getElementById("quiz-mascot-emoji").textContent = mascot.emoji; document.getElementById("quiz-mascot-name").textContent = mascot.name; } else { document.getElementById("quiz-mascot").classList.add("hidden"); }
+  const timerBox=document.getElementById("timer"); if(state.mode==='exam'){timerBox.classList.remove("hidden");startTimer();} else {timerBox.classList.add("hidden");stopTimer();}
   document.querySelectorAll(".topic-btn").forEach(b=>b.classList.toggle("active", b.dataset.id===topicId));
-  renderQuestion();
-  showView("quiz");
+  renderQuestion(); showView("quiz");
 }
+
 function renderQuestion(){
-  const q=state.questions[state.current];
-  const total=state.questions.length;
-  document.getElementById("question-text").textContent=q.q;
-  document.getElementById("q-counter").textContent=`Questão ${state.current+1} de ${total}  •  ${q.d}`;
-  document.getElementById("progress-bar").style.width=`${((state.current+1)/total)*100}%`;
-  
-  const box=document.getElementById("options-box");
-  box.innerHTML="";
-  const letters=["A","B","C","D","E"];
-  
-  // Verifica se a questão já foi respondida
+  const q=state.questions[state.current]; const total=state.questions.length;
+  document.getElementById("question-text").textContent=q.q; document.getElementById("q-counter").textContent=`Questão ${state.current+1} de ${total}  •  ${q.d}`; document.getElementById("progress-bar").style.width=`${((state.current+1)/total)*100}%`;
+  const box=document.getElementById("options-box"); box.innerHTML=""; const letters=["A","B","C","D","E"];
   const isAnswered = state.answers[state.current] !== null;
-  
   q.o.forEach((opt, idx)=>{
-    const el=document.createElement("div");
-    const isSelected = state.answers[state.current] === idx;
-    
-    el.className="option"+(isSelected?" selected":"");
-    
-    if(isAnswered) {
-      if(isSelected) {
-        // Se for a resposta certa, mostra o cadeado e desativa o cursor
-        el.style.cursor = 'default';
-        el.innerHTML=`<span class="letter">🔒</span><span>${opt}</span>`;
-      } else {
-        // Se for as outras, escurece e bloqueia o clique
-        el.style.opacity = '0.4';
-        el.style.pointerEvents = 'none'; // Bloqueio físico do clique
-        el.innerHTML=`<span class="letter">${letters[idx]}</span><span>${opt}</span>`;
-      }
-    } else {
-      // Se não respondeu ainda, permite o clique normal
-      el.innerHTML=`<span class="letter">${letters[idx]}</span><span>${opt}</span>`;
-      el.onclick=()=>{
-        state.answers[state.current]=idx;
-        renderQuestion();
-      };
-    }
-    
+    const el=document.createElement("div"); const isSelected = state.answers[state.current] === idx; el.className="option"+(isSelected?" selected":"");
+    if(isAnswered) { if(isSelected) { el.style.cursor = 'default'; el.innerHTML=`<span class="letter">🔒</span><span>${opt}</span>`; } else { el.style.opacity = '0.4'; el.style.pointerEvents = 'none'; el.innerHTML=`<span class="letter">${letters[idx]}</span><span>${opt}</span>`; } } 
+    else { el.innerHTML=`<span class="letter">${letters[idx]}</span><span>${opt}</span>`; el.onclick=()=>{ state.answers[state.current]=idx; renderQuestion(); }; }
     box.appendChild(el);
   });
-  
-  const prevBtn=document.getElementById("btn-prev");
-  prevBtn.style.visibility=state.mode==='exam'?"hidden":(state.current===0?"hidden":"visible");
-  const last=state.current===total-1;
-  document.getElementById("btn-next").textContent=last?"Finalizar ✓":"Próxima →";
+  const prevBtn=document.getElementById("btn-prev"); prevBtn.style.visibility=state.mode==='exam'?"hidden":(state.current===0?"hidden":"visible");
+  const last=state.current===total-1; document.getElementById("btn-next").textContent=last?"Finalizar ✓":"Próxima →";
 }
+
 function prevQ(){if(state.mode==='exam')return;if(state.current>0){state.current--;renderQuestion();}}
-function nextQ(){
-  if(state.answers[state.current]===null){alert("Escolha uma alternativa.");return;}
-  if(state.current<state.questions.length-1){state.current++;renderQuestion();}
-  else finishQuiz();
-}
-function quitQuiz(){
-  const msg=state.mode==='exam'?"⚠️ Sair da PROVA? Perderá o progresso.":"Sair da atração? Pontuação perdida.";
-  if(confirm(msg)){stopTimer();showView("select");}
-}
-function startTimer(){
-  stopTimer();
-  state.timeLeft=CONFIG.examMode.timeSeconds;
-  updateTimerDisplay();
-  state.timer=setInterval(()=>{
-    state.timeLeft--;
-    updateTimerDisplay();
-    if(state.timeLeft<=0){stopTimer();alert("⏰ Tempo esgotado!");finishQuiz();}
-  },1000);
-}
+function nextQ(){if(state.answers[state.current]===null){alert("Escolha uma alternativa.");return;}if(state.current<state.questions.length-1){state.current++;renderQuestion();}else finishQuiz();}
 function stopTimer(){if(state.timer){clearInterval(state.timer);state.timer=null;}}
-function updateTimerDisplay(){
-  const el=document.getElementById("timer-text");
-  const box=document.getElementById("timer");
-  if(!el||!box) return;
-  const min=Math.floor(Math.max(0,state.timeLeft)/60);
-  const sec=Math.max(0,state.timeLeft)%60;
-  el.textContent=`${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
-  box.classList.toggle("warning", state.timeLeft<=120 && state.timeLeft>30);
-  box.classList.toggle("danger", state.timeLeft<=30);
-}
-function calculateCoins(correct, total, mode){
-  let coins=correct*CONFIG.coinsPerCorrect;
-  if(mode==='exam') coins=Math.round(coins*CONFIG.examCoinMultiplier);
-  if(correct===total && total>0) coins+=CONFIG.perfectBonus;
-  return coins;
-}
-function calculateXP(correct, total, mode){
-  let xp=correct*CONFIG.xpPerCorrect;
-  if(mode==='exam') xp=Math.round(xp*CONFIG.examXP || xp*CONFIG.examXpMultiplier);
-  if(correct===total && total>0) xp+=CONFIG.perfectXpBonus;
-  return xp;
-}
+function startTimer(){stopTimer();state.timeLeft=CONFIG.examMode.timeSeconds;updateTimerDisplay();state.timer=setInterval(()=>{state.timeLeft--;updateTimerDisplay();if(state.timeLeft<=0){stopTimer();alert("⏰ Tempo esgotado!");finishQuiz();}},1000);}
+function updateTimerDisplay(){const el=document.getElementById("timer-text");const box=document.getElementById("timer");if(!el||!box) return;const min=Math.floor(Math.max(0,state.timeLeft)/60);const sec=Math.max(0,state.timeLeft)%60;el.textContent=`${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;box.classList.toggle("warning", state.timeLeft<=120 && state.timeLeft>30);box.classList.toggle("danger", state.timeLeft<=30);}
+function calculateCoins(correct, total, mode){let coins=correct*CONFIG.coinsPerCorrect;if(mode==='exam') coins=Math.round(coins*CONFIG.examCoinMultiplier);if(correct===total && total>0) coins+=CONFIG.perfectBonus;return coins;}
+function calculateXP(correct, total, mode){let xp=correct*CONFIG.xpPerCorrect;if(mode==='exam') xp=Math.round(xp*CONFIG.examXpMultiplier);if(correct===total && total>0) xp+=CONFIG.perfectXpBonus;return xp;}
 
-/* ============================================================
-   FINALIZAR (XP + LEVEL + GS SYNC)
-   ============================================================ */
 function finishQuiz(){
-  stopTimer();
-  let correct=0;
-  state.questions.forEach((q,i)=>{if(state.answers[i]===q.a) correct++;});
-  const total=state.questions.length;
-  const grade=((correct/total)*10).toFixed(1).replace(".",",");
-  const coinsEarned=calculateCoins(correct,total,state.mode);
-  const xpEarned=calculateXP(correct,total,state.mode);
-
+  stopTimer(); let correct=0; state.questions.forEach((q,i)=>{if(state.answers[i]===q.a) correct++;});
+  const total=state.questions.length; const grade=((correct/total)*10).toFixed(1).replace(".",",");
+  const coinsEarned=calculateCoins(correct,total,state.mode); const xpEarned=calculateXP(correct,total,state.mode);
   state.lastResult={correct,total,grade,coinsEarned,xpEarned};
-
-  const profile=state.user;
-  profile.coins+=coinsEarned;
-  profile.totalPoints+=correct*10+(state.mode==='exam'?5:0);
-  profile.totalCorrect+=correct;
-  profile.totalQuizzes+=1;
-  profile.lastSeen=new Date().toISOString();
-  const levelResult=addXP(profile, xpEarned);
-  saveProfile(profile.email, profile);
-  state.user=profile;
-  renderHeaderChip();
-
-  if(coinsEarned>0) playSound('coin');
-  if(levelResult.leveledUp) setTimeout(()=>playSound('levelup'), 300);
-
-  const subjectMascot = profile.favoriteMascotBySubject[state.activity.id];
-  const mascotId = subjectMascot || profile.avatar.mascot;
-  const entry = {
-    name:profile.name, email:profile.email, turma:profile.turma,
-    activity:state.activity.name, activityId:state.activity.id, emoji:state.activity.emoji,
-    mode:state.mode, correct, total, grade, coinsEarned, xp:xpEarned,
-    mascot: mascotId,
-    level: profile.level,
-    date:new Date().toISOString()
-  };
+  const profile=state.user; profile.coins+=coinsEarned; profile.totalPoints+=correct*10+(state.mode==='exam'?5:0); profile.totalCorrect+=correct; profile.totalQuizzes+=1; profile.lastSeen=new Date().toISOString();
+  const levelResult=addXP(profile, xpEarned); saveProfile(profile.email, profile); state.user=profile; renderHeaderChip();
+  if(coinsEarned>0) playSound('coin'); if(levelResult.leveledUp) setTimeout(()=>playSound('levelup'), 300);
+  const subjectMascot = profile.favoriteMascotBySubject[state.activity.id]; const mascotId = subjectMascot || profile.avatar.mascot;
+  const entry = { name:profile.name, email:profile.email, turma:profile.turma, activity:state.activity.name, activityId:state.activity.id, emoji:state.activity.emoji, mode:state.mode, correct, total, grade, coinsEarned, xp:xpEarned, mascot: mascotId, level: profile.level, date:new Date().toISOString() };
   addHistory(entry);
-
-  // Sincronização global (silenciosa)
-  submitToGlobal({
-    name: profile.name, email: profile.email, turma: profile.turma,
-    activity: state.activity.name, mode: state.mode,
-    correct, total, grade, coins: coinsEarned, xp: xpEarned,
-    mascot: (MASCOTS[mascotId]||{}).name || '',
-    date: entry.date
-  });
-
-  // Preenche resultado
-  document.getElementById("res-score").textContent=correct;
-  document.getElementById("res-total").textContent=total;
-  document.getElementById("res-grade").textContent=grade;
-  document.getElementById("res-coins").textContent=coinsEarned;
-  document.getElementById("res-xp").textContent=xpEarned;
-  document.getElementById("res-name").textContent=profile.name;
-  document.getElementById("res-activity").textContent=state.activity.name;
-  document.getElementById("res-correct").textContent=correct;
-  document.getElementById("res-wrong").textContent=total-correct;
-  document.getElementById("res-mode-text").textContent=state.mode==='exam'?'📝 Modo Prova':'🎮 Modo Treino';
-  document.getElementById("result-hero").classList.toggle("low", correct/total < 0.6);
-
-  const banner = document.getElementById("levelup-banner");
-  if(levelResult.leveledUp){
-    banner.classList.remove("hidden");
-    document.getElementById("new-level").textContent = levelResult.newLevel;
-    const list = document.getElementById("unlock-list");
-    if(levelResult.unlocked.length > 0){
-      list.innerHTML = levelResult.unlocked.map(mid => {
-        const m = MASCOTS[mid] || {};
-        return `<div class="unlock-item">${m.emoji || ''} ${m.name || ''}</div>`;
-      }).join('');
-    } else {
-      list.innerHTML = `<div class="unlock-item">🎉 Continue assim!</div>`;
-    }
-  } else {
-    banner.classList.add("hidden");
-  }
-
-  const sm=document.getElementById("send-msg");
-  sm.className="status-msg"; sm.textContent="";
-  const btn=document.getElementById("btn-send");
-  btn.disabled=false; btn.textContent="📧 Enviar Resultado ao Professor";
-  state.sending=false;
-
+  submitToGlobal({ name: profile.name, email: profile.email, turma: profile.turma, activity: state.activity.name, mode: state.mode, correct, total, grade, coins: coinsEarned, xp: xpEarned, mascot: (MASCOTS[mascotId]||{}).name || '', date: entry.date });
+  document.getElementById("res-score").textContent=correct; document.getElementById("res-total").textContent=total; document.getElementById("res-grade").textContent=grade; document.getElementById("res-coins").textContent=coinsEarned; document.getElementById("res-xp").textContent=xpEarned; document.getElementById("res-name").textContent=profile.name; document.getElementById("res-activity").textContent=state.activity.name; document.getElementById("res-correct").textContent=correct; document.getElementById("res-wrong").textContent=total-correct; document.getElementById("res-mode-text").textContent=state.mode==='exam'?'📝 Modo Prova':'🎮 Modo Treino'; document.getElementById("result-hero").classList.toggle("low", correct/total < 0.6);
+  const banner = document.getElementById("levelup-banner"); if(levelResult.leveledUp){ banner.classList.remove("hidden"); document.getElementById("new-level").textContent = levelResult.newLevel; const list = document.getElementById("unlock-list"); if(levelResult.unlocked.length > 0){ list.innerHTML = levelResult.unlocked.map(mid => `<div class="unlock-item">${MASCOTS[mid].emoji} ${MASCOTS[mid].name}</div>`).join(''); } else { list.innerHTML = `<div class="unlock-item">🎉 Continue assim!</div>`; } } else { banner.classList.add("hidden"); }
+  const sm=document.getElementById("send-msg"); sm.className="status-msg"; sm.textContent=""; const btn=document.getElementById("btn-send"); btn.disabled=false; btn.textContent="📧 Enviar Resultado ao Professor"; state.sending=false;
   showView("result");
 }
 function retryQuiz(){selectActivity(state.activity.id);}
 
 /* ============================================================
-   ENVIO E-MAIL
+   ENVIO E-MAIL E AVATAR
    ============================================================ */
 function buildMessage(){
-  const r=state.lastResult;
-  const data=new Date().toLocaleString("pt-BR");
-  const mascotName=(MASCOTS[state.user.avatar.mascot]||{}).name || 'Sem mascote';
-  return {
-    to:CONFIG.teacherEmail,
-    subject:`[Aprende AI] ${state.user.name} (${state.user.turma}) — ${state.activity.name} — Nota ${r.grade}`,
-    body:
-`Olá, Professor!
-
-Um estudante concluiu uma atividade no Parque Aprende AI.
-
-👤 Estudante: ${state.user.name}
-📧 E-mail: ${state.user.email}
-🏫 Turma: ${state.user.turma}
-🎢 Atração: ${state.activity.name}
-🎯 Modo: ${state.mode === 'exam' ? 'PROVA' : 'Treino'}
-✅ Acertos: ${r.correct} de ${r.total}
-📝 Nota: ${r.grade}/10
-🪙 Moedas: ${r.coinsEarned}
-⚡ XP ganho: ${r.xpEarned}
-⭐ Nível atual: ${state.user.level} (${state.user.xp} XP)
-🐾 Mascote: ${mascotName}
-🕒 Data: ${data}
-
-Mensagem automática do Aprende AI.`
-  };
+  const r=state.lastResult; const data=new Date().toLocaleString("pt-BR"); const mascotName=(MASCOTS[state.user.avatar.mascot]||{}).name || 'Sem mascote';
+  return { to:CONFIG.teacherEmail, subject:`[Aprende AI] ${state.user.name} (${state.user.turma}) — ${state.activity.name} — Nota ${r.grade}`, body:`Olá!\n\n👤 Aluno: ${state.user.name}\n🏫 Turma: ${state.user.turma}\n🎢 Atração: ${state.activity.name}\n✅ Acertos: ${r.correct}/${r.total}\n📝 Nota: ${r.grade}/10\n🪙 Moedas: ${r.coinsEarned}\n⚡ XP: ${r.xpEarned}\n⭐ Nível: ${state.user.level}\n🐾 Mascote: ${mascotName}\n🕒 Data: ${data}` };
 }
 async function sendResult(){
-  if(state.sending) return;
-  const btn=document.getElementById("btn-send");
-  const msg=document.getElementById("send-msg");
-  const m=buildMessage();
-  state.sending=true;
-  btn.disabled=true;
-  btn.textContent="📤 Enviando...";
-  msg.className="status-msg info"; msg.textContent="Enviando...";
-  const payload={
-    _subject:m.subject, _template:"table", _captcha:"false",
-    Estudante:state.user.name, Email:state.user.email, Turma:state.user.turma,
-    Atração:state.activity.name, Modo:state.mode==='exam'?'Prova':'Treino',
-    Acertos:`${state.lastResult.correct} de ${state.lastResult.total}`,
-    Nota:`${state.lastResult.grade}/10`,
-    Moedas:state.lastResult.coinsEarned, XP:state.lastResult.xpEarned,
-    Nivel:state.user.level,
-    Mascote:(MASCOTS[state.user.avatar.mascot]||{}).name || '—',
-    Data:new Date().toLocaleString("pt-BR"),
-    Mensagem:m.body
-  };
-  try{
-    const res=await fetch(CONFIG.formSubmitEndpoint,{
-      method:"POST",
-      headers:{"Content-Type":"application/json","Accept":"application/json"},
-      body:JSON.stringify(payload)
-    });
-    if(!res.ok) throw new Error("Falha HTTP "+res.status);
-    const data=await res.json().catch(()=>({}));
-    if(data.success==="false"||data.success===false) throw new Error("FormSubmit recusou.");
-    msg.className="status-msg ok"; msg.textContent="✅ Resultado enviado ao professor!";
-    btn.textContent="✅ Enviado";
-  }catch(err){
-    msg.className="status-msg err";
-    msg.innerHTML=`❌ Falha (${esc(err.message)}).<br>Use <b>📋 Copiar Resultado</b> ou <a href="#" id="lnk-mailto" style="color:#991B1B;text-decoration:underline;font-weight:800;">abrir o e-mail</a>.`;
-    btn.disabled=false; btn.textContent="🔁 Tentar Novamente";
-    const link=document.getElementById("lnk-mailto");
-    if(link) link.onclick=(e)=>{
-      e.preventDefault();
-      window.location.href=`mailto:${m.to}?subject=${encodeURIComponent(m.subject)}&body=${encodeURIComponent(m.body)}`;
-    };
-  } finally {state.sending=false;}
+  if(state.sending) return; const btn=document.getElementById("btn-send"); const msg=document.getElementById("send-msg"); const m=buildMessage(); state.sending=true; btn.disabled=true; btn.textContent="📤 Enviando..."; msg.className="status-msg info"; msg.textContent="Enviando...";
+  const payload={ _subject:m.subject, _template:"table", _captcha:"false", Estudante:state.user.name, Email:state.user.email, Turma:state.user.turma, Atração:state.activity.name, Modo:state.mode==='exam'?'Prova':'Treino', Acertos:`${state.lastResult.correct} de ${state.lastResult.total}`, Nota:`${state.lastResult.grade}/10`, Moedas:state.lastResult.coinsEarned, XP:state.lastResult.xpEarned, Nivel:state.user.level, Mascote:(MASCOTS[state.user.avatar.mascot]||{}).name || '—', Data:new Date().toLocaleString("pt-BR"), Mensagem:m.body };
+  try{ const res=await fetch(CONFIG.formSubmitEndpoint,{ method:"POST", headers:{"Content-Type":"application/json","Accept":"application/json"}, body:JSON.stringify(payload) }); if(!res.ok) throw new Error("Erro"); const data=await res.json().catch(()=>({})); if(data.success==="false"||data.success===false) throw new Error("Recusado"); msg.className="status-msg ok"; msg.textContent="✅ Enviado!"; btn.textContent="✅ Enviado"; }catch(err){ msg.className="status-msg err"; msg.innerHTML=`❌ Falha.<br>Use <b>Copiar Resultado</b>.`; btn.disabled=false; btn.textContent="🔁 Tentar Novamente"; } finally {state.sending=false;}
 }
-function copyResult(){
-  const m=buildMessage();
-  const text=`Para: ${m.to}\nAssunto: ${m.subject}\n\n${m.body}`;
-  const done=()=>{
-    const msg=document.getElementById("send-msg");
-    msg.className="status-msg ok"; msg.textContent="Resultado copiado! ✅";
-  };
-  if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(done).catch(()=>{
-      const ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta);
-      ta.select(); try{document.execCommand("copy");}catch(e){} document.body.removeChild(ta); done();
-    });
-  } else {
-    const ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta);
-    ta.select(); try{document.execCommand("copy");}catch(e){} document.body.removeChild(ta); done();
-  }
-}
+function copyResult(){const m=buildMessage();const text=`Para: ${m.to}\nAssunto: ${m.subject}\n\n${m.body}`;const done=()=>{const msg=document.getElementById("send-msg");msg.className="status-msg ok";msg.textContent="Copiado! ✅";};if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done);}else{const ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(e){} document.body.removeChild(ta); done();}}
 
-/* ============================================================
-   AVATAR VIEW
-   ============================================================ */
-function openAvatarView(){
-  if(!state.user){alert("Cadastre-se primeiro!");showView("register");return;}
-  showView("avatar");
-  renderAvatarView();
-}
+function openAvatarView(){if(!state.user){alert("Cadastre-se primeiro!");showView("register");return;}showView("avatar");renderAvatarView();}
 function renderAvatarView(){
-  const p=state.user;
-  const area=document.getElementById("avatar-preview-area");
-  if(!area) return;
-  const mascotName=(MASCOTS[p.avatar.mascot]||{}).name || 'Sem mascote';
-  const mascotEmoji=(MASCOTS[p.avatar.mascot]||{}).emoji || '';
-  const lvlProgress = getLevelProgress(p);
-  const nextUnlock = LEVELS.find(l => l.level === p.level + 1);
-  const nextUnlockText = nextUnlock && nextUnlock.unlock
-    ? `Próximo nível desbloqueia: ${MASCOTS[nextUnlock.unlock].emoji} ${MASCOTS[nextUnlock.unlock].name}`
-    : (nextUnlock ? 'Próximo nível sem mascote' : 'Nível máximo!');
-  area.innerHTML=`
-    <div class="avatar-big" id="avatar-big">${getAvatarHTML(p.avatar, 140)}</div>
-    <div class="avatar-stats">
-      <div class="stat-chip">🏅 <b>Nível ${p.level}</b></div>
-      <div class="stat-chip">⚡ <b>${p.xp}</b> XP total</div>
-      <div class="stat-chip">🪙 <b>${p.coins}</b> moedas</div>
-      <div class="stat-chip">✅ <b>${p.totalCorrect}</b> acertos</div>
-      <div class="stat-chip">🐾 <b>${mascotEmoji} ${esc(mascotName)}</b></div>
-    </div>
-  `;
-  area.insertAdjacentHTML('afterend', '');
-  // XP bar section
-  let xpSection = document.getElementById("xp-section-inline");
-  if(!xpSection){
-    const sec = document.createElement("div");
-    sec.id = "xp-section-inline";
-    sec.className = "xp-section";
-    sec.innerHTML = `
-      <div class="xp-header">
-        <span>🏅 Nível ${p.level}</span>
-        <span>${lvlProgress.text}</span>
-      </div>
-      <div class="xp-bar-wrap"><div class="xp-bar" style="width:${lvlProgress.percent}%">${lvlProgress.percent}%</div></div>
-      <p style="margin-top:10px;font-size:12px;font-weight:700;color:var(--muted);text-align:center;">${nextUnlockText}</p>
-    `;
-    area.parentElement.parentElement.insertBefore(sec, area.parentElement.nextSibling);
-  } else {
-    xpSection.innerHTML = `
-      <div class="xp-header">
-        <span>🏅 Nível ${p.level}</span>
-        <span>${lvlProgress.text}</span>
-      </div>
-      <div class="xp-bar-wrap"><div class="xp-bar" style="width:${lvlProgress.percent}%">${lvlProgress.percent}%</div></div>
-      <p style="margin-top:10px;font-size:12px;font-weight:700;color:var(--muted);text-align:center;">${nextUnlockText}</p>
-    `;
-  }
-  renderSubjectMascotGrid();
-  renderShopTabs();
-  renderShopGrid(currentShopTab);
-  updateWeeklyBanner();
+  const p=state.user; const area=document.getElementById("avatar-preview-area"); if(!area) return; const mascotName=(MASCOTS[p.avatar.mascot]||{}).name || 'Sem mascote'; const mascotEmoji=(MASCOTS[p.avatar.mascot]||{}).emoji || ''; const lvlProgress = getLevelProgress(p); const nextUnlock = LEVELS.find(l => l.level === p.level + 1); const nextUnlockText = nextUnlock && nextUnlock.unlock ? `Próximo: ${MASCOTS[nextUnlock.unlock].emoji} ${MASCOTS[nextUnlock.unlock].name}` : 'Nível máximo!';
+  area.innerHTML=`<div class="avatar-big">${getAvatarHTML(p.avatar, 140)}</div><div class="avatar-stats"><div class="stat-chip">🏅 <b>Nível ${p.level}</b></div><div class="stat-chip">⚡ <b>${p.xp}</b> XP</div><div class="stat-chip">🪙 <b>${p.coins}</b> moedas</div><div class="stat-chip">✅ <b>${p.totalCorrect}</b> acertos</div><div class="stat-chip">🐾 <b>${mascotEmoji} ${esc(mascotName)}</b></div></div>`;
+  let xpSection = document.getElementById("xp-section-inline"); if(!xpSection){ xpSection = document.createElement("div"); xpSection.id = "xp-section-inline"; xpSection.className = "xp-section"; area.parentElement.parentElement.insertBefore(xpSection, area.parentElement.nextSibling); }
+  xpSection.innerHTML = `<div class="xp-header"><span>🏅 Nível ${p.level}</span><span>${lvlProgress.text}</span></div><div class="xp-bar-wrap"><div class="xp-bar" style="width:${lvlProgress.percent}%">${lvlProgress.percent}%</div></div><p style="margin-top:10px;font-size:12px;font-weight:700;color:var(--muted);text-align:center;">${nextUnlockText}</p>`;
+  renderSubjectMascotGrid(); renderShopTabs(); renderShopGrid(currentShopTab); updateWeeklyBanner();
 }
-
-function renderSubjectMascotGrid(){
-  const grid=document.getElementById("subject-mascot-grid");
-  if(!grid) return;
-  const p=state.user;
-  // Mascotes disponíveis = gratuitos + comprados + nível
-  const available = Object.keys(MASCOTS).filter(id => {
-    if(id === 'none') return false;
-    const item = MASCOTS[id];
-    return item.price === 0 || p.inventory.includes(`mascots:${id}`);
-  });
-  const optsHTML = available.map(id => {
-    const m = MASCOTS[id];
-    return `<option value="${id}">${m.emoji} ${m.name}</option>`;
-  }).join('');
-
-  const allTopics = [];
-  TOPICS.forEach(g => g.items.forEach(i => allTopics.push({...i, group:g.group})));
-
-  grid.innerHTML = allTopics.map(t => {
-    const current = p.favoriteMascotBySubject[t.id] || p.avatar.mascot || 'frog';
-    return `<div class="subject-mascot-item">
-      <span class="s-emoji">${t.emoji}</span>
-      <span class="s-name">${esc(t.name)}</span>
-      <select onchange="setFavoriteMascot('${t.id}', this.value)">
-        ${available.map(id => {
-          const m = MASCOTS[id];
-          return `<option value="${id}" ${id===current?'selected':''}>${m.emoji} ${m.name}</option>`;
-        }).join('')}
-      </select>
-    </div>`;
-  }).join('');
-}
-
-function setFavoriteMascot(topicId, mascotId){
-  state.user.favoriteMascotBySubject[topicId] = mascotId;
-  saveProfile(state.user.email, state.user);
-  playSound('equip');
-  const msg = document.getElementById("shop-msg");
-  if(msg){
-    msg.className="status-msg ok";
-    msg.textContent = `Mascote da matéria atualizado para ${MASCOTS[mascotId].emoji} ${MASCOTS[mascotId].name}!`;
-  }
-}
-
-function updateWeeklyBanner(){
-  const days = getDaysUntilRotation();
-  const el = document.getElementById("weekly-countdown");
-  if(el) el.textContent = days === 1 ? "🔄 Nova oferta amanhã!" : `🔄 Nova oferta em ${days} dias`;
-}
-
-function renderShopTabs(){
-  const box=document.getElementById("shop-tabs"); if(!box) return;
-  box.innerHTML=SHOP_CATEGORIES.map(c=>`
-    <button class="shop-tab ${c.id===currentShopTab?'active':''}" onclick="switchShopTab('${c.id}')">${c.emoji} ${c.name}</button>
-  `).join('');
-}
+function renderSubjectMascotGrid(){const grid=document.getElementById("subject-mascot-grid"); if(!grid) return; const p=state.user; const available = Object.keys(MASCOTS).filter(id => { if(id === 'none') return false; const item = MASCOTS[id]; return item.price === 0 || p.inventory.includes(`mascots:${id}`); }); const allTopics = []; TOPICS.forEach(g => g.items.forEach(i => allTopics.push({...i, group:g.group}))); grid.innerHTML = allTopics.map(t => { const current = p.favoriteMascotBySubject[t.id] || p.avatar.mascot || 'frog'; return `<div class="subject-mascot-item"><span class="s-emoji">${t.emoji}</span><span class="s-name">${esc(t.name)}</span><select onchange="setFavoriteMascot('${t.id}', this.value)">${available.map(id => { const m = MASCOTS[id]; return `<option value="${id}" ${id===current?'selected':''}>${m.emoji} ${m.name}</option>`; }).join('')}</select></div>`; }).join('');}
+function setFavoriteMascot(topicId, mascotId){state.user.favoriteMascotBySubject[topicId] = mascotId; saveProfile(state.user.email, state.user); playSound('equip'); const msg = document.getElementById("shop-msg"); if(msg){ msg.className="status-msg ok"; msg.textContent = `Mascote atualizado!`; }}
+function updateWeeklyBanner(){const days = getDaysUntilRotation(); const el = document.getElementById("weekly-countdown"); if(el) el.textContent = days === 1 ? "🔄 Nova oferta amanhã!" : `🔄 Nova oferta em ${days} dias`;}
+function renderShopTabs(){const box=document.getElementById("shop-tabs"); if(!box) return; box.innerHTML=SHOP_CATEGORIES.map(c=>`<button class="shop-tab ${c.id===currentShopTab?'active':''}" onclick="switchShopTab('${c.id}')">${c.emoji} ${c.name}</button>`).join('');}
 function switchShopTab(id){currentShopTab=id;renderShopTabs();renderShopGrid(id);}
-
 function renderShopGrid(category){
-  const grid=document.getElementById("shop-grid"); if(!grid) return;
-  const items=SHOP_ITEMS[category];
-  const p=state.user;
-  const avatarKey=getAvatarKey(category);
-  const weeklyOffers = getWeeklyOffers();
-  // Sort: featured (on sale) first, then owned, then locked
-  const entries = Object.entries(items).sort(([idA, itemA], [idB, itemB]) => {
-    const aSale = weeklyOffers[`${category}:${idA}`] ? 1 : 0;
-    const bSale = weeklyOffers[`${category}:${idB}`] ? 1 : 0;
-    if(aSale !== bSale) return bSale - aSale;
-    const aOwned = itemA.price === 0 || p.inventory.includes(`${category}:${idA}`) ? 1 : 0;
-    const bOwned = itemB.price === 0 || p.inventory.includes(`${category}:${idB}`) ? 1 : 0;
-    if(aOwned !== bOwned) return bOwned - aOwned;
-    return itemA.price - itemB.price;
-  });
-
+  const grid=document.getElementById("shop-grid"); if(!grid) return; const items=SHOP_ITEMS[category]; const p=state.user; const avatarKey=getAvatarKey(category); const weeklyOffers = getWeeklyOffers();
+  const entries = Object.entries(items).sort(([idA, itemA], [idB, itemB]) => { const aSale = weeklyOffers[`${category}:${idA}`] ? 1 : 0; const bSale = weeklyOffers[`${category}:${idB}`] ? 1 : 0; if(aSale !== bSale) return bSale - aSale; const aOwned = itemA.price === 0 || p.inventory.includes(`${category}:${idA}`) ? 1 : 0; const bOwned = itemB.price === 0 || p.inventory.includes(`${category}:${idB}`) ? 1 : 0; if(aOwned !== bOwned) return bOwned - aOwned; return itemA.price - itemB.price; });
   grid.innerHTML = entries.map(([id, item]) => {
-    const key=`${category}:${id}`;
-    const owned=id==='none'||item.price===0||p.inventory.includes(key);
-    const equipped=p.avatar[avatarKey]===id;
-    const previewAvatar={...p.avatar, [avatarKey]:id};
-    const pricing = getEffectivePrice(category, id);
-    const isOnSale = pricing.discount > 0 && !owned;
-    const levelUnlock = (category === 'mascots') ? LEVELS.find(l => l.unlock === id) : null;
-    const wasUnlockedByLevel = levelUnlock && p.level >= levelUnlock.level;
-
-    let actionHTML;
-    if(equipped) actionHTML=`<div class="shop-action equipped">✓ Em uso</div>`;
-    else if(owned) actionHTML=`<div class="shop-action use">Usar</div>`;
-    else if(p.coins >= pricing.price) actionHTML=`<div class="shop-action buy">${pricing.price} 🪙</div>`;
-    else actionHTML=`<div class="shop-action locked">🔒 ${pricing.price} 🪙</div>`;
-
-    const rarityClass=(item.rarity||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-
-    let priceHTML = '';
-    if(!owned && item.price > 0){
-      if(isOnSale){
-        priceHTML = `<div class="shop-price"><span class="old">${pricing.original}🪙</span><span class="new">${pricing.price}🪙</span></div>`;
-      } else {
-        priceHTML = `<div class="shop-price"><span>${item.price} 🪙</span></div>`;
-      }
-    }
-
-    return `
-      <div class="shop-item ${equipped?'equipped':''} ${owned?'owned':'locked'} ${isOnSale?'on-sale':''}" onclick="handleShopClick('${category}', '${id}')">
-        ${isOnSale ? `<div class="discount-badge">-${pricing.discount}%</div>` : ''}
-        ${levelUnlock ? `<div class="level-unlock-badge">Nv ${levelUnlock.level}</div>` : ''}
-        <div class="shop-preview">${getAvatarHTML(previewAvatar, 70)}</div>
-        <div class="shop-item-name">${esc(item.name)}</div>
-        ${item.desc?`<div class="shop-item-desc">${esc(item.desc)}</div>`:''}
-        <div class="shop-item-rarity ${rarityClass}">${esc(item.rarity||'')}</div>
-        ${priceHTML}
-        ${actionHTML}
-      </div>
-    `;
+    const key=`${category}:${id}`; const owned=id==='none'||item.price===0||p.inventory.includes(key); const equipped=p.avatar[avatarKey]===id; const previewAvatar={...p.avatar, [avatarKey]:id}; const pricing = getEffectivePrice(category, id); const isOnSale = pricing.discount > 0 && !owned; const levelUnlock = (category === 'mascots') ? LEVELS.find(l => l.unlock === id) : null; const rarityClass=(item.rarity||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    let actionHTML; if(equipped) actionHTML=`<div class="shop-action equipped">✓ Em uso</div>`; else if(owned) actionHTML=`<div class="shop-action use">Usar</div>`; else if(p.coins >= pricing.price) actionHTML=`<div class="shop-action buy">${pricing.price} 🪙</div>`; else actionHTML=`<div class="shop-action locked">🔒 ${pricing.price} 🪙</div>`;
+    let priceHTML = ''; if(!owned && item.price > 0){ if(isOnSale) priceHTML = `<div class="shop-price"><span class="old">${pricing.original}🪙</span><span class="new">${pricing.price}🪙</span></div>`; else priceHTML = `<div class="shop-price"><span>${item.price} 🪙</span></div>`; }
+    return `<div class="shop-item ${equipped?'equipped':''} ${owned?'owned':'locked'} ${isOnSale?'on-sale':''}" onclick="handleShopClick('${category}', '${id}')">${isOnSale ? `<div class="discount-badge">-${pricing.discount}%</div>` : ''}${levelUnlock ? `<div class="level-unlock-badge">Nv ${levelUnlock.level}</div>` : ''}<div class="shop-preview">${getAvatarHTML(previewAvatar, 70)}</div><div class="shop-item-name">${esc(item.name)}</div>${item.desc?`<div class="shop-item-desc">${esc(item.desc)}</div>`:''}<div class="shop-item-rarity ${rarityClass}">${esc(item.rarity||'')}</div>${priceHTML}${actionHTML}</div>`;
   }).join('');
 }
-
 function handleShopClick(category, id){
-  const p=state.user;
-  const item=SHOP_ITEMS[category][id];
-  const key=`${category}:${id}`;
-  const avatarKey=getAvatarKey(category);
-  const msg=document.getElementById("shop-msg");
-  if(p.avatar[avatarKey]===id){
-    msg.className="status-msg info"; msg.textContent="Esse item já está em uso."; return;
-  }
+  const p=state.user; const item=SHOP_ITEMS[category][id]; const key=`${category}:${id}`; const avatarKey=getAvatarKey(category); const msg=document.getElementById("shop-msg");
+  if(p.avatar[avatarKey]===id){ msg.className="status-msg info"; msg.textContent="Já está em uso."; return; }
   const owned=id==='none'||item.price===0||p.inventory.includes(key);
-  if(owned){
-    p.avatar[avatarKey]=id;
-    saveProfile(p.email, p);
-    state.user=p;
-    renderAvatarView();
-    renderHeaderChip();
-    playSound('equip');
-    msg.className="status-msg ok";
-    msg.textContent=`"${item.name}" equipado! ✅`;
-    return;
-  }
+  if(owned){ p.avatar[avatarKey]=id; saveProfile(p.email, p); state.user=p; renderAvatarView(); renderHeaderChip(); playSound('equip'); msg.className="status-msg ok"; msg.textContent=`Equipado! ✅`; syncUserToGlobal(); return; }
   const pricing = getEffectivePrice(category, id);
-  if(p.coins<pricing.price){
-    msg.className="status-msg err";
-    msg.textContent=`❌ Precisa de mais ${pricing.price-p.coins} 🪙 para comprar "${item.name}".`;
-    return;
-  }
-  if(!confirm(`Comprar "${item.name}" por ${pricing.price} 🪙${pricing.discount>0?` (${pricing.discount}% off!)`:''}?`)) return;
-  p.coins-=pricing.price;
-  p.inventory.push(key);
-  p.avatar[avatarKey]=id;
-  saveProfile(p.email, p);
-  state.user=p;
-  renderAvatarView();
-  renderHeaderChip();
-  playSound('purchase');
-  msg.className="status-msg ok";
-  msg.textContent=`🎉 "${item.name}" comprado e equipado!`;
+  if(p.coins<pricing.price){ msg.className="status-msg err"; msg.textContent=`❌ Faltam ${pricing.price-p.coins} 🪙.`; return; }
+  if(!confirm(`Comprar por ${pricing.price} 🪙?`)) return;
+  p.coins-=pricing.price; p.inventory.push(key); p.avatar[avatarKey]=id; saveProfile(p.email, p); state.user=p; renderAvatarView(); renderHeaderChip(); playSound('purchase'); msg.className="status-msg ok"; msg.textContent=`🎉 Comprado e equipado!`; syncUserToGlobal();
 }
 
 /* ============================================================
-   TURMA
+   MONTANHA EM TEMPO REAL
    ============================================================ */
-const PATH_POINTS=[
-  {left:18.75, bottom:7.14}, {left:27.5, bottom:28.57}, {left:37.5, bottom:42.86},
-  {left:47.5, bottom:57.14}, {left:52.5, bottom:71.43}, {left:50, bottom:87.14}
-];
-function getPathPosition(progress){
-  const idx=progress*(PATH_POINTS.length-1);
-  const i=Math.min(Math.floor(idx), PATH_POINTS.length-1);
-  const frac=idx-i;
-  const a=PATH_POINTS[i], b=PATH_POINTS[Math.min(i+1, PATH_POINTS.length-1)];
-  return {left:a.left+(b.left-a.left)*frac, bottom:a.bottom+(b.bottom-a.bottom)*frac};
-}
+const PATH_POINTS=[{left:18.75, bottom:7.14},{left:27.5, bottom:28.57},{left:37.5, bottom:42.86},{left:47.5, bottom:57.14},{left:52.5, bottom:71.43},{left:50, bottom:87.14}];
+function getPathPosition(progress){const idx=progress*(PATH_POINTS.length-1);const i=Math.min(Math.floor(idx), PATH_POINTS.length-1);const frac=idx-i;const a=PATH_POINTS[i], b=PATH_POINTS[Math.min(i+1, PATH_POINTS.length-1)];return {left:a.left+(b.left-a.left)*frac, bottom:a.bottom+(b.bottom-a.bottom)*frac};}
+
 function openTurmaView(){
   if(!state.user){alert("Cadastre-se primeiro!");showView("register");return;}
   showView("turma");
-  renderMountain();
+  renderMountain(); // Primeira renderização
+  
+  // Configura o modo "Tempo Real" (atualiza a cada 10 segundos)
+  if(mountainInterval) clearInterval(mountainInterval);
+  mountainInterval = setInterval(renderMountain, 10000);
 }
-function renderMountain(){
-  const header=document.getElementById("turma-header");
-  const container=document.getElementById("mountain-students");
+
+async function renderMountain(){
+  const header=document.getElementById("turma-header"); const container=document.getElementById("mountain-students"); const syncStatus = document.getElementById("sync-status");
   if(!header||!container) return;
   const turma=state.user.turma||'Sem turma';
-  const classmates=getTurmaMembers(turma);
-  const sorted=classmates.slice().sort((a,b)=>{
-    if(b.totalPoints!==a.totalPoints) return b.totalPoints-a.totalPoints;
-    return a.name.localeCompare(b.name);
-  });
-  const totalPoints=sorted.reduce((s,p)=>s+p.totalPoints,0);
-  header.innerHTML=`
-    <div class="turma-title">🏫 Turma: ${esc(turma)}</div>
-    <div class="turma-stats">
-      <div class="turma-stat">👥 ${sorted.length} aluno${sorted.length!==1?'s':''}</div>
-      <div class="turma-stat">⭐ ${totalPoints} pts na turma</div>
-      <div class="turma-stat">🏆 Líder: ${sorted[0]?esc(sorted[0].name.split(' ')[0]):'—'}</div>
-    </div>
-  `;
-  container.innerHTML='';
-  if(sorted.length===0){
-    container.innerHTML=`<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;text-align:center;padding:20px;"><div style="font-size:60px;">🏔️</div><p style="font-weight:700;margin-top:10px;">Nenhum colega na sua turma ainda.</p></div>`;
-    return;
+  let classmates = [];
+  
+  // Tenta puxar da nuvem primeiro
+  const cfg = getGSConfig();
+  if(cfg.url) {
+    if(syncStatus) syncStatus.textContent = "🔄 Sincronizando em tempo real com Google Sheets...";
+    const globalData = await fetchGlobalRanking();
+    if(globalData && globalData.length > 0) {
+      // Filtra pela turma e pega o maior XP (para não duplicar)
+      const userMap = new Map();
+      globalData.forEach(d => {
+        if(d.turma === turma && d.name) {
+          const existing = userMap.get(d.email);
+          if(!existing || (Number(d.xp)||0) > (Number(existing.xp)||0)) {
+            let parsedAvatar = {skin:'medium', hair:'brown', shirt:'blue', hat:'none', shoes:'black', accessory:'none', mascot:'frog'};
+            if(d.avatar) { try{ parsedAvatar = JSON.parse(d.avatar); }catch(e){} }
+            userMap.set(d.email, { email: d.email, name: d.name, turma: d.turma, totalPoints: Number(d.xp)||0, level: Number(d.level)||1, avatar: parsedAvatar });
+          }
+        }
+      });
+      classmates = Array.from(userMap.values());
+    }
   }
+  
+  // Se não achou na nuvem (ou não tem URL), usa o local
+  if(classmates.length === 0) {
+    if(syncStatus) syncStatus.textContent = "📱 Modo Local (Apenas este dispositivo)";
+    classmates = getTurmaMembers(turma);
+  } else {
+    if(syncStatus) syncStatus.textContent = "☁️ Modo Nuvem (Tempo Real - Atualiza a cada 10s)";
+  }
+
+  const sorted=classmates.slice().sort((a,b)=>{if(b.totalPoints!==a.totalPoints) return b.totalPoints-a.totalPoints;return a.name.localeCompare(b.name);});
+  const totalPoints=sorted.reduce((s,p)=>s+p.totalPoints,0);
+  
+  header.innerHTML=`<div class="turma-title">🏫 Turma: ${esc(turma)}</div><div class="turma-stats"><div class="turma-stat">👥 ${sorted.length} aluno${sorted.length!==1?'s':''}</div><div class="turma-stat">⭐ ${totalPoints} pts</div><div class="turma-stat">🏆 Líder: ${sorted[0]?esc(sorted[0].name.split(' ')[0]):'—'}</div></div>`;
+  
+  container.innerHTML='';
+  if(sorted.length===0){ container.innerHTML=`<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;text-align:center;padding:20px;"><div style="font-size:60px;">🏔️</div><p style="font-weight:700;margin-top:10px;">Nenhum aluno na montanha ainda.</p></div>`; return; }
+  
   const count=sorted.length;
   sorted.forEach((student, i)=>{
-    const progress=count>1?1-i/(count-1):0.5;
-    const pos=getPathPosition(progress);
-    const isCurrent=student.email===state.user.email;
-    const el=document.createElement('div');
-    el.className='student-marker'+(isCurrent?' current':'');
-    el.style.left=pos.left+'%';
-    el.style.bottom=pos.bottom+'%';
-    const size=isCurrent?52:42;
-    const crown=i===0?'<div class="m-crown">👑</div>':'';
-    el.innerHTML=`
-      ${crown}
-      <div class="m-avatar">${getAvatarHTML(student.avatar, size)}</div>
-      <div class="m-name">${esc(student.name.split(' ')[0])}</div>
-      <div class="m-points">⭐ ${student.totalPoints} · Nv ${student.level||1}</div>
-    `;
+    const progress=count>1?1-i/(count-1):0.5; const pos=getPathPosition(progress); const isCurrent=student.email===state.user.email;
+    const el=document.createElement('div'); el.className='student-marker'+(isCurrent?' current':''); el.style.left=pos.left+'%'; el.style.bottom=pos.bottom+'%';
+    const size=isCurrent?52:42; const crown=i===0?'<div class="m-crown">👑</div>':'';
+    el.innerHTML=`${crown}<div class="m-avatar">${getAvatarHTML(student.avatar, size)}</div><div class="m-name">${esc(student.name.split(' ')[0])}</div><div class="m-points">⭐ ${student.totalPoints} · Nv ${student.level||1}</div>`;
     container.appendChild(el);
   });
 }
@@ -1859,158 +1037,37 @@ function renderMountain(){
    RANKING
    ============================================================ */
 function filterRanking(filter){currentRankingFilter=filter;renderRanking(filter);}
-
 async function renderRanking(filter){
-  const content=document.getElementById("ranking-content");
-  const filtersBox=document.getElementById("ranking-filters");
-  if(!content||!filtersBox) return;
+  const content=document.getElementById("ranking-content"); const filtersBox=document.getElementById("ranking-filters"); if(!content||!filtersBox) return;
   const hasGlobal = !!getGSConfig().url;
-  filtersBox.innerHTML=`
-    <button class="filter-btn ${filter==='all'?'active':''}" onclick="filterRanking('all')">🌍 Todos (Local)</button>
-    <button class="filter-btn ${filter==='turma'?'active':''}" onclick="filterRanking('turma')">🏫 Minha Turma</button>
-    <button class="filter-btn ${filter==='exam'?'active':''}" onclick="filterRanking('exam')">📝 Provas</button>
-    <button class="filter-btn ${filter==='practice'?'active':''}" onclick="filterRanking('practice')">🎮 Treinos</button>
-    <button class="filter-btn ${filter==='today'?'active':''}" onclick="filterRanking('today')">📅 Hoje</button>
-    ${hasGlobal ? `<button class="filter-btn ${filter==='global'?'active':''}" onclick="filterRanking('global')">☁️ Global</button>` : ''}
-  `;
-  const noteEl = document.getElementById("ranking-note");
-  if(noteEl){
-    if(hasGlobal) noteEl.innerHTML = `☁️ <b>Backend ativo!</b> Ranking global sincronizado com Google Sheets. Clique em "☁️ Global" para ver todos os alunos.`;
-    else noteEl.innerHTML = `⚠️ Ranking local apenas. Professor: configure o Google Sheets no Painel para ativar o ranking global.`;
-  }
-
+  filtersBox.innerHTML=`<button class="filter-btn ${filter==='all'?'active':''}" onclick="filterRanking('all')">🌍 Todos</button><button class="filter-btn ${filter==='turma'?'active':''}" onclick="filterRanking('turma')">🏫 Minha Turma</button>${hasGlobal ? `<button class="filter-btn ${filter==='global'?'active':''}" onclick="filterRanking('global')">☁️ Global</button>` : ''}`;
   if(filter === 'global'){
-    content.innerHTML = `<div class="empty-ranking"><span class="empty-emoji">☁️</span><h3>Buscando ranking global...</h3></div>`;
+    content.innerHTML = `<div class="empty-ranking"><h3>Buscando...</h3></div>`;
     const globalData = await fetchGlobalRanking();
-    if(!globalData || globalData.length === 0){
-      content.innerHTML = `<div class="empty-ranking"><span class="empty-emoji">☁️</span><h3>Ranking global vazio</h3><p>Nenhum resultado sincronizado ainda.</p></div>`;
-      return;
-    }
-    const entries = globalData.map(e => ({
-      name: e.name, email: e.email, turma: e.turma,
-      activity: e.activity, mode: e.mode,
-      correct: e.correct, total: e.total, grade: e.grade,
-      mascot: Object.keys(MASCOTS).find(k => MASCOTS[k].name === e.mascot) || '',
-      level: e.level || 1,
-      date: e.date
-    }));
-    renderRankingTable(content, entries);
-    return;
+    if(!globalData || globalData.length === 0){ content.innerHTML = `<div class="empty-ranking"><h3>Vazio</h3></div>`; return; }
+    const entries = globalData.map(e => ({name:e.name, turma:e.turma, activity:e.activity, grade:e.grade, date:e.date}));
+    renderRankingTable(content, entries); return;
   }
-
-  let entries=loadHistory();
-  if(filter==='turma'&&state.user) entries=entries.filter(e=>e.turma===state.user.turma);
-  else if(filter==='exam') entries=entries.filter(e=>e.mode==='exam');
-  else if(filter==='practice') entries=entries.filter(e=>e.mode==='practice');
-  else if(filter==='today'){
-    const today=new Date().toDateString();
-    entries=entries.filter(e=>new Date(e.date).toDateString()===today);
-  }
+  let entries=loadHistory(); if(filter==='turma'&&state.user) entries=entries.filter(e=>e.turma===state.user.turma);
   renderRankingTable(content, entries);
 }
-
 function renderRankingTable(content, entries){
-  entries.sort((a,b)=>{
-    const ga=parseFloat(String(a.grade).replace(',','.'));
-    const gb=parseFloat(String(b.grade).replace(',','.'));
-    if(gb!==ga) return gb-ga;
-    return new Date(b.date)-new Date(a.date);
-  });
-  entries=entries.slice(0,50);
-  if(entries.length===0){
-    content.innerHTML=`<div class="empty-ranking"><span class="empty-emoji">🎪</span><h3>Nenhum resultado ainda!</h3><p>Seja o primeiro a brilhar!</p></div>`;
-    return;
-  }
+  entries.sort((a,b)=>{const ga=parseFloat(String(a.grade).replace(',','.'));const gb=parseFloat(String(b.grade).replace(',','.'));if(gb!==ga) return gb-ga;return new Date(b.date)-new Date(a.date);});
+  entries=entries.slice(0,50); if(entries.length===0){content.innerHTML=`<div class="empty-ranking"><h3>Nenhum resultado.</h3></div>`;return;}
   const medals=['🥇','🥈','🥉'];
-  const rows=entries.map((e, i)=>{
-    const pos=i+1;
-    const topClass=pos<=3?`top-${pos}`:'';
-    const posDisplay=pos<=3?`<span class="rank-medal">${medals[pos-1]}</span>`:`<span class="rank-pos">${pos}º</span>`;
-    const date=new Date(e.date).toLocaleDateString('pt-BR');
-    const mascotEmoji=e.mascot?(MASCOTS[e.mascot]||{}).emoji:'';
-    return `
-      <tr class="${topClass}">
-        <td>${posDisplay}</td>
-        <td class="rank-name">${esc(e.name)}<span class="rank-turma">${esc(e.turma||'—')}</span></td>
-        <td>${esc(e.activity)}<span class="rank-turma">${date}</span></td>
-        <td><span class="rank-score">${esc(e.grade)}</span>${mascotEmoji?`<span class="rank-mascot">${mascotEmoji}</span>`:''}<span class="rank-level">Nv ${e.level||1}</span></td>
-      </tr>`;
-  }).join('');
-  content.innerHTML=`
-    <table class="ranking-table">
-      <thead><tr><th>Pos</th><th>Estudante</th><th>Atividade</th><th>Nota</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>`;
+  const rows=entries.map((e, i)=>{const pos=i+1;const topClass=pos<=3?`top-${pos}`:'';const posDisplay=pos<=3?`<span class="rank-medal">${medals[pos-1]}</span>`:`<span class="rank-pos">${pos}º</span>`;const date=new Date(e.date).toLocaleDateString('pt-BR');return `<tr class="${topClass}"><td>${posDisplay}</td><td class="rank-name">${esc(e.name)}<span class="rank-turma">${esc(e.turma||'—')}</span></td><td>${esc(e.activity)}<span class="rank-turma">${date}</span></td><td><span class="rank-score">${esc(e.grade)}</span></td></tr>`;}).join('');
+  content.innerHTML=`<table class="ranking-table"><thead><tr><th>Pos</th><th>Estudante</th><th>Atividade</th><th>Nota</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
-
-function exportRanking(){
-  const entries=loadHistory();
-  if(entries.length===0){alert("Ranking vazio.");return;}
-  const header="Nome,Email,Turma,Atividade,Modo,Acertos,Total,Nota,Moedas,XP,Nivel,Mascote,Data\n";
-  const rows=entries.map(e=>{
-    const mName=((MASCOTS[e.mascot]||{}).name)||'';
-    return `"${String(e.name).replace(/"/g,'""')}","${e.email}","${e.turma||''}","${String(e.activity).replace(/"/g,'""')}",${e.mode},${e.correct},${e.total},${e.grade},${e.coinsEarned||0},${e.xp||0},${e.level||1},"${mName}",${new Date(e.date).toLocaleString('pt-BR')}`;
-  }).join('\n');
-  const blob=new Blob([header+rows],{type:'text/csv;charset=utf-8;'});
-  const url=URL.createObjectURL(blob);
-  const a=document.createElement('a');
-  a.href=url;
-  a.download=`ranking_aprendeai_${new Date().toISOString().slice(0,10)}.csv`;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-function clearRanking(){
-  if(!confirm("🗑️ Apagar TODO o histórico de ranking local?\n\nPerfis (avatar, moedas, XP) são mantidos.")) return;
-  localStorage.removeItem("aprendeai_history");
-  renderRanking(currentRankingFilter);
-}
+function exportRanking(){const entries=loadHistory();if(entries.length===0){alert("Vazio.");return;}const header="Nome,Email,Turma,Atividade,Modo,Nota\n";const rows=entries.map(e=>`"${e.name}","${e.email}","${e.turma}","${e.activity}",${e.mode},${e.grade}`).join('\n');const blob=new Blob([header+rows],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`ranking.csv`;a.click();}
+function clearRanking(){if(!confirm("Apagar histórico?")) return;localStorage.removeItem("aprendeai_history");renderRanking(currentRankingFilter);}
 
 /* ============================================================
-   PROFESSOR
+   PROFESSOR E INIT
    ============================================================ */
-function openTeacher(){
-  const pwd=prompt("Senha do professor:");
-  if(pwd!==CONFIG.teacherPassword){alert("Senha incorreta.");return;}
-  const sel=document.getElementById("t-topic");
-  sel.innerHTML="";
-  TOPICS.forEach(g=>{
-    const og=document.createElement("optgroup"); og.label=g.group;
-    g.items.forEach(i=>{
-      const o=document.createElement("option"); o.value=i.id; o.textContent=i.name;
-      og.appendChild(o);
-    });
-    sel.appendChild(og);
-  });
-  showView("teacher");
-}
-function addQuestion(){
-  const topic=document.getElementById("t-topic").value;
-  const q=document.getElementById("t-q").value.trim();
-  const opts=["t-a","t-b","t-c","t-d"].map(id=>document.getElementById(id).value.trim());
-  const correct=parseInt(document.getElementById("t-correct").value);
-  const msg=document.getElementById("teacher-msg");
-  if(!q||opts.some(o=>!o)){msg.className="status-msg err";msg.textContent="Preencha tudo.";return;}
-  const custom=loadCustom();
-  if(!custom[topic]) custom[topic]=[];
-  custom[topic].push({q, o:opts, a:correct});
-  saveCustom(custom);
-  customCache[topic]=custom[topic];
-  bankCache[topic]=null;
-  msg.className="status-msg ok"; msg.textContent="Questão adicionada! ✅";
-  document.getElementById("t-q").value="";
-  ["t-a","t-b","t-c","t-d"].forEach(id=> document.getElementById(id).value="");
-  document.getElementById("t-correct").value="0";
-}
+function openTeacher(){const pwd=prompt("Senha:");if(pwd!==CONFIG.teacherPassword){alert("Errada.");return;}const sel=document.getElementById("t-topic");sel.innerHTML="";TOPICS.forEach(g=>{const og=document.createElement("optgroup"); og.label=g.group;g.items.forEach(i=>{const o=document.createElement("option"); o.value=i.id; o.textContent=i.name;og.appendChild(o);});sel.appendChild(og);});showView("teacher");}
+function addQuestion(){const topic=document.getElementById("t-topic").value;const q=document.getElementById("t-q").value.trim();const opts=["t-a","t-b","t-c","t-d"].map(id=>document.getElementById(id).value.trim());const correct=parseInt(document.getElementById("t-correct").value);const msg=document.getElementById("teacher-msg");if(!q||opts.some(o=>!o)){msg.className="status-msg err";msg.textContent="Preencha tudo.";return;}const custom=loadCustom();if(!custom[topic]) custom[topic]=[];custom[topic].push({q, o:opts, a:correct});saveCustom(custom);customCache[topic]=custom[topic];bankCache[topic]=null;msg.className="status-msg ok"; msg.textContent="Adicionada! ✅";document.getElementById("t-q").value="";["t-a","t-b","t-c","t-d"].forEach(id=> document.getElementById(id).value="");document.getElementById("t-correct").value="0";}
 
-/* ============================================================
-   INIT
-   ============================================================ */
-document.addEventListener("DOMContentLoaded", ()=>{
-  renderSidebar();
-  updateModeSelector();
-  updateSoundButton();
-  showView("register");
-});
+document.addEventListener("DOMContentLoaded", ()=>{renderSidebar();updateModeSelector();updateSoundButton();showView("register");});
 </script>
 </body>
 </html>
