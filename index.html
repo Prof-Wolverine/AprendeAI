@@ -17,6 +17,7 @@ html,body{overflow-x:hidden;}
 body{font-family:'Nunito',sans-serif;color:var(--dark);min-height:100vh;position:relative;background:linear-gradient(180deg,#B5E8FF 0%,#E0F5FF 45%,#FFF9F0 100%);}
 h1,h2,h3,.park-font{font-family:'Fredoka',sans-serif;font-weight:700;}
 
+/* Decorações de Fundo */
 .decoration{position:fixed;pointer-events:none;z-index:0;user-select:none;}
 .sun{top:14px;right:24px;font-size:80px;animation:spinSlow 60s linear infinite;filter:drop-shadow(0 0 20px rgba(255,217,61,.6));}
 @keyframes spinSlow{to{transform:rotate(360deg);}}
@@ -31,6 +32,7 @@ h1,h2,h3,.park-font{font-family:'Fredoka',sans-serif;font-weight:700;}
 .balloon.b3{top:82%;left:4%;animation-delay:2.4s;}
 @keyframes float{0%,100%{transform:translateY(0) rotate(-4deg);}50%{transform:translateY(-25px) rotate(4deg);}}
 
+/* Cabeçalho */
 header.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 20px 20px;position:relative;z-index:5;flex-wrap:wrap;}
 .logo-wrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
 .logo{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--pink),var(--orange),var(--yellow));-webkit-background-clip:text;background-clip:text;color:transparent;font-family:'Fredoka',sans-serif;font-weight:700;font-size:36px;}
@@ -48,6 +50,7 @@ header.nav{display:flex;align-items:center;justify-content:space-between;gap:16p
 .level-badge{position:absolute;top:-10px;right:-10px;min-width:38px;height:34px;padding:0 8px;background:linear-gradient(135deg,var(--yellow),var(--orange));border:2px solid var(--dark);border-radius:14px;display:flex;align-items:center;justify-content:center;font-family:'Fredoka';font-size:13px;font-weight:700;color:var(--dark);box-shadow:2px 2px 0 var(--dark);z-index:10;gap:3px;}
 .level-badge::after{content:'⭐';font-size:11px;}
 
+/* Layout Principal */
 .layout{display:flex;min-height:calc(100vh - 100px);position:relative;z-index:1;}
 .sidebar{width:300px;flex-shrink:0;padding:16px;position:sticky;top:80px;align-self:flex-start;max-height:calc(100vh - 100px);overflow-y:auto;}
 .sidebar::-webkit-scrollbar{width:6px;}
@@ -77,6 +80,7 @@ main{flex:1;padding:0 24px 40px;max-width:1100px;margin:0 auto;min-width:0;width
 .section h2{font-size:26px;margin-bottom:6px;display:flex;align-items:center;gap:10px;}
 .section .subtitle{color:var(--muted);font-size:14px;margin-bottom:20px;font-weight:600;}
 
+/* Hero e Formulários */
 .hero{background:linear-gradient(135deg,#FFE5F0 0%,#FFF3C7 50%,#E0F5FF 100%);text-align:center;padding:36px 24px;position:relative;overflow:hidden;}
 .hero::before{content:"🎠🎢🎡🎪🎨";position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:30px;opacity:.15;letter-spacing:20px;pointer-events:none;}
 .hero h2{justify-content:center;font-size:32px;color:var(--dark);}
@@ -92,6 +96,7 @@ label{display:block;font-size:13px;font-weight:800;margin-bottom:6px;color:var(-
 input[type=text],input[type=email],input[type=url],select,textarea{width:100%;padding:14px 16px;border-radius:14px;border:3px solid var(--dark);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;background:#FFFCF5;transition:.15s;color:var(--dark);}
 input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var(--pink);}
 
+/* Botões */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 26px;border-radius:16px;border:4px solid var(--dark);font-family:'Fredoka',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:.15s;background:var(--yellow);color:var(--dark);box-shadow:4px 4px 0 var(--dark);}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--dark);}
 .btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--dark);}
@@ -105,21 +110,21 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .btn.full{width:100%;}
 .btn.small{padding:9px 16px;font-size:13px;}
 
-/* --- AVATAR FOFINHO --- */
+/* --- NOVO AVATAR ESTILO CHIBI (LEAGUE OF LEGENDS) --- */
 .avatar-box{position:relative;display:inline-block;line-height:0;}
 .avatar-box svg{width:100%;height:100%;display:block;overflow:visible;}
-.avatar-hat{position:absolute;top:-9%;left:50%;transform:translateX(-50%);line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));pointer-events:none;z-index:3;}
-.avatar-mascot{position:absolute;bottom:2%;right:-22%;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));pointer-events:none;animation:mascotBob 3s ease-in-out infinite;z-index:2;}
+.avatar-hat{position:absolute;top:-12%;left:50%;transform:translateX(-50%);line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));pointer-events:none;z-index:3;font-size:1.5em;}
+.avatar-mascot{position:absolute;bottom:0%;right:-25%;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));pointer-events:none;animation:mascotBob 3s ease-in-out infinite;z-index:2;font-size:1.2em;}
 @keyframes mascotBob{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-4px) rotate(4deg);}}
-.avatar-wing{position:absolute;bottom:40%;font-size:40px;z-index:0;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
-.wing-l{left:-15%;animation:wingL 2s infinite alternate;}
-.wing-r{right:-15%;animation:wingR 2s infinite alternate;}
+.avatar-wing{position:absolute;bottom:40%;font-size:2em;z-index:0;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
+.wing-l{left:-20%;animation:wingL 2s infinite alternate;}
+.wing-r{right:-20%;animation:wingR 2s infinite alternate;}
 @keyframes wingL{0%{transform:rotate(-10deg);}100%{transform:rotate(10deg);}}
 @keyframes wingR{0%{transform:rotate(10deg);}100%{transform:rotate(-10deg);}}
-.avatar-aura{position:absolute;inset:-10%;border-radius:50%;z-index:0;opacity:0.6;filter:blur(10px);animation:pulseAura 2s infinite alternate;}
+.avatar-aura{position:absolute;inset:-15%;border-radius:50%;z-index:0;opacity:0.6;filter:blur(12px);animation:pulseAura 2s infinite alternate;}
 @keyframes pulseAura{0%{transform:scale(0.9);opacity:0.4;}100%{transform:scale(1.1);opacity:0.8;}}
 
-/* --- LOJA --- */
+/* --- LOJA E SELEÇÃO --- */
 .mode-selector{background:linear-gradient(135deg,#FFF9E6,#FFF3C7);border:3px dashed var(--dark);border-radius:16px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
 .mode-selector h3{font-size:15px;margin:0;flex-shrink:0;}
 .mode-btn{padding:10px 18px;border-radius:12px;border:3px solid var(--dark);background:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;transition:.15s;color:var(--dark);box-shadow:3px 3px 0 var(--dark);}
@@ -139,6 +144,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .badge{font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;background:var(--green);color:#fff;text-transform:uppercase;letter-spacing:.5px;}
 .badge.y{background:var(--orange);}
 
+/* Quiz */
 .progress-wrap{height:14px;background:#f0f0f0;border:3px solid var(--dark);border-radius:20px;overflow:hidden;margin-bottom:6px;}
 .progress-bar{height:100%;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green));width:0;transition:width .4s;border-radius:20px;}
 .q-counter{font-size:12px;font-weight:800;color:var(--dark);margin-bottom:18px;text-align:right;opacity:.7;}
@@ -156,8 +162,8 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
 .mode-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;background:var(--orange);color:#fff;font-family:'Fredoka',sans-serif;font-size:12px;font-weight:700;border:2px solid var(--dark);text-transform:uppercase;letter-spacing:1px;}
 .mode-badge.practice{background:var(--green);}
-.quiz-mascot{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:#fff;border:2px solid var(--dark);font-size:12px;font-weight:800;}
 
+/* Resultados e Loja */
 .result-hero{text-align:center;padding:36px 24px;background:linear-gradient(135deg,var(--green),var(--blue));border:4px solid var(--dark);border-radius:var(--radius);color:#fff;box-shadow:6px 6px 0 var(--dark);margin-bottom:24px;position:relative;overflow:hidden;}
 .result-hero.low{background:linear-gradient(135deg,var(--orange),var(--pink));}
 .result-hero .trophy{font-size:70px;animation:bounce 1s ease-in-out infinite;}
@@ -198,7 +204,6 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .shop-item:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--dark);}
 .shop-item.equipped{border-color:var(--green);background:#F0FDF4;}
 .shop-item.locked{opacity:.75;}
-.discount-badge{position:absolute;top:-10px;left:-10px;background:#DC2626;color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:10px;border:2px solid var(--dark);z-index:5;transform:rotate(-8deg);box-shadow:2px 2px 0 var(--dark);}
 .shop-preview{display:flex;justify-content:center;margin-bottom:8px;height:105px;align-items:flex-end;}
 .shop-item-name{font-size:12px;font-weight:800;color:var(--dark);line-height:1.2;margin-bottom:4px;}
 .shop-item-rarity{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
@@ -212,12 +217,12 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .shop-action.use{background:var(--blue);color:#fff;}
 .shop-action.buy{background:var(--yellow);color:var(--dark);}
 
-/* AVISO FLUTUANTE (TOAST) */
+/* Aviso Toast */
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--dark);color:#fff;padding:12px 24px;border-radius:30px;font-family:'Fredoka';font-size:16px;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:100;transition:transform .3s cubic-bezier(.34,1.56,.64,1);display:flex;align-items:center;gap:8px;}
 .toast.show{transform:translateX(-50%) translateY(0);}
 .toast.error{background:#DC2626;}
 
-/* RANKING */
+/* Ranking */
 .ranking-filters{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
 .filter-btn{padding:8px 16px;border-radius:20px;border:3px solid var(--dark);background:#fff;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;color:var(--dark);transition:.15s;}
 .filter-btn.active{background:var(--purple);color:#fff;}
@@ -235,7 +240,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .rank-turma{font-size:11px;color:var(--muted);display:block;font-weight:600;}
 .rank-score{font-family:'Fredoka',sans-serif;font-size:16px;color:var(--green);font-weight:800;}
 
-/* MONTANHA */
+/* --- NOVA MONTANHA REALISTA E COM OBSTÁCULOS --- */
 .mountain-scene{position:relative;height:640px;background:linear-gradient(180deg,#0F0C29 0%,#302B63 40%,#6B5B95 70%,#B5E8FF 100%);border:4px solid var(--dark);border-radius:22px;overflow:hidden;box-shadow:inset 0 0 30px rgba(0,0,0,.4);}
 .mountain-svg{position:absolute;inset:0;width:100%;height:100%;}
 .student-marker{position:absolute;transform:translate(-50%,50%);display:flex;flex-direction:column;align-items:center;transition:all .6s cubic-bezier(.34,1.56,.64,1);z-index:2;}
@@ -457,19 +462,27 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
       <div class="section">
         <div class="turma-header" id="turma-header"></div>
         <div class="mountain-scene">
+          <!-- NOVO SVG DA MONTANHA REALISTA -->
           <svg class="mountain-svg" viewBox="0 0 800 700" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#0F0C29"/>
-                <stop offset="50%" stop-color="#302B63"/>
+                <stop offset="40%" stop-color="#302B63"/>
                 <stop offset="100%" stop-color="#6B5B95"/>
               </linearGradient>
               <linearGradient id="mtGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#F0F8FF"/>
-                <stop offset="100%" stop-color="#5B7DA8"/>
+                <stop offset="15%" stop-color="#E0E8F0"/>
+                <stop offset="50%" stop-color="#5B7DA8"/>
+                <stop offset="100%" stop-color="#3A4A6A"/>
               </linearGradient>
+              <radialGradient id="rockGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#6B7B8D"/>
+                <stop offset="100%" stop-color="#2D3B4E"/>
+              </radialGradient>
             </defs>
             <rect width="800" height="700" fill="url(#skyGrad)"/>
+            <!-- Estrelas -->
             <g fill="#FFF" opacity="0.85">
               <circle cx="80" cy="60" r="1.5"/><circle cx="180" cy="40" r="2"/><circle cx="280" cy="90" r="1.5"/>
               <circle cx="420" cy="50" r="2"/><circle cx="550" cy="80" r="1.5"/><circle cx="650" cy="45" r="2"/>
@@ -478,9 +491,20 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
             </g>
             <circle cx="680" cy="120" r="48" fill="#FFFACD" opacity="0.9"/>
             <circle cx="655" cy="105" r="44" fill="url(#skyGrad)"/>
+            
+            <!-- Montanha Principal com Rochas e Neve -->
             <polygon points="0,700 400,55 800,700" fill="url(#mtGrad)"/>
+            <!-- Neve no topo -->
             <polygon points="330,185 400,55 470,185 445,200 400,175 355,200" fill="#FFF" opacity="0.95"/>
-            <path d="M 150,660 Q 250,590 220,500 T 300,400 T 380,300 T 420,200 T 400,90" stroke="#FFF" stroke-width="3" stroke-dasharray="10,10" fill="none" opacity="0.5"/>
+            <!-- Rochas e Obstáculos (Barreiras) -->
+            <path d="M 200,500 Q 250,450 300,480 Q 350,520 400,480 Q 450,440 500,470 Q 550,500 600,450" stroke="#2D3B4E" stroke-width="20" fill="none" stroke-linecap="round"/>
+            <circle cx="300" cy="480" r="25" fill="url(#rockGrad)"/>
+            <circle cx="500" cy="470" r="30" fill="url(#rockGrad)"/>
+            <circle cx="400" cy="350" r="20" fill="url(#rockGrad)"/>
+            <!-- Caminho Sinuoso (Trilha) -->
+            <path d="M 150,660 Q 250,590 220,500 T 300,400 T 380,300 T 420,200 T 400,90" stroke="#FFF" stroke-width="4" stroke-dasharray="12,12" fill="none" opacity="0.7"/>
+            
+            <!-- Bandeira no Topo -->
             <line x1="400" y1="55" x2="400" y2="15" stroke="#2D1B4E" stroke-width="4"/>
             <polygon points="400,15 465,32 400,50" fill="#FF4D8D"/>
           </svg>
@@ -526,7 +550,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
         <p class="subtitle">Configure o endpoint do Google Apps Script para sincronizar alunos em tempo real.</p>
         <div class="field">
           <label>URL do Google Apps Script (Web App)</label>
-          <input type="url" id="gs-url" placeholder="https://script.google.com/macros/s/.../exec">
+          <input type="url" id="gs-url" placeholder="https://script.google.com/macros/s/AKfycbwfPjFnv_iowzOH5PFsTsZ8teATtXGsqIPV_t5iQoSVkDXAhyhs_FR7_p2GIVwvzLyJ/exec">
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <button class="btn blue" onclick="saveGSConfig()">💾 Salvar URL</button>
@@ -616,7 +640,7 @@ function MQ(q, correct, wrongs, diff='médio'){
 }
 
 /* ============================================================
-   AVATARES E LOJA (ITENS CORRIGIDOS)
+   AVATARES E LOJA (ITENS ESTILO CHIBI)
    ============================================================ */
 const SKINS = {light:{name:'Pele Clara',price:0,color:'#FFE0BD',rarity:'Grátis'},medium:{name:'Pele Morena',price:0,color:'#F5C99A',rarity:'Grátis'},dark:{name:'Pele Negra',price:0,color:'#8D5524',rarity:'Grátis'}};
 const HAIRS = {none:{name:'Careca',price:0,color:'transparent',rarity:'Grátis'},short:{name:'Curtinho',price:0,color:'#6F4E37',rarity:'Grátis'},long:{name:'Comprido',price:50,color:'#1C1C1C',rarity:'Comum'},spiky:{name:'Moicano',price:100,color:'#FF69B4',rarity:'Raro'},curly:{name:'Cacheado',price:100,color:'#F4D03F',rarity:'Raro'}};
@@ -733,10 +757,9 @@ async function clearAllHistory(){
 }
 
 /* ============================================================
-   DESENHO DO AVATAR (CORRIGIDO SEM ERROS)
+   DESENHO DO AVATAR ESTILO CHIBI (LEAGUE OF LEGENDS)
    ============================================================ */
 function getAvatarHTML(avatar, size){
-  // Garantir que temos todos os dados necessários para não travar
   const skin = (SKINS[avatar.skin]||SKINS.medium).color;
   const shirt = (SHIRTS[avatar.shirt]||SHIRTS.blue).color;
   const shoes = (SHOES[avatar.shoes]||SHOES.black).color;
@@ -753,17 +776,17 @@ function getAvatarHTML(avatar, size){
   const auraStyle = aura.color ? `background: radial-gradient(circle, ${aura.color} 0%, transparent 70%);` : '';
 
   let eyesSVG = '';
-  if (eyesData.style === 'normal') eyesSVG = `<circle cx="42" cy="38" r="3" fill="#2D1B4E"/><circle cx="58" cy="38" r="3" fill="#2D1B4E"/>`;
-  else if (eyesData.style === 'happy') eyesSVG = `<path d="M 39 38 Q 42 34 45 38" stroke="#2D1B4E" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M 55 38 Q 58 34 61 38" stroke="#2D1B4E" stroke-width="2" fill="none" stroke-linecap="round"/>`;
-  else if (eyesData.style === 'star') eyesSVG = `<text x="42" y="42" font-size="8" text-anchor="middle">⭐</text><text x="58" y="42" font-size="8" text-anchor="middle">⭐</text>`;
-  else if (eyesData.style === 'cool') eyesSVG = `<rect x="35" y="34" width="12" height="6" rx="2" fill="#111" /><rect x="53" y="34" width="12" height="6" rx="2" fill="#111" /><line x1="47" y1="37" x2="53" y2="37" stroke="#111" stroke-width="2"/>`;
+  if (eyesData.style === 'normal') eyesSVG = `<circle cx="42" cy="45" r="4" fill="#2D1B4E"/><circle cx="58" cy="45" r="4" fill="#2D1B4E"/>`;
+  else if (eyesData.style === 'happy') eyesSVG = `<path d="M 38 45 Q 42 41 46 45" stroke="#2D1B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M 54 45 Q 58 41 62 45" stroke="#2D1B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+  else if (eyesData.style === 'star') eyesSVG = `<text x="42" y="50" font-size="10" text-anchor="middle">⭐</text><text x="58" y="50" font-size="10" text-anchor="middle">⭐</text>`;
+  else if (eyesData.style === 'cool') eyesSVG = `<rect x="35" y="40" width="12" height="7" rx="2" fill="#111" /><rect x="53" y="40" width="12" height="7" rx="2" fill="#111" /><line x1="47" y1="43" x2="53" y2="43" stroke="#111" stroke-width="2"/>`;
 
   let hairSVG = '';
   if (avatar.hair !== 'none') {
-    if (avatar.hair === 'spiky') hairSVG = `<polygon points="25,30 35,10 45,25 50,5 55,25 65,10 75,30" fill="${hairData.color}"/>`;
-    else if (avatar.hair === 'long') hairSVG = `<path d="M 25 38 Q 25 10 50 10 Q 75 10 75 38 L 75 70 L 65 70 L 65 40 Q 60 20 50 20 Q 40 20 35 40 L 35 70 L 25 70 Z" fill="${hairData.color}"/>`;
-    else if (avatar.hair === 'curly') hairSVG = `<circle cx="30" cy="30" r="10" fill="${hairData.color}"/><circle cx="50" cy="15" r="12" fill="${hairData.color}"/><circle cx="70" cy="30" r="10" fill="${hairData.color}"/>`;
-    else hairSVG = `<path d="M 27 38 Q 27 12 50 12 Q 73 12 73 38 L 73 30 Q 73 22 65 20 Q 55 16 50 18 Q 45 16 35 20 Q 27 22 27 30 Z" fill="${hairData.color}"/>`;
+    if (avatar.hair === 'spiky') hairSVG = `<polygon points="25,35 35,10 45,30 50,5 55,30 65,10 75,35" fill="${hairData.color}"/>`;
+    else if (avatar.hair === 'long') hairSVG = `<path d="M 25 40 Q 25 10 50 10 Q 75 10 75 40 L 75 75 L 65 75 L 65 45 Q 60 25 50 25 Q 40 25 35 45 L 35 75 L 25 75 Z" fill="${hairData.color}"/>`;
+    else if (avatar.hair === 'curly') hairSVG = `<circle cx="30" cy="35" r="12" fill="${hairData.color}"/><circle cx="50" cy="15" r="14" fill="${hairData.color}"/><circle cx="70" cy="35" r="12" fill="${hairData.color}"/>`;
+    else hairSVG = `<path d="M 27 40 Q 27 12 50 12 Q 73 12 73 40 L 73 35 Q 73 25 65 22 Q 55 18 50 20 Q 45 18 35 22 Q 27 25 27 35 Z" fill="${hairData.color}"/>`;
   }
 
   return `
@@ -771,21 +794,28 @@ function getAvatarHTML(avatar, size){
       ${auraStyle ? `<div class="avatar-aura" style="${auraStyle}"></div>` : ''}
       ${wingEmoji ? `<div class="avatar-wing wing-l">${wingEmoji}</div><div class="avatar-wing wing-r">${wingEmoji}</div>` : ''}
       
+      <!-- SVG DO CHIBI (CABEÇA GRANDE, CORPO PEQUENO) -->
       <svg viewBox="0 0 100 140" preserveAspectRatio="xMidYMid meet" style="position:relative;z-index:1;">
         <ellipse cx="50" cy="134" rx="22" ry="4" fill="rgba(0,0,0,0.18)"/>
-        <rect x="40" y="100" width="8" height="26" rx="3" fill="${skin}"/>
-        <rect x="52" y="100" width="8" height="26" rx="3" fill="${skin}"/>
-        <ellipse cx="44" cy="128" rx="7" ry="4" fill="${shoes}"/>
-        <ellipse cx="56" cy="128" rx="7" ry="4" fill="${shoes}"/>
-        <rect x="26" y="64" width="7" height="36" rx="3.5" fill="${skin}"/>
-        <rect x="67" y="64" width="7" height="36" rx="3.5" fill="${skin}"/>
-        <rect x="33" y="62" width="34" height="42" rx="8" fill="${shirt}"/>
-        <circle cx="50" cy="38" r="23" fill="${skin}"/>
+        <!-- Pernas Curtas -->
+        <rect x="40" y="105" width="8" height="20" rx="3" fill="${skin}"/>
+        <rect x="52" y="105" width="8" height="20" rx="3" fill="${skin}"/>
+        <ellipse cx="44" cy="128" rx="8" ry="5" fill="${shoes}"/>
+        <ellipse cx="56" cy="128" rx="8" ry="5" fill="${shoes}"/>
+        <!-- Braços Curtos -->
+        <rect x="28" y="70" width="7" height="25" rx="3.5" fill="${skin}"/>
+        <rect x="65" y="70" width="7" height="25" rx="3.5" fill="${skin}"/>
+        <!-- Corpo Pequeno -->
+        <rect x="33" y="68" width="34" height="38" rx="10" fill="${shirt}"/>
+        <!-- Cabeça Grande -->
+        <circle cx="50" cy="42" r="28" fill="${skin}"/>
         ${hairSVG}
         ${eyesSVG}
-        <path d="M 44 46 Q 50 51 56 46" stroke="#2D1B4E" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <circle cx="35" cy="43" r="3" fill="#FFB3C6" opacity="0.5"/>
-        <circle cx="65" cy="43" r="3" fill="#FFB3C6" opacity="0.5"/>
+        <!-- Boca Fofa -->
+        <path d="M 45 52 Q 50 57 55 52" stroke="#2D1B4E" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Bochechas -->
+        <circle cx="30" cy="50" r="4" fill="#FFB3C6" opacity="0.6"/>
+        <circle cx="70" cy="50" r="4" fill="#FFB3C6" opacity="0.6"/>
       </svg>
       
       ${hatEmoji ? `<div class="avatar-hat" style="font-size:${size*0.5}px;">${hatEmoji}</div>` : ''}
