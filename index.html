@@ -116,6 +116,8 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .avatar-hat{position:absolute;top:-12%;left:50%;transform:translateX(-50%);line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));pointer-events:none;z-index:3;font-size:1.5em;}
 .avatar-mascot{position:absolute;bottom:0%;right:-25%;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));pointer-events:none;animation:mascotBob 3s ease-in-out infinite;z-index:2;font-size:1.2em;}
 @keyframes mascotBob{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-4px) rotate(4deg);}}
+.avatar-helper{position:absolute;top:10%;left:-20%;line-height:1;filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));pointer-events:none;animation:helperFloat 4s ease-in-out infinite;z-index:2;font-size:1.1em;}
+@keyframes helperFloat{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-10px) rotate(5deg);}}
 .avatar-wing{position:absolute;bottom:40%;font-size:2em;z-index:0;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
 .wing-l{left:-20%;animation:wingL 2s infinite alternate;}
 .wing-r{right:-20%;animation:wingR 2s infinite alternate;}
@@ -252,6 +254,10 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .student-marker.current .m-name{background:var(--yellow);}
 .student-marker .m-crown{position:absolute;top:-22px;font-size:24px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));animation:crownBob 2s ease-in-out infinite;}
 @keyframes crownBob{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-3px) rotate(5deg);}}
+
+/* Alerta de Perigo na Montanha */
+.mountain-alert{position:absolute;top:20px;left:50%;transform:translateX(-50%);background:rgba(220,38,38,.9);color:#fff;padding:10px 20px;border-radius:20px;font-family:'Fredoka';font-size:14px;font-weight:700;border:3px solid #fff;z-index:10;animation:alertBlink 1.5s infinite;display:none;}
+@keyframes alertBlink{0%,100%{opacity:1;}50%{opacity:0.6;}}
 
 .status-msg{padding:12px 16px;border-radius:14px;font-size:13px;font-weight:700;margin-top:14px;display:none;border:3px solid transparent;}
 .status-msg.ok{background:#DCFCE7;color:#166534;border-color:#86EFAC;display:block;}
@@ -462,6 +468,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
       <div class="section">
         <div class="turma-header" id="turma-header"></div>
         <div class="mountain-scene">
+          <div class="mountain-alert" id="mountain-alert">⚠️ CUIDADO! A montanha está escorregadia!</div>
           <!-- NOVO SVG DA MONTANHA REALISTA -->
           <svg class="mountain-svg" viewBox="0 0 800 700" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -550,7 +557,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
         <p class="subtitle">Configure o endpoint do Google Apps Script para sincronizar alunos em tempo real.</p>
         <div class="field">
           <label>URL do Google Apps Script (Web App)</label>
-          <input type="url" id="gs-url" placeholder="https://script.google.com/macros/s/AKfycbwfPjFnv_iowzOH5PFsTsZ8teATtXGsqIPV_t5iQoSVkDXAhyhs_FR7_p2GIVwvzLyJ/exec">
+          <input type="url" id="gs-url" placeholder="https://script.google.com/macros/s/.../exec">
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
           <button class="btn blue" onclick="saveGSConfig()">💾 Salvar URL</button>
@@ -651,14 +658,15 @@ const HATS = {none:{name:'Sem chapéu',price:0,emoji:'',rarity:'—'},cap:{name:
 const WINGS = {none:{name:'Sem asas',price:0,emoji:'',rarity:'—'},angel:{name:'Asas de Anjo',price:600,emoji:'👼',rarity:'Raro'},dragon:{name:'Asas de Dragão',price:1200,emoji:'🐉',rarity:'Lendário'}};
 const AURAS = {none:{name:'Sem aura',price:0,color:null,rarity:'—'},fire:{name:'Aura de Fogo',price:800,color:'#FF4500',rarity:'Épico'},cosmic:{name:'Aura Cósmica',price:1500,color:'#8B00FF',rarity:'Lendário'}};
 const MASCOTS = {none:{name:'Sem mascote',price:0,emoji:'',rarity:'—',desc:'Sozinho'},frog:{name:'Sapo',price:0,emoji:'🐸',rarity:'Grátis',desc:'Pula alto'},cat:{name:'Gato',price:0,emoji:'🐱',rarity:'Grátis',desc:'Esperto'},dog:{name:'Cachorro',price:0,emoji:'🐶',rarity:'Grátis',desc:'Fiel'},dragon:{name:'Dragãozinho',price:2000,emoji:'🐲',rarity:'Lendário',desc:'Cospe fogo'}};
+const HELPERS = {none:{name:'Sem ajudante',price:0,emoji:'',rarity:'—'},fairy:{name:'Fada',price:100,emoji:'🧚',rarity:'Comum'},robot:{name:'Robô',price:200,emoji:'🤖',rarity:'Raro'},spirit:{name:'Espírito',price:300,emoji:'👻',rarity:'Épico'},dragon:{name:'Dragãozinho',price:500,emoji:'🐉',rarity:'Lendário'}};
 
 const SHOP_CATEGORIES = [
-  {id:'mascots',name:'Mascotes',emoji:'🐾'},{id:'hairs',name:'Cabelos',emoji:'💇'},{id:'eyes',name:'Olhos',emoji:'👀'},
+  {id:'mascots',name:'Mascotes',emoji:'🐾'},{id:'helpers',name:'Ajudantes',emoji:'✨'},{id:'hairs',name:'Cabelos',emoji:'💇'},{id:'eyes',name:'Olhos',emoji:'👀'},
   {id:'shirts',name:'Roupas',emoji:'👕'},{id:'wings',name:'Asas',emoji:'🦋'},{id:'auras',name:'Auras',emoji:'✨'},
   {id:'hats',name:'Chapéus',emoji:'🧢'},{id:'shoes',name:'Sapatos',emoji:'👟'},{id:'skins',name:'Pele',emoji:'🎨'}
 ];
-const SHOP_ITEMS = {mascots:MASCOTS,hairs:HAIRS,eyes:EYES,shirts:SHIRTS,wings:WINGS,auras:AURAS,hats:HATS,shoes:SHOES,skins:SKINS};
-const AVATAR_KEYS = {mascots:'mascot',hairs:'hair',eyes:'eyes',shirts:'shirt',wings:'wing',auras:'aura',hats:'hat',shoes:'shoes',skins:'skin'};
+const SHOP_ITEMS = {mascots:MASCOTS,helpers:HELPERS,hairs:HAIRS,eyes:EYES,shirts:SHIRTS,wings:WINGS,auras:AURAS,hats:HATS,shoes:SHOES,skins:SKINS};
+const AVATAR_KEYS = {mascots:'mascot',helpers:'helper',hairs:'hair',eyes:'eyes',shirts:'shirt',wings:'wing',auras:'aura',hats:'hat',shoes:'shoes',skins:'skin'};
 
 /* ============================================================
    TEMAS E GERADORES DE QUESTÃO
@@ -706,6 +714,7 @@ function migrateProfile(p){
   if(!p.avatar.eyes) p.avatar.eyes = 'normal';
   if(!p.avatar.wing) p.avatar.wing = 'none';
   if(!p.avatar.aura) p.avatar.aura = 'none';
+  if(!p.avatar.helper) p.avatar.helper = 'none';
   return p;
 }
 
@@ -714,7 +723,7 @@ function createProfile(email, name, turma){
     email: email.toLowerCase(), name, turma: turma || 'Sem turma',
     coins: CONFIG.startingCoins, totalPoints: 0, totalCorrect: 0, totalQuizzes: 0,
     xp: 0, level: 1,
-    avatar: {skin:'medium', hair:'short', eyes:'normal', shirt:'blue', hat:'none', shoes:'black', wing:'none', aura:'none', mascot:'frog'},
+    avatar: {skin:'medium', hair:'short', eyes:'normal', shirt:'blue', hat:'none', shoes:'black', wing:'none', aura:'none', mascot:'frog', helper:'none'},
     inventory: ['shirts:blue','shoes:black','skins:medium','hairs:short','eyes:normal','mascots:frog'],
     soundEnabled: true, createdAt: new Date().toISOString(), lastSeen: new Date().toISOString()
   };
@@ -722,7 +731,7 @@ function createProfile(email, name, turma){
 function getTurmaMembers(turma){const profiles=loadProfiles();return Object.values(profiles).filter(p=>(p.turma||'')===turma).map(migrateProfile);}
 
 function getGSConfig(){
-  const urlFixa = "https://script.google.com/macros/s/AKfycbzEcyQb0I3I841LPpU-vhZXGuIlRHMcPrmNmGXEq27f3GbrfYskCcV9YwQnb53gJqOr/exec"; 
+  const urlFixa = "https://script.google.com/macros/s/AKfycbwcQonhQC8PXONcqyRBb_CEFStjIjxt3aSBNdkUvvUq6jmnd3ej1inhT6-dMZSH_IS8/exec"; 
   try { const local = JSON.parse(localStorage.getItem("aprendeai_gs")||'{"url":""}'); return { url: local.url || urlFixa }; } catch(e) { return { url: urlFixa }; }
 }
 function saveGSConfig(){const url = document.getElementById("gs-url").value.trim();const msg = document.getElementById("gs-msg");localStorage.setItem("aprendeai_gs", JSON.stringify({url}));msg.className="status-msg ok";msg.textContent = url ? "✅ URL salva!" : "⚠️ URL removida.";}
@@ -769,10 +778,12 @@ function getAvatarHTML(avatar, size){
   const mascot = MASCOTS[avatar.mascot] || MASCOTS.none;
   const wing = WINGS[avatar.wing] || WINGS.none; 
   const aura = AURAS[avatar.aura] || AURAS.none;
+  const helper = HELPERS[avatar.helper] || HELPERS.none;
   
   const hatEmoji = hat.emoji || '';
   const mascotEmoji = mascot.emoji || '';
   const wingEmoji = wing.emoji || '';
+  const helperEmoji = helper.emoji || '';
   const auraStyle = aura.color ? `background: radial-gradient(circle, ${aura.color} 0%, transparent 70%);` : '';
 
   let eyesSVG = '';
@@ -820,6 +831,7 @@ function getAvatarHTML(avatar, size){
       
       ${hatEmoji ? `<div class="avatar-hat" style="font-size:${size*0.5}px;">${hatEmoji}</div>` : ''}
       ${mascotEmoji ? `<div class="avatar-mascot" style="font-size:${size*0.42}px;">${mascotEmoji}</div>` : ''}
+      ${helperEmoji ? `<div class="avatar-helper" style="font-size:${size*0.42}px;">${helperEmoji}</div>` : ''}
     </div>`;
 }
 
@@ -904,7 +916,12 @@ function nextQ(){if(state.answers[state.current]===null){alert("Escolha uma alte
 function stopTimer(){if(state.timer){clearInterval(state.timer);state.timer=null;}}
 function startTimer(){stopTimer();state.timeLeft=CONFIG.examMode.timeSeconds;updateTimerDisplay();state.timer=setInterval(()=>{state.timeLeft--;updateTimerDisplay();if(state.timeLeft<=0){stopTimer();alert("⏰ Tempo esgotado!");finishQuiz();}},1000);}
 function updateTimerDisplay(){const el=document.getElementById("timer-text");const box=document.getElementById("timer");if(!el||!box) return;const min=Math.floor(Math.max(0,state.timeLeft)/60);const sec=Math.max(0,state.timeLeft)%60;el.textContent=`${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;box.classList.toggle("warning", state.timeLeft<=120 && state.timeLeft>30);box.classList.toggle("danger", state.timeLeft<=30);}
-function calculateCoins(c,t,m){let cE=c*CONFIG.coinsPerCorrect;if(m==='exam') cE=Math.round(cE*CONFIG.examCoinMultiplier);if(c===t && t>0) cE+=CONFIG.perfectBonus;return cE;}
+function calculateCoins(c,t,m){
+  let cE=c*CONFIG.coinsPerCorrect;
+  if(m==='exam') cE=Math.round(cE*CONFIG.examCoinMultiplier);
+  if(c===t && t>0) cE+=CONFIG.perfectBonus;
+  return cE;
+}
 function calculateXP(c,t,m){let x=c*CONFIG.xpPerCorrect;if(m==='exam') x=Math.round(x*CONFIG.examXpMultiplier);if(c===t && t>0) x+=CONFIG.perfectXpBonus;return x;}
 
 function finishQuiz(){
@@ -934,6 +951,67 @@ function finishQuiz(){
   showView("result");
 }
 function retryQuiz(){selectActivity(state.activity.id);}
+
+/* ============================================================
+   ENVIO E-MAIL (CORRIGIDO)
+   ============================================================ */
+async function sendResult(){
+  if(state.sending) return;
+  const btn=document.getElementById("btn-send");
+  const msg=document.getElementById("send-msg");
+  state.sending=true; btn.disabled=true; btn.textContent="📤 Enviando...";
+  msg.className="status-msg info"; msg.textContent="Enviando...";
+  
+  const payload = {
+    _subject: `[Aprende AI] ${state.user.name} (${state.user.turma}) — ${state.activity.name} — Nota ${state.lastResult.grade}`,
+    _template: "table",
+    _captcha: "false",
+    Estudante: state.user.name,
+    Email: state.user.email,
+    Turma: state.user.turma,
+    Atividade: state.activity.name,
+    Modo: state.mode === 'exam' ? 'Prova' : 'Treino',
+    Acertos: `${state.lastResult.correct} de ${state.lastResult.total}`,
+    Nota: `${state.lastResult.grade}/10`,
+    Moedas: state.lastResult.coinsEarned,
+    XP: state.lastResult.xpEarned,
+    Data: new Date().toLocaleString("pt-BR")
+  };
+
+  try {
+    const res = await fetch(CONFIG.formSubmitEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error("Falha HTTP " + res.status);
+    const data = await res.json().catch(()=>({}));
+    if(data.success === "false" || data.success === false) throw new Error("FormSubmit recusou.");
+    
+    msg.className="status-msg ok"; 
+    msg.textContent="✅ Resultado enviado ao professor!";
+    btn.textContent="✅ Enviado";
+  } catch(err) {
+    msg.className="status-msg err";
+    msg.innerHTML = `❌ Falha no envio automático.<br><br>
+      <button class="btn yellow small" onclick="abrirEmailManual()">📧 Abrir E-mail Manualmente</button>
+      <button class="btn ghost small" onclick="copiarResultado()">📋 Copiar Resultado</button>`;
+    btn.disabled=false; btn.textContent="🔁 Tentar Novamente";
+  } finally {
+    state.sending=false;
+  }
+}
+
+function abrirEmailManual() {
+  const subject = encodeURIComponent(`[Aprende AI] ${state.user.name} — Nota ${state.lastResult.grade}`);
+  const body = encodeURIComponent(`Olá, Professor!\n\nEstudante: ${state.user.name}\nTurma: ${state.user.turma}\nAtividade: ${state.activity.name}\nNota: ${state.lastResult.grade}/10\nAcertos: ${state.lastResult.correct}/${state.lastResult.total}\n`);
+  window.location.href = `mailto:${CONFIG.teacherEmail}?subject=${subject}&body=${body}`;
+}
+
+function copiarResultado() {
+  const text = `Estudante: ${state.user.name}\nTurma: ${state.user.turma}\nAtividade: ${state.activity.name}\nNota: ${state.lastResult.grade}/10`;
+  navigator.clipboard.writeText(text).then(() => showToast("Copiado! ✅"));
+}
 
 /* ============================================================
    LOJA E AVATAR (COMPRA CORRIGIDA E DIVERTIDA)
@@ -1003,12 +1081,23 @@ function handleShopClick(category, id){
 }
 
 /* ============================================================
-   MONTANHA
+   MONTANHA (REALISTA E COM OBSTÁCULOS)
    ============================================================ */
 const PATH_POINTS=[{left:18.75,bottom:7.14},{left:27.5,bottom:28.57},{left:37.5,bottom:42.86},{left:47.5,bottom:57.14},{left:52.5,bottom:71.43},{left:50,bottom:87.14}];
 function getPathPosition(progress){const idx=progress*(PATH_POINTS.length-1);const i=Math.min(Math.floor(idx), PATH_POINTS.length-1);const frac=idx-i;const a=PATH_POINTS[i], b=PATH_POINTS[Math.min(i+1, PATH_POINTS.length-1)];return {left:a.left+(b.left-a.left)*frac, bottom:a.bottom+(b.bottom-a.bottom)*frac};}
 
-function openTurmaView(){if(!state.user){alert("Cadastre-se!");return;}showView("turma");renderMountain();if(mountainInterval) clearInterval(mountainInterval);mountainInterval = setInterval(renderMountain, 10000);}
+function openTurmaView(){
+  if(!state.user){alert("Cadastre-se!");return;}
+  showView("turma");
+  renderMountain();
+  if(mountainInterval) clearInterval(mountainInterval);
+  mountainInterval = setInterval(renderMountain, 10000);
+  
+  // Alerta de montanha escorregadia
+  const alertBox = document.getElementById("mountain-alert");
+  alertBox.style.display = "block";
+  setTimeout(() => { alertBox.style.display = "none"; }, 5000);
+}
 
 async function renderMountain(){
   const header=document.getElementById("turma-header"); const container=document.getElementById("mountain-students"); const syncStatus = document.getElementById("sync-status");
@@ -1024,7 +1113,7 @@ async function renderMountain(){
         if(d.turma === turma && d.name) {
           const existing = userMap.get(d.email);
           if(!existing || (Number(d.xp)||0) > (Number(existing.xp)||0)) {
-            let parsedAvatar = {skin:'medium', hair:'short', eyes:'normal', shirt:'blue', hat:'none', shoes:'black', wing:'none', aura:'none', mascot:'frog'};
+            let parsedAvatar = {skin:'medium', hair:'short', eyes:'normal', shirt:'blue', hat:'none', shoes:'black', wing:'none', aura:'none', mascot:'frog', helper:'none'};
             if(d.avatar) { try{ parsedAvatar = JSON.parse(d.avatar); }catch(e){} }
             userMap.set(d.email, { email: d.email, name: d.name, turma: d.turma, totalPoints: Number(d.xp)||0, level: Number(d.level)||1, avatar: parsedAvatar });
           }
