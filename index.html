@@ -469,7 +469,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
         <div class="mountain-scene">
           <div class="mountain-alert" id="mountain-alert">⚠️ CUIDADO! A montanha está escorregadia e perigosa!</div>
           
-          <!-- MONTANHA REALISTA COM ALTA PROFUNDIDADE -->
+          <!-- MONTANHA REALISTA -->
           <svg class="mountain-svg" viewBox="0 0 800 700" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
@@ -492,31 +492,24 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
               </linearGradient>
             </defs>
             
-            <!-- Céu e Sol -->
             <rect width="800" height="700" fill="url(#skyGrad)"/>
             <circle cx="650" cy="100" r="50" fill="#FFF9C4" opacity="0.8"/>
             
-            <!-- Nuvens -->
             <path d="M 100,150 Q 150,100 200,150 Q 250,120 300,160 Q 250,200 100,150 Z" fill="#FFF" opacity="0.6"/>
             <path d="M 500,200 Q 550,150 600,200 Q 650,180 700,220 Q 650,250 500,200 Z" fill="#FFF" opacity="0.5"/>
 
-            <!-- Montanha de Fundo -->
             <polygon points="400,100 600,700 200,700" fill="url(#mtGradBack)"/>
             <polygon points="400,100 450,200 350,200" fill="#FFF" opacity="0.8"/>
 
-            <!-- Montanha Principal -->
             <polygon points="400,50 800,700 0,700" fill="url(#mtGradFront)"/>
             
-            <!-- Rachaduras e Detalhes da Rocha -->
             <path d="M 400,50 L 350,200 L 400,350 L 300,500 L 350,650" stroke="#3E2723" stroke-width="5" fill="none" opacity="0.6"/>
             <path d="M 400,50 L 480,250 L 450,400 L 600,550 L 650,700" stroke="#3E2723" stroke-width="4" fill="none" opacity="0.6"/>
             <path d="M 350,200 L 250,350 L 200,500" stroke="#3E2723" stroke-width="3" fill="none" opacity="0.5"/>
             <path d="M 480,250 L 600,350 L 700,500" stroke="#3E2723" stroke-width="3" fill="none" opacity="0.5"/>
             
-            <!-- Topo Nevado -->
             <polygon points="330,180 400,50 470,180 450,200 400,160 350,200" fill="#FFF" opacity="0.95"/>
 
-            <!-- Vegetação Verde na Base -->
             <path d="M 0,700 L 0,600 Q 100,550 200,650 Q 300,600 400,650 Q 500,600 600,650 Q 700,550 800,600 L 800,700 Z" fill="url(#greenGrad)"/>
             <circle cx="150" cy="620" r="40" fill="#388E3C"/>
             <circle cx="650" cy="600" r="50" fill="#388E3C"/>
@@ -524,16 +517,13 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
             <circle cx="500" cy="570" r="35" fill="#4CAF50"/>
             <circle cx="400" cy="520" r="20" fill="#4CAF50"/>
 
-            <!-- Poças de Gelo (Escorregadio) -->
             <ellipse cx="300" cy="480" rx="50" ry="20" fill="#B3E5FC" opacity="0.8" transform="rotate(-15 300 480)"/>
             <ellipse cx="550" cy="400" rx="60" ry="25" fill="#B3E5FC" opacity="0.8" transform="rotate(10 550 400)"/>
             <ellipse cx="380" cy="280" rx="40" ry="15" fill="#B3E5FC" opacity="0.8" transform="rotate(-5 380 280)"/>
 
-            <!-- Trilha de Terra Sinuosa -->
             <path d="M 150,700 Q 300,650 250,550 T 400,450 T 350,350 T 450,250 T 400,100" stroke="#8D6E63" stroke-width="12" fill="none" opacity="0.9"/>
             <path d="M 150,700 Q 300,650 250,550 T 400,450 T 350,350 T 450,250 T 400,100" stroke="#D7CCC8" stroke-width="4" stroke-dasharray="10,10" fill="none" opacity="0.8"/>
             
-            <!-- Bandeira -->
             <line x1="400" y1="50" x2="400" y2="10" stroke="#000" stroke-width="5"/>
             <polygon points="400,10 460,30 400,50" fill="#FF4D8D"/>
           </svg>
@@ -607,7 +597,9 @@ const CONFIG = {
   teacherEmail: "ydvir.souza@escola.pr.gov.br", teacherPassword: "prof123",
   practiceMode: { questions: 10, timeSeconds: 0 }, examMode: { questions: 20, timeSeconds: 20 * 60 },
   questionsPerBank: 500, coinsPerCorrect: 20, coinsPerWrong: 10, perfectBonus: 100, startingCoins: 100,
-  xpPerCorrect: 10, perfectXpBonus: 50
+  xpPerCorrect: 10, perfectXpBonus: 50,
+  // FORMSUBMIT VOLTOU AQUI
+  formSubmitEndpoint: "https://formsubmit.co/ajax/ydvir.souza@escola.pr.gov.br"
 };
 
 const LEVELS = [{level:1,xp:0,unlock:null},{level:2,xp:100,unlock:'elephant'},{level:3,xp:300,unlock:'giraffe'},{level:4,xp:600,unlock:'turtle'},{level:5,xp:1000,unlock:'snake'},{level:6,xp:1500,unlock:'koala'},{level:7,xp:2100,unlock:'rhino'},{level:8,xp:2800,unlock:'tiger'},{level:9,xp:3600,unlock:'jaguar'},{level:10,xp:4500,unlock:'hyena'}];
@@ -779,7 +771,6 @@ function createProfile(email, name, turma){
 function getTurmaMembers(turma){const profiles=loadProfiles();return Object.values(profiles).filter(p=>(p.turma||'')===turma).map(migrateProfile);}
 
 function getGSConfig(){
-  // SUA URL FOI INSERIDA AQUI!
   const urlFixa = "https://script.google.com/macros/s/AKfycbydhUPEj769e5oq8JkoJ62qYG1AciLbtSAuztcUeHT2OjBwc_jlpdk44-wc6aztq1k/exec"; 
   try { const local = JSON.parse(localStorage.getItem("aprendeai_gs")||'{"url":""}'); return { url: local.url || urlFixa }; } catch(e) { return { url: urlFixa }; }
 }
@@ -1016,7 +1007,7 @@ function finishQuiz(){
 function retryQuiz(){selectActivity(state.activity.id);}
 
 /* ============================================================
-   ENVIO E-MAIL (VIA GOOGLE APPS SCRIPT)
+   ENVIO E-MAIL (FORMSUBMIT CORRIGIDO)
    ============================================================ */
 async function sendResult(){
   if(state.sending) return;
@@ -1026,36 +1017,36 @@ async function sendResult(){
   msg.className="status-msg info"; msg.textContent="Enviando resultado...";
   
   const payload = {
-    action: 'quiz_result',
-    name: state.user.name, email: state.user.email, turma: state.user.turma,
-    activity: state.activity.name, mode: state.mode,
-    correct: state.lastResult.correct, total: state.lastResult.total,
-    grade: state.lastResult.grade, coins: state.lastResult.coinsEarned,
-    xp: state.lastResult.xpEarned, date: new Date().toISOString()
+    _subject: `[Aprende AI] ${state.user.name} (${state.user.turma}) — ${state.activity.name} — Nota ${state.lastResult.grade}`,
+    _template: "table",
+    _captcha: "false",
+    Estudante: state.user.name,
+    Email: state.user.email,
+    Turma: state.user.turma,
+    Atividade: state.activity.name,
+    Modo: state.mode === 'exam' ? 'Prova' : 'Treino',
+    Acertos: `${state.lastResult.correct} de ${state.lastResult.total}`,
+    Nota: `${state.lastResult.grade}/10`,
+    Moedas: state.lastResult.coinsEarned,
+    XP: state.lastResult.xpEarned,
+    Data: new Date().toLocaleString("pt-BR")
   };
 
-  let sucesso = false;
-  const cfg = getGSConfig();
-
-  if (cfg.url) {
-    try {
-      await fetch(cfg.url, {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify(payload)
-      });
-      sucesso = true;
-    } catch (e) {
-      console.warn("Falha no envio via Google Sheets", e);
-    }
-  }
-
-  if (sucesso) {
+  try {
+    const res = await fetch(CONFIG.formSubmitEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if(!res.ok) throw new Error("Falha HTTP " + res.status);
+    const data = await res.json().catch(()=>({}));
+    if(data.success === "false" || data.success === false) throw new Error("FormSubmit recusou.");
+    
     msg.className = "status-msg ok";
     msg.textContent = "✅ Resultado enviado com sucesso! O professor receberá um e-mail.";
     btn.textContent = "✅ Enviado";
     btn.disabled = false;
-  } else {
+  } catch(err) {
     msg.className = "status-msg err";
     msg.innerHTML = `❌ Falha na conexão.<br><br>
       <button class="btn yellow small" onclick="abrirEmailManual()">📧 Abrir E-mail Manualmente</button>
