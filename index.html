@@ -110,7 +110,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .btn.full{width:100%;}
 .btn.small{padding:9px 16px;font-size:13px;}
 
-/* --- AVATAR ESTILO CHIBI (LEAGUE OF LEGENDS) --- */
+/* --- AVATAR ESTILO ANIME/GAMER --- */
 .avatar-box{position:relative;display:inline-block;line-height:0;}
 .avatar-box svg{width:100%;height:100%;display:block;overflow:visible;}
 .avatar-hat{position:absolute;top:-12%;left:50%;transform:translateX(-50%);line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));pointer-events:none;z-index:3;font-size:1.5em;}
@@ -242,20 +242,19 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .rank-turma{font-size:11px;color:var(--muted);display:block;font-weight:600;}
 .rank-score{font-family:'Fredoka',sans-serif;font-size:16px;color:var(--green);font-weight:800;}
 
-/* --- MONTANHA PERIGOSA E ESCORREGADIA --- */
-.mountain-scene{position:relative;height:640px;background:linear-gradient(180deg,#0F0C29 0%,#302B63 40%,#6B5B95 70%,#B5E8FF 100%);border:4px solid var(--dark);border-radius:22px;overflow:hidden;box-shadow:inset 0 0 30px rgba(0,0,0,.4);}
+/* --- MONTANHA REALISTA --- */
+.mountain-scene{position:relative;height:640px;background:linear-gradient(180deg,#5D9CEC 0%,#C5E0F9 50%,#FFF9F0 100%);border:4px solid var(--dark);border-radius:22px;overflow:hidden;box-shadow:inset 0 0 30px rgba(0,0,0,.2);}
 .mountain-svg{position:absolute;inset:0;width:100%;height:100%;}
 .student-marker{position:absolute;transform:translate(-50%,50%);display:flex;flex-direction:column;align-items:center;transition:all .6s cubic-bezier(.34,1.56,.64,1);z-index:2;}
 .student-marker .m-avatar{filter:drop-shadow(0 3px 6px rgba(0,0,0,.5));transition:transform .2s;}
 .student-marker.current .m-avatar{filter:drop-shadow(0 0 10px var(--yellow)) drop-shadow(0 0 20px var(--yellow)) drop-shadow(0 3px 6px rgba(0,0,0,.5));animation:glowPulse 2s ease-in-out infinite;}
 @keyframes glowPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
 .student-marker .m-name{font-family:'Fredoka',sans-serif;font-size:11px;font-weight:700;background:rgba(255,255,255,.9);color:var(--dark);padding:2px 8px;border-radius:10px;border:2px solid var(--dark);margin-top:2px;white-space:nowrap;max-width:100px;overflow:hidden;text-overflow:ellipsis;}
-.student-marker .m-points{font-family:'Fredoka',sans-serif;font-size:10px;font-weight:700;color:var(--yellow);text-shadow:0 1px 2px rgba(0,0,0,.8);}
+.student-marker .m-points{font-family:'Fredoka',sans-serif;font-size:10px;font-weight:700;color:#FF4500;text-shadow:0 1px 2px rgba(255,255,255,.8);}
 .student-marker.current .m-name{background:var(--yellow);}
 .student-marker .m-crown{position:absolute;top:-22px;font-size:24px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));animation:crownBob 2s ease-in-out infinite;}
 @keyframes crownBob{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-3px) rotate(5deg);}}
 
-/* Alerta de Perigo na Montanha */
 .mountain-alert{position:absolute;top:20px;left:50%;transform:translateX(-50%);background:rgba(220,38,38,.95);color:#fff;padding:12px 24px;border-radius:20px;font-family:'Fredoka';font-size:16px;font-weight:700;border:3px solid #fff;z-index:10;animation:alertBlink 1.5s infinite;display:none;box-shadow:0 4px 12px rgba(0,0,0,.5);}
 @keyframes alertBlink{0%,100%{opacity:1;}50%{opacity:0.7;}}
 
@@ -338,7 +337,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
     <section id="view-register">
       <div class="section hero">
         <h2>🎪 Bem-vindo ao Aprende AI!</h2>
-        <p>O parque onde aprender matemática é a maior diversão</p>
+        <p>O parque onde aprender é a maior diversão</p>
       </div>
       <div class="ticket">
         <h2 style="margin-bottom:6px;">🎟️ Bilhete de Entrada</h2>
@@ -470,61 +469,73 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
         <div class="mountain-scene">
           <div class="mountain-alert" id="mountain-alert">⚠️ CUIDADO! A montanha está escorregadia e perigosa!</div>
           
-          <!-- MONTANHA REALISTA INSPIRADA NA IMAGEM -->
+          <!-- MONTANHA REALISTA COM ALTA PROFUNDIDADE -->
           <svg class="mountain-svg" viewBox="0 0 800 700" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#1A1B41"/>
-                <stop offset="100%" stop-color="#4A3B69"/>
+                <stop offset="0%" stop-color="#4A90E2"/>
+                <stop offset="50%" stop-color="#87CEEB"/>
+                <stop offset="100%" stop-color="#E0F6FF"/>
               </linearGradient>
-              <linearGradient id="mtGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#F0F8FF"/>
-                <stop offset="10%" stop-color="#D3E0EA"/>
-                <stop offset="40%" stop-color="#607D8B"/>
-                <stop offset="100%" stop-color="#263238"/>
+              <linearGradient id="mtGradBack" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#9E9E9E"/>
+                <stop offset="100%" stop-color="#4E4E4E"/>
               </linearGradient>
-              <radialGradient id="rockGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#90A4AE"/>
-                <stop offset="100%" stop-color="#37474F"/>
-              </radialGradient>
-              <linearGradient id="iceGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#E0F7FA" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#00BCD4" stop-opacity="0.4"/>
+              <linearGradient id="mtGradFront" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#D7CCC8"/>
+                <stop offset="30%" stop-color="#8D6E63"/>
+                <stop offset="100%" stop-color="#4E342E"/>
+              </linearGradient>
+              <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#66BB6A"/>
+                <stop offset="100%" stop-color="#2E7D32"/>
               </linearGradient>
             </defs>
             
+            <!-- Céu e Sol -->
             <rect width="800" height="700" fill="url(#skyGrad)"/>
+            <circle cx="650" cy="100" r="50" fill="#FFF9C4" opacity="0.8"/>
             
-            <!-- Estrelas -->
-            <g fill="#FFF" opacity="0.8">
-              <circle cx="100" cy="80" r="1.5"/><circle cx="250" cy="50" r="2"/><circle cx="400" cy="100" r="1"/>
-              <circle cx="600" cy="70" r="2"/><circle cx="700" cy="150" r="1.5"/><circle cx="150" cy="200" r="1"/>
-            </g>
-            <circle cx="680" cy="120" r="50" fill="#FFFACD" opacity="0.9"/>
-            <circle cx="650" cy="100" r="45" fill="url(#skyGrad)"/>
-            
+            <!-- Nuvens -->
+            <path d="M 100,150 Q 150,100 200,150 Q 250,120 300,160 Q 250,200 100,150 Z" fill="#FFF" opacity="0.6"/>
+            <path d="M 500,200 Q 550,150 600,200 Q 650,180 700,220 Q 650,250 500,200 Z" fill="#FFF" opacity="0.5"/>
+
+            <!-- Montanha de Fundo -->
+            <polygon points="400,100 600,700 200,700" fill="url(#mtGradBack)"/>
+            <polygon points="400,100 450,200 350,200" fill="#FFF" opacity="0.8"/>
+
             <!-- Montanha Principal -->
-            <polygon points="-50,750 400,50 850,750" fill="url(#mtGrad)"/>
+            <polygon points="400,50 800,700 0,700" fill="url(#mtGradFront)"/>
+            
+            <!-- Rachaduras e Detalhes da Rocha -->
+            <path d="M 400,50 L 350,200 L 400,350 L 300,500 L 350,650" stroke="#3E2723" stroke-width="5" fill="none" opacity="0.6"/>
+            <path d="M 400,50 L 480,250 L 450,400 L 600,550 L 650,700" stroke="#3E2723" stroke-width="4" fill="none" opacity="0.6"/>
+            <path d="M 350,200 L 250,350 L 200,500" stroke="#3E2723" stroke-width="3" fill="none" opacity="0.5"/>
+            <path d="M 480,250 L 600,350 L 700,500" stroke="#3E2723" stroke-width="3" fill="none" opacity="0.5"/>
             
             <!-- Topo Nevado -->
-            <polygon points="330,170 400,50 470,170 440,190 400,160 360,190" fill="#FFF" opacity="0.95"/>
-            
-            <!-- Obstáculos: Rochas Afiadas e Gelo -->
-            <polygon points="200,500 230,450 260,520" fill="url(#rockGrad)"/>
-            <polygon points="550,480 590,420 620,490" fill="url(#rockGrad)"/>
-            <polygon points="350,300 380,250 410,320" fill="url(#rockGrad)"/>
-            
-            <!-- Poças de Gelo Escorregadias -->
-            <ellipse cx="300" cy="450" rx="40" ry="15" fill="url(#iceGrad)" transform="rotate(-15 300 450)"/>
-            <ellipse cx="520" cy="350" rx="50" ry="20" fill="url(#iceGrad)" transform="rotate(10 520 350)"/>
-            <ellipse cx="420" cy="220" rx="30" ry="10" fill="url(#iceGrad)" transform="rotate(-5 420 220)"/>
+            <polygon points="330,180 400,50 470,180 450,200 400,160 350,200" fill="#FFF" opacity="0.95"/>
 
-            <!-- Trilha Sinuosa (Caminho dos Alunos) -->
-            <path d="M 100,680 Q 250,600 200,500 T 350,400 T 300,300 T 450,200 T 400,100" stroke="#FFD54F" stroke-width="5" stroke-dasharray="15,10" fill="none" opacity="0.8"/>
+            <!-- Vegetação Verde na Base -->
+            <path d="M 0,700 L 0,600 Q 100,550 200,650 Q 300,600 400,650 Q 500,600 600,650 Q 700,550 800,600 L 800,700 Z" fill="url(#greenGrad)"/>
+            <circle cx="150" cy="620" r="40" fill="#388E3C"/>
+            <circle cx="650" cy="600" r="50" fill="#388E3C"/>
+            <circle cx="300" cy="580" r="30" fill="#4CAF50"/>
+            <circle cx="500" cy="570" r="35" fill="#4CAF50"/>
+            <circle cx="400" cy="520" r="20" fill="#4CAF50"/>
+
+            <!-- Poças de Gelo (Escorregadio) -->
+            <ellipse cx="300" cy="480" rx="50" ry="20" fill="#B3E5FC" opacity="0.8" transform="rotate(-15 300 480)"/>
+            <ellipse cx="550" cy="400" rx="60" ry="25" fill="#B3E5FC" opacity="0.8" transform="rotate(10 550 400)"/>
+            <ellipse cx="380" cy="280" rx="40" ry="15" fill="#B3E5FC" opacity="0.8" transform="rotate(-5 380 280)"/>
+
+            <!-- Trilha de Terra Sinuosa -->
+            <path d="M 150,700 Q 300,650 250,550 T 400,450 T 350,350 T 450,250 T 400,100" stroke="#8D6E63" stroke-width="12" fill="none" opacity="0.9"/>
+            <path d="M 150,700 Q 300,650 250,550 T 400,450 T 350,350 T 450,250 T 400,100" stroke="#D7CCC8" stroke-width="4" stroke-dasharray="10,10" fill="none" opacity="0.8"/>
             
-            <!-- Bandeira no Topo -->
-            <line x1="400" y1="50" x2="400" y2="10" stroke="#2D1B4E" stroke-width="5"/>
-            <polygon points="400,10 470,30 400,50" fill="#FF4D8D"/>
+            <!-- Bandeira -->
+            <line x1="400" y1="50" x2="400" y2="10" stroke="#000" stroke-width="5"/>
+            <polygon points="400,10 460,30 400,50" fill="#FF4D8D"/>
           </svg>
           <div id="mountain-students"></div>
         </div>
@@ -657,14 +668,14 @@ function MQ(q, correct, wrongs, diff='médio'){
 }
 
 /* ============================================================
-   AVATARES E LOJA (ESTILO LEAGUE OF LEGENDS / CHIBI)
+   AVATARES E LOJA
    ============================================================ */
 const SKINS = {light:{name:'Pele Clara',price:0,color:'#FFE0BD',rarity:'Grátis'},medium:{name:'Pele Morena',price:0,color:'#F5C99A',rarity:'Grátis'},dark:{name:'Pele Negra',price:0,color:'#8D5524',rarity:'Grátis'}};
-const HAIRS = {none:{name:'Careca',price:0,color:'transparent',rarity:'Grátis'},short:{name:'Curtinho',price:0,color:'#6F4E37',rarity:'Grátis'},long:{name:'Comprido',price:50,color:'#1C1C1C',rarity:'Comum'},spiky:{name:'Moicano',price:100,color:'#FF69B4',rarity:'Raro'},curly:{name:'Cacheado',price:100,color:'#F4D03F',rarity:'Raro'}};
-const EYES = {normal:{name:'Normal',price:0,style:'normal',rarity:'Grátis'},happy:{name:'Feliz',price:50,style:'happy',rarity:'Comum'},star:{name:'Estrelinha',price:200,style:'star',rarity:'Épico'},cool:{name:'Óculos Escuros',price:300,style:'cool',rarity:'Lendário'}};
-const SHIRTS = {blue:{name:'Camisa Azul',price:0,color:'#4D96FF',rarity:'Grátis'},cape:{name:'Capa de Herói',price:150,color:'#DC2626',rarity:'Comum'},wizard:{name:'Roupa de Mago',price:300,color:'#A45DEB',rarity:'Raro'},gold:{name:'Armadura Dourada',price:1000,color:'#FFD700',rarity:'Lendário'}};
+const HAIRS = {none:{name:'Careca',price:0,color:'transparent',rarity:'Grátis'},short:{name:'Curtinho',price:0,color:'#6F4E37',rarity:'Grátis'},spiky:{name:'Espetado',price:50,color:'#FF4500',rarity:'Comum'},long:{name:'Comprido',price:50,color:'#1C1C1C',rarity:'Comum'},curly:{name:'Cacheado',price:100,color:'#F4D03F',rarity:'Raro'}};
+const EYES = {normal:{name:'Normal',price:0,style:'normal',rarity:'Grátis'},happy:{name:'Feliz',price:50,style:'happy',rarity:'Comum'},star:{name:'Estrelinha',price:200,style:'star',rarity:'Épico'},cool:{name:'Óculos Gamer',price:300,style:'cool',rarity:'Lendário'}};
+const SHIRTS = {blue:{name:'Camisa Azul',price:0,color:'#4D96FF',rarity:'Grátis'},hoodie:{name:'Moletom Gamer',price:150,color:'#333333',rarity:'Comum'},wizard:{name:'Roupa de Mago',price:300,color:'#A45DEB',rarity:'Raro'},gold:{name:'Armadura Dourada',price:1000,color:'#FFD700',rarity:'Lendário'}};
 const SHOES = {black:{name:'Tênis Preto',price:0,color:'#2D1B4E',rarity:'Grátis'},boots:{name:'Botas',price:100,color:'#8B4513',rarity:'Comum'},neon:{name:'Tênis Neon',price:500,color:'#00FFFF',rarity:'Épico'}};
-const HATS = {none:{name:'Sem chapéu',price:0,emoji:'',rarity:'—'},cap:{name:'Boné',price:100,emoji:'🧢',rarity:'Comum'},crown:{name:'Coroa',price:800,emoji:'👑',rarity:'Lendário'},wizard:{name:'Chapéu de Mago',price:400,emoji:'🧙‍♂️',rarity:'Raro'}};
+const HATS = {none:{name:'Sem chapéu',price:0,emoji:'',rarity:'—'},headset:{name:'Headset Gamer',price:100,emoji:'🎧',rarity:'Comum'},crown:{name:'Coroa',price:800,emoji:'👑',rarity:'Lendário'},wizard:{name:'Chapéu de Mago',price:400,emoji:'🧙‍♂️',rarity:'Raro'}};
 const WINGS = {none:{name:'Sem asas',price:0,emoji:'',rarity:'—'},angel:{name:'Asas de Anjo',price:600,emoji:'👼',rarity:'Raro'},dragon:{name:'Asas de Dragão',price:1200,emoji:'🐉',rarity:'Lendário'}};
 const AURAS = {none:{name:'Sem aura',price:0,color:null,rarity:'—'},fire:{name:'Aura de Fogo',price:800,color:'#FF4500',rarity:'Épico'},cosmic:{name:'Aura Cósmica',price:1500,color:'#8B00FF',rarity:'Lendário'}};
 const MASCOTS = {none:{name:'Sem mascote',price:0,emoji:'',rarity:'—',desc:'Sozinho'},frog:{name:'Sapo',price:0,emoji:'🐸',rarity:'Grátis',desc:'Pula alto'},cat:{name:'Gato',price:0,emoji:'🐱',rarity:'Grátis',desc:'Esperto'},dog:{name:'Cachorro',price:0,emoji:'🐶',rarity:'Grátis',desc:'Fiel'},dragon:{name:'Dragãozinho',price:2000,emoji:'🐲',rarity:'Lendário',desc:'Cospe fogo'}};
@@ -683,18 +694,45 @@ const AVATAR_KEYS = {mascots:'mascot',helpers:'helper',hairs:'hair',eyes:'eyes',
    ============================================================ */
 const TOPICS = [
   {group:"Matemática", items:[{id:"naturais", name:"Números Naturais", emoji:"🔢"},{id:"fracoes", name:"Frações", emoji:"🍕"},{id:"porcent", name:"Porcentagem", emoji:"🏷️"},{id:"eq1", name:"Equações 1º Grau", emoji:"📐"},{id:"areas", name:"Áreas e Perímetros", emoji:"📏"}]},
-  {group:"Conhecimentos Gerais", items:[{id:"dinheiro", name:"Educação Financeira", emoji:"💰"},{id:"historia", name:"História", emoji:"🏛️"},{id:"ciencias", name:"Ciências", emoji:"🔬"}]}
+  {group:"Conhecimentos Gerais", items:[{id:"dinheiro", name:"Educação Financeira", emoji:"💰"},{id:"historia", name:"História", emoji:"🏛️"},{id:"ciencias", name:"Ciências", emoji:"🔬"}]},
+  {group:"Línguas e Humanas", items:[{id:"ingles", name:"Inglês", emoji:"🇺🇸"},{id:"portugues", name:"Português", emoji:"📚"},{id:"geografia", name:"Geografia", emoji:"🌍"}]}
 ];
 
 const GENS = {
+  // MATEMÁTICA
   naturais:()=>{const t=rd(0,3);if(t===0){const a=rd(10,99),b=rd(10,99);return MQ(`${a} + ${b} = ?`,a+b,[a+b+1,a+b-1,a+b+10],a<50?'fácil':'médio');}if(t===1){const a=rd(50,99),b=rd(10,a);return MQ(`${a} - ${b} = ?`,a-b,[a-b+1,a-b+10,a-b-1],a<70?'fácil':'médio');}if(t===2){const a=rd(2,12),b=rd(2,12);return MQ(`${a} × ${b} = ?`,a*b,[a*b+a,a*b+1,a*b-a],a<6?'fácil':'médio');}const b=rd(2,10),c=rd(2,12),a=b*c;return MQ(`${a} ÷ ${b} = ?`,c,[c+1,c+2,c-1],'fácil');},
   fracoes:()=>{const t=rd(0,2);if(t===0){const d=rd(3,12),a=rd(1,d-2),b=rd(1,d-a-1);return MQ(`${a}/${d} + ${b}/${d} = ?`,`${a+b}/${d}`,[`${a+b}/${d+d}`,`${a+b+1}/${d}`,`${a+b}/${d+1}`],'médio');}if(t===1){const d=rd(3,12),a=rd(2,d-1),b=rd(1,a-1);return MQ(`${a}/${d} - ${b}/${d} = ?`,`${a-b}/${d}`,[`${a-b}/${d+d}`,`${a-b+1}/${d}`,`${a-b-1}/${d}`],'médio');}const d=rd(2,8),a=rd(1,d-1),n=d*rd(2,15);return MQ(`${a}/${d} de ${n} = ?`,a*n/d,[(a*n/d)+1,(a*n/d)+d,(a*n/d)-1],'fácil');},
   porcent:()=>{const p=pk([5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,90]);const n=rd(2,50)*10;const c=p*n/100;return MQ(`${p}% de ${n} = ?`,c,[c+10,c-10,c+5],p<=25?'fácil':'médio');},
   eq1:()=>{const t=rd(0,1),x=rd(2,15);if(t===0){const a=rd(1,10),b=rd(1,20),c=a*x+b;return MQ(`Resolva: ${a}x + ${b} = ${c}`,x,[x+1,x-1,x+2],'médio');}const a=rd(1,15),c=a*x;return MQ(`Resolva: ${a}x = ${c}`,x,[x+1,x-1,x+2],'fácil');},
   areas:()=>{const t=rd(0,3);if(t===0){const l=rd(2,15);return MQ(`Área de um quadrado de lado ${l}:`,l*l,[l*l+1,4*l,l+l],'fácil');}if(t===1){const a=rd(2,15),b=rd(2,15);return MQ(`Área de um retângulo ${a} × ${b}:`,a*b,[a*b+2,2*(a+b),a+b],'fácil');}if(t===2){const b=rd(4,16),h=rd(2,10);return MQ(`Área de um triângulo base ${b} e altura ${h}:`,(b*h)/2,[b*h,(b*h)/2+2,(b+h)/2],'médio');}const l=rd(2,15);return MQ(`Perímetro de um quadrado de lado ${l}:`,4*l,[4*l+1,l*l,2*l],'fácil');},
+  
+  // CONHECIMENTOS GERAIS
   dinheiro:()=>{const t=rd(0,2);if(t===0){const v=rd(10,100),p=pk([10,20,30]),c=v-(v*p/100);return MQ(`Produto de R$${v} com ${p}% de desconto:`,c,[c+10,c-10,v],'médio');}if(t===1){const v=rd(50,200),p=pk([10,20]);return MQ(`Gorjeta de ${p}% sobre R$${v}:`,v*p/100,[v*p/100+5,v*p/100-5,v],'médio');}return MQ(`Quanto é R$50 + R$30?`,80,[70,90,100],'fácil');},
   historia:()=>{const qs=[{q:"Em que ano o Brasil foi descoberto?",o:["1500","1800","1900","1400"],a:0},{q:"Quem proclamou a independência?",o:["Dom Pedro I","Dom Pedro II","Tiradentes","Getúlio"],a:0}]; const item=pk(qs); return MQ(item.q, item.o[item.a], item.o.filter(o=>o!==item.o[item.a]), 'fácil');},
-  ciencias:()=>{const qs=[{q:"Qual o planeta mais próximo do Sol?",o:["Mercúrio","Vênus","Terra","Marte"],a:0},{q:"Qual é o estado da água a 0°C?",o:["Sólido","Líquido","Gasoso","Plasma"],a:0}]; const item=pk(qs); return MQ(item.q, item.o[item.a], item.o.filter(o=>o!==item.o[item.a]), 'fácil');}
+  ciencias:()=>{const qs=[{q:"Qual o planeta mais próximo do Sol?",o:["Mercúrio","Vênus","Terra","Marte"],a:0},{q:"Qual é o estado da água a 0°C?",o:["Sólido","Líquido","Gasoso","Plasma"],a:0}]; const item=pk(qs); return MQ(item.q, item.o[item.a], item.o.filter(o=>o!==item.o[item.a]), 'fácil');},
+  
+  // LÍNGUAS E HUMANAS
+  ingles:()=>{const qs=[
+    {q:"Como se diz 'Cachorro' em inglês?",o:["Dog","Cat","Bird","Fish"],a:0},
+    {q:"Como se diz 'Maçã' em inglês?",o:["Apple","Orange","Banana","Grape"],a:0},
+    {q:"Qual a tradução de 'School'?",o:["Escola","Casa","Loja","Praça"],a:0},
+    {q:"Como se diz 'Azul' em inglês?",o:["Blue","Red","Green","Yellow"],a:0},
+    {q:"Qual a tradução de 'Book'?",o:["Livro","Lápis","Mesa","Cadeira"],a:0}
+  ]; const item=pk(qs); return MQ(item.q, item.o[item.a], item.o.filter(o=>o!==item.o[item.a]), 'fácil');},
+  portugues:()=>{const qs=[
+    {q:"Qual é o plural de 'Cidadão'?",o:["Cidadãos","Cidadães","Cidadãos e Cidadães","Cidadans"],a:0},
+    {q:"Qual o sinônimo de 'Alegre'?",o:["Contente","Triste","Bravo","Cansado"],a:0},
+    {q:"Qual o antônimo de 'Rápido'?",o:["Lento","Veloz","Ligeiro","Acelerado"],a:0},
+    {q:"Na frase 'O menino corre', qual é o verbo?",o:["Corre","Menino","O","Nenhum"],a:0},
+    {q:"Como se escreve corretamente?",o:["Exceção","Excessão","Esceção","Exeção"],a:0}
+  ]; const item=pk(qs); return MQ(item.q, item.o[item.a], item.o.filter(o=>o!==item.o[item.a]), 'fácil');},
+  geografia:()=>{const qs=[
+    {q:"Qual é a capital do Brasil?",o:["Brasília","São Paulo","Rio de Janeiro","Salvador"],a:0},
+    {q:"Qual é o maior continente do mundo?",o:["Ásia","África","América","Europa"],a:0},
+    {q:"Qual é o rio mais extenso do mundo?",o:["Amazonas","Nilo","Tietê","Danúbio"],a:0},
+    {q:"Qual o oceano que banha o Brasil?",o:["Atlântico","Pacífico","Índico","Ártico"],a:0},
+    {q:"Quantos estados tem o Brasil?",o:["26 + DF","25 + DF","27 + DF","24 + DF"],a:0}
+  ]; const item=pk(qs); return MQ(item.q, item.o[item.a], item.o.filter(o=>o!==item.o[item.a]), 'fácil');}
 };
 
 const bankCache = {};
@@ -708,7 +746,7 @@ function getBank(topicId){
 }
 
 /* ============================================================
-   STORAGE (SALVAMENTO LOCAL E NUVEM)
+   STORAGE
    ============================================================ */
 function loadProfiles(){try{const p=JSON.parse(localStorage.getItem("aprendeai_profiles")||"{}");return p&&typeof p==='object'?p:{};}catch(e){return {};}}
 function saveProfiles(profiles){localStorage.setItem("aprendeai_profiles", JSON.stringify(profiles));}
@@ -741,12 +779,32 @@ function createProfile(email, name, turma){
 function getTurmaMembers(turma){const profiles=loadProfiles();return Object.values(profiles).filter(p=>(p.turma||'')===turma).map(migrateProfile);}
 
 function getGSConfig(){
+  // SUA URL FOI INSERIDA AQUI!
   const urlFixa = "https://script.google.com/macros/s/AKfycbydhUPEj769e5oq8JkoJ62qYG1AciLbtSAuztcUeHT2OjBwc_jlpdk44-wc6aztq1k/exec"; 
   try { const local = JSON.parse(localStorage.getItem("aprendeai_gs")||'{"url":""}'); return { url: local.url || urlFixa }; } catch(e) { return { url: urlFixa }; }
 }
 function saveGSConfig(){const url = document.getElementById("gs-url").value.trim();const msg = document.getElementById("gs-msg");localStorage.setItem("aprendeai_gs", JSON.stringify({url}));msg.className="status-msg ok";msg.textContent = url ? "✅ URL salva!" : "⚠️ URL removida.";}
 function loadGSConfigToUI(){const cfg = getGSConfig();const input = document.getElementById("gs-url");if(input) input.value = cfg.url || "";}
-async function testGSConfig(){const cfg = getGSConfig();const msg = document.getElementById("gs-msg");msg.className="status-msg info"; msg.textContent="Testando...";try{const res = await fetch(cfg.url);const data = await res.json();msg.className="status-msg ok";msg.textContent = `✅ Conexão OK!`;}catch(e){msg.className="status-msg err";msg.textContent = `❌ Falha: ${e.message}`;}}
+
+async function testGSConfig(){
+  const cfg = getGSConfig();
+  const msg = document.getElementById("gs-msg");
+  if(!cfg.url){ msg.className="status-msg err"; msg.textContent="Cole a URL primeiro."; return; }
+  msg.className="status-msg info"; msg.textContent="Enviando sinal de teste...";
+  
+  try {
+    await fetch(cfg.url, { 
+      method: 'POST', mode: 'no-cors', 
+      headers: {'Content-Type':'text/plain'}, 
+      body: JSON.stringify({ action: 'ping', date: new Date().toISOString() }) 
+    });
+    msg.className="status-msg ok";
+    msg.textContent = "✅ Sinal enviado! Devido à segurança dos navegadores, não é possível ler a resposta exata, mas se a URL estiver certa, vai funcionar.";
+  } catch(e) {
+    msg.className="status-msg err";
+    msg.textContent = "❌ Falha na conexão. Verifique a URL e as permissões de 'Qualquer pessoa' no Google Apps Script.";
+  }
+}
 
 async function submitToGlobal(payload){
   const cfg = getGSConfig(); if(!cfg.url) return false;
@@ -776,7 +834,7 @@ async function clearAllHistory(){
 }
 
 /* ============================================================
-   DESENHO DO AVATAR ESTILO CHIBI
+   DESENHO DO AVATAR
    ============================================================ */
 function getAvatarHTML(avatar, size){
   const skin = (SKINS[avatar.skin]||SKINS.medium).color;
@@ -797,16 +855,16 @@ function getAvatarHTML(avatar, size){
   const auraStyle = aura.color ? `background: radial-gradient(circle, ${aura.color} 0%, transparent 70%);` : '';
 
   let eyesSVG = '';
-  if (eyesData.style === 'normal') eyesSVG = `<circle cx="42" cy="45" r="5" fill="#2D1B4E"/><circle cx="58" cy="45" r="5" fill="#2D1B4E"/><circle cx="43" cy="43" r="1.5" fill="#FFF"/><circle cx="59" cy="43" r="1.5" fill="#FFF"/>`;
-  else if (eyesData.style === 'happy') eyesSVG = `<path d="M 38 45 Q 42 40 46 45" stroke="#2D1B4E" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M 54 45 Q 58 40 62 45" stroke="#2D1B4E" stroke-width="3" fill="none" stroke-linecap="round"/>`;
-  else if (eyesData.style === 'star') eyesSVG = `<text x="42" y="51" font-size="12" text-anchor="middle">⭐</text><text x="58" y="51" font-size="12" text-anchor="middle">⭐</text>`;
-  else if (eyesData.style === 'cool') eyesSVG = `<rect x="33" y="40" width="14" height="8" rx="3" fill="#111" /><rect x="53" y="40" width="14" height="8" rx="3" fill="#111" /><line x1="47" y1="44" x2="53" y2="44" stroke="#111" stroke-width="3"/>`;
+  if (eyesData.style === 'normal') eyesSVG = `<ellipse cx="40" cy="45" rx="4" ry="6" fill="#2D1B4E"/><ellipse cx="60" cy="45" rx="4" ry="6" fill="#2D1B4E"/><circle cx="41" cy="43" r="1.5" fill="#FFF"/><circle cx="61" cy="43" r="1.5" fill="#FFF"/>`;
+  else if (eyesData.style === 'happy') eyesSVG = `<path d="M 35 45 Q 40 38 45 45" stroke="#2D1B4E" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M 55 45 Q 60 38 65 45" stroke="#2D1B4E" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  else if (eyesData.style === 'star') eyesSVG = `<text x="40" y="50" font-size="12" text-anchor="middle">⭐</text><text x="60" y="50" font-size="12" text-anchor="middle">⭐</text>`;
+  else if (eyesData.style === 'cool') eyesSVG = `<rect x="30" y="40" width="16" height="8" rx="3" fill="#111" /><rect x="54" y="40" width="16" height="8" rx="3" fill="#111" /><line x1="46" y1="44" x2="54" y2="44" stroke="#111" stroke-width="3"/>`;
 
   let hairSVG = '';
   if (avatar.hair !== 'none') {
-    if (avatar.hair === 'spiky') hairSVG = `<polygon points="22,35 35,5 45,30 50,0 55,30 65,5 78,35" fill="${hairData.color}"/>`;
-    else if (avatar.hair === 'long') hairSVG = `<path d="M 22 40 Q 22 5 50 5 Q 78 5 78 40 L 78 80 L 65 80 L 65 45 Q 60 25 50 25 Q 40 25 35 45 L 35 80 L 22 80 Z" fill="${hairData.color}"/>`;
-    else if (avatar.hair === 'curly') hairSVG = `<circle cx="25" cy="35" r="14" fill="${hairData.color}"/><circle cx="50" cy="10" r="16" fill="${hairData.color}"/><circle cx="75" cy="35" r="14" fill="${hairData.color}"/>`;
+    if (avatar.hair === 'spiky') hairSVG = `<path d="M 20 40 Q 25 10 40 15 Q 50 -5 60 15 Q 75 10 80 40 L 75 30 L 65 40 L 55 25 L 45 40 L 35 25 L 25 40 Z" fill="${hairData.color}"/>`;
+    else if (avatar.hair === 'long') hairSVG = `<path d="M 20 40 Q 20 0 50 0 Q 80 0 80 40 L 80 90 L 65 90 L 65 45 Q 60 25 50 25 Q 40 25 35 45 L 35 90 L 20 90 Z" fill="${hairData.color}"/>`;
+    else if (avatar.hair === 'curly') hairSVG = `<circle cx="25" cy="35" r="15" fill="${hairData.color}"/><circle cx="50" cy="10" r="18" fill="${hairData.color}"/><circle cx="75" cy="35" r="15" fill="${hairData.color}"/><circle cx="35" cy="15" r="12" fill="${hairData.color}"/><circle cx="65" cy="15" r="12" fill="${hairData.color}"/>`;
     else hairSVG = `<path d="M 22 40 Q 22 10 50 10 Q 78 10 78 40 L 78 35 Q 78 25 65 22 Q 55 18 50 20 Q 45 18 35 22 Q 22 25 22 35 Z" fill="${hairData.color}"/>`;
   }
 
@@ -815,28 +873,21 @@ function getAvatarHTML(avatar, size){
       ${auraStyle ? `<div class="avatar-aura" style="${auraStyle}"></div>` : ''}
       ${wingEmoji ? `<div class="avatar-wing wing-l">${wingEmoji}</div><div class="avatar-wing wing-r">${wingEmoji}</div>` : ''}
       
-      <!-- SVG DO CHIBI -->
       <svg viewBox="0 0 100 140" preserveAspectRatio="xMidYMid meet" style="position:relative;z-index:1;">
         <ellipse cx="50" cy="134" rx="22" ry="4" fill="rgba(0,0,0,0.18)"/>
-        <!-- Pernas Curtas -->
-        <rect x="40" y="105" width="8" height="20" rx="4" fill="${skin}"/>
-        <rect x="52" y="105" width="8" height="20" rx="4" fill="${skin}"/>
-        <ellipse cx="44" cy="128" rx="9" ry="6" fill="${shoes}"/>
-        <ellipse cx="56" cy="128" rx="9" ry="6" fill="${shoes}"/>
-        <!-- Braços Curtos -->
+        <rect x="40" y="105" width="9" height="20" rx="4" fill="${skin}"/>
+        <rect x="51" y="105" width="9" height="20" rx="4" fill="${skin}"/>
+        <ellipse cx="44" cy="128" rx="10" ry="6" fill="${shoes}"/>
+        <ellipse cx="56" cy="128" rx="10" ry="6" fill="${shoes}"/>
         <rect x="25" y="75" width="8" height="20" rx="4" fill="${skin}"/>
         <rect x="67" y="75" width="8" height="20" rx="4" fill="${skin}"/>
-        <!-- Corpo Pequeno -->
         <rect x="32" y="68" width="36" height="40" rx="12" fill="${shirt}"/>
-        <!-- Cabeça Grande -->
-        <circle cx="50" cy="42" r="30" fill="${skin}"/>
+        <circle cx="50" cy="42" r="32" fill="${skin}"/>
         ${hairSVG}
         ${eyesSVG}
-        <!-- Boca Fofa -->
-        <path d="M 45 53 Q 50 58 55 53" stroke="#2D1B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <!-- Bochechas -->
-        <circle cx="28" cy="52" r="5" fill="#FFB3C6" opacity="0.6"/>
-        <circle cx="72" cy="52" r="5" fill="#FFB3C6" opacity="0.6"/>
+        <path d="M 42 56 Q 50 62 58 54" stroke="#2D1B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="25" cy="52" r="5" fill="#FFB3C6" opacity="0.6"/>
+        <circle cx="75" cy="52" r="5" fill="#FFB3C6" opacity="0.6"/>
       </svg>
       
       ${hatEmoji ? `<div class="avatar-hat" style="font-size:${size*0.5}px;">${hatEmoji}</div>` : ''}
@@ -1029,7 +1080,7 @@ function copiarResultado() {
 function copyResult() { copiarResultado(); } // Compatibilidade
 
 /* ============================================================
-   LOJA E AVATAR (COMPRA CORRIGIDA E DIVERTIDA)
+   LOJA E AVATAR
    ============================================================ */
 function openAvatarView(){if(!state.user){alert("Cadastre-se!");return;}showView("avatar");renderAvatarView();}
 
