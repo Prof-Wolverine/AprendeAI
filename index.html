@@ -110,7 +110,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .btn.full{width:100%;}
 .btn.small{padding:9px 16px;font-size:13px;}
 
-/* --- NOVO AVATAR ESTILO CHIBI (LEAGUE OF LEGENDS) --- */
+/* --- AVATAR ESTILO CHIBI (LEAGUE OF LEGENDS) --- */
 .avatar-box{position:relative;display:inline-block;line-height:0;}
 .avatar-box svg{width:100%;height:100%;display:block;overflow:visible;}
 .avatar-hat{position:absolute;top:-12%;left:50%;transform:translateX(-50%);line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));pointer-events:none;z-index:3;font-size:1.5em;}
@@ -242,7 +242,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 .rank-turma{font-size:11px;color:var(--muted);display:block;font-weight:600;}
 .rank-score{font-family:'Fredoka',sans-serif;font-size:16px;color:var(--green);font-weight:800;}
 
-/* --- NOVA MONTANHA REALISTA E COM OBSTÁCULOS --- */
+/* --- MONTANHA PERIGOSA E ESCORREGADIA --- */
 .mountain-scene{position:relative;height:640px;background:linear-gradient(180deg,#0F0C29 0%,#302B63 40%,#6B5B95 70%,#B5E8FF 100%);border:4px solid var(--dark);border-radius:22px;overflow:hidden;box-shadow:inset 0 0 30px rgba(0,0,0,.4);}
 .mountain-svg{position:absolute;inset:0;width:100%;height:100%;}
 .student-marker{position:absolute;transform:translate(-50%,50%);display:flex;flex-direction:column;align-items:center;transition:all .6s cubic-bezier(.34,1.56,.64,1);z-index:2;}
@@ -256,8 +256,8 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 @keyframes crownBob{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-3px) rotate(5deg);}}
 
 /* Alerta de Perigo na Montanha */
-.mountain-alert{position:absolute;top:20px;left:50%;transform:translateX(-50%);background:rgba(220,38,38,.9);color:#fff;padding:10px 20px;border-radius:20px;font-family:'Fredoka';font-size:14px;font-weight:700;border:3px solid #fff;z-index:10;animation:alertBlink 1.5s infinite;display:none;}
-@keyframes alertBlink{0%,100%{opacity:1;}50%{opacity:0.6;}}
+.mountain-alert{position:absolute;top:20px;left:50%;transform:translateX(-50%);background:rgba(220,38,38,.95);color:#fff;padding:12px 24px;border-radius:20px;font-family:'Fredoka';font-size:16px;font-weight:700;border:3px solid #fff;z-index:10;animation:alertBlink 1.5s infinite;display:none;box-shadow:0 4px 12px rgba(0,0,0,.5);}
+@keyframes alertBlink{0%,100%{opacity:1;}50%{opacity:0.7;}}
 
 .status-msg{padding:12px 16px;border-radius:14px;font-size:13px;font-weight:700;margin-top:14px;display:none;border:3px solid transparent;}
 .status-msg.ok{background:#DCFCE7;color:#166534;border-color:#86EFAC;display:block;}
@@ -411,7 +411,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
         <p style="margin-top:10px;font-size:18px;font-weight:800;">Nota: <b id="res-grade">0,0</b></p>
         <p style="margin-top:6px;font-size:13px;opacity:.9;" id="res-mode-text">🎮 Modo Treino</p>
         <div class="rewards-row">
-          <div class="reward-chip">🪙 +<span id="res-coins">0</span></div>
+          <div class="reward-chip">🪙 <span id="res-coins">0</span></div>
           <div class="reward-chip">⚡ +<span id="res-xp">0</span> XP</div>
         </div>
       </div>
@@ -468,52 +468,63 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
       <div class="section">
         <div class="turma-header" id="turma-header"></div>
         <div class="mountain-scene">
-          <div class="mountain-alert" id="mountain-alert">⚠️ CUIDADO! A montanha está escorregadia!</div>
-          <!-- NOVO SVG DA MONTANHA REALISTA -->
+          <div class="mountain-alert" id="mountain-alert">⚠️ CUIDADO! A montanha está escorregadia e perigosa!</div>
+          
+          <!-- MONTANHA REALISTA INSPIRADA NA IMAGEM -->
           <svg class="mountain-svg" viewBox="0 0 800 700" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#0F0C29"/>
-                <stop offset="40%" stop-color="#302B63"/>
-                <stop offset="100%" stop-color="#6B5B95"/>
+                <stop offset="0%" stop-color="#1A1B41"/>
+                <stop offset="100%" stop-color="#4A3B69"/>
               </linearGradient>
               <linearGradient id="mtGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#F0F8FF"/>
-                <stop offset="15%" stop-color="#E0E8F0"/>
-                <stop offset="50%" stop-color="#5B7DA8"/>
-                <stop offset="100%" stop-color="#3A4A6A"/>
+                <stop offset="10%" stop-color="#D3E0EA"/>
+                <stop offset="40%" stop-color="#607D8B"/>
+                <stop offset="100%" stop-color="#263238"/>
               </linearGradient>
               <radialGradient id="rockGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#6B7B8D"/>
-                <stop offset="100%" stop-color="#2D3B4E"/>
+                <stop offset="0%" stop-color="#90A4AE"/>
+                <stop offset="100%" stop-color="#37474F"/>
               </radialGradient>
+              <linearGradient id="iceGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#E0F7FA" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#00BCD4" stop-opacity="0.4"/>
+              </linearGradient>
             </defs>
-            <rect width="800" height="700" fill="url(#skyGrad)"/>
-            <!-- Estrelas -->
-            <g fill="#FFF" opacity="0.85">
-              <circle cx="80" cy="60" r="1.5"/><circle cx="180" cy="40" r="2"/><circle cx="280" cy="90" r="1.5"/>
-              <circle cx="420" cy="50" r="2"/><circle cx="550" cy="80" r="1.5"/><circle cx="650" cy="45" r="2"/>
-              <circle cx="720" cy="120" r="1.5"/><circle cx="90" cy="160" r="1.5"/><circle cx="200" cy="200" r="1"/>
-              <circle cx="600" cy="180" r="1.5"/><circle cx="700" cy="220" r="1"/>
-            </g>
-            <circle cx="680" cy="120" r="48" fill="#FFFACD" opacity="0.9"/>
-            <circle cx="655" cy="105" r="44" fill="url(#skyGrad)"/>
             
-            <!-- Montanha Principal com Rochas e Neve -->
-            <polygon points="0,700 400,55 800,700" fill="url(#mtGrad)"/>
-            <!-- Neve no topo -->
-            <polygon points="330,185 400,55 470,185 445,200 400,175 355,200" fill="#FFF" opacity="0.95"/>
-            <!-- Rochas e Obstáculos (Barreiras) -->
-            <path d="M 200,500 Q 250,450 300,480 Q 350,520 400,480 Q 450,440 500,470 Q 550,500 600,450" stroke="#2D3B4E" stroke-width="20" fill="none" stroke-linecap="round"/>
-            <circle cx="300" cy="480" r="25" fill="url(#rockGrad)"/>
-            <circle cx="500" cy="470" r="30" fill="url(#rockGrad)"/>
-            <circle cx="400" cy="350" r="20" fill="url(#rockGrad)"/>
-            <!-- Caminho Sinuoso (Trilha) -->
-            <path d="M 150,660 Q 250,590 220,500 T 300,400 T 380,300 T 420,200 T 400,90" stroke="#FFF" stroke-width="4" stroke-dasharray="12,12" fill="none" opacity="0.7"/>
+            <rect width="800" height="700" fill="url(#skyGrad)"/>
+            
+            <!-- Estrelas -->
+            <g fill="#FFF" opacity="0.8">
+              <circle cx="100" cy="80" r="1.5"/><circle cx="250" cy="50" r="2"/><circle cx="400" cy="100" r="1"/>
+              <circle cx="600" cy="70" r="2"/><circle cx="700" cy="150" r="1.5"/><circle cx="150" cy="200" r="1"/>
+            </g>
+            <circle cx="680" cy="120" r="50" fill="#FFFACD" opacity="0.9"/>
+            <circle cx="650" cy="100" r="45" fill="url(#skyGrad)"/>
+            
+            <!-- Montanha Principal -->
+            <polygon points="-50,750 400,50 850,750" fill="url(#mtGrad)"/>
+            
+            <!-- Topo Nevado -->
+            <polygon points="330,170 400,50 470,170 440,190 400,160 360,190" fill="#FFF" opacity="0.95"/>
+            
+            <!-- Obstáculos: Rochas Afiadas e Gelo -->
+            <polygon points="200,500 230,450 260,520" fill="url(#rockGrad)"/>
+            <polygon points="550,480 590,420 620,490" fill="url(#rockGrad)"/>
+            <polygon points="350,300 380,250 410,320" fill="url(#rockGrad)"/>
+            
+            <!-- Poças de Gelo Escorregadias -->
+            <ellipse cx="300" cy="450" rx="40" ry="15" fill="url(#iceGrad)" transform="rotate(-15 300 450)"/>
+            <ellipse cx="520" cy="350" rx="50" ry="20" fill="url(#iceGrad)" transform="rotate(10 520 350)"/>
+            <ellipse cx="420" cy="220" rx="30" ry="10" fill="url(#iceGrad)" transform="rotate(-5 420 220)"/>
+
+            <!-- Trilha Sinuosa (Caminho dos Alunos) -->
+            <path d="M 100,680 Q 250,600 200,500 T 350,400 T 300,300 T 450,200 T 400,100" stroke="#FFD54F" stroke-width="5" stroke-dasharray="15,10" fill="none" opacity="0.8"/>
             
             <!-- Bandeira no Topo -->
-            <line x1="400" y1="55" x2="400" y2="15" stroke="#2D1B4E" stroke-width="4"/>
-            <polygon points="400,15 465,32 400,50" fill="#FF4D8D"/>
+            <line x1="400" y1="50" x2="400" y2="10" stroke="#2D1B4E" stroke-width="5"/>
+            <polygon points="400,10 470,30 400,50" fill="#FF4D8D"/>
           </svg>
           <div id="mountain-students"></div>
         </div>
@@ -554,7 +565,7 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
       </div>
       <div class="section">
         <h2>☁️ Google Sheets (Ranking Global)</h2>
-        <p class="subtitle">Configure o endpoint do Google Apps Script para sincronizar alunos em tempo real.</p>
+        <p class="subtitle">Configure o endpoint do Google Apps Script para sincronizar alunos e enviar e-mails.</p>
         <div class="field">
           <label>URL do Google Apps Script (Web App)</label>
           <input type="url" id="gs-url" placeholder="https://script.google.com/macros/s/.../exec">
@@ -584,9 +595,8 @@ input:focus,select:focus,textarea:focus{background:#fff;box-shadow:3px 3px 0 var
 const CONFIG = {
   teacherEmail: "ydvir.souza@escola.pr.gov.br", teacherPassword: "prof123",
   practiceMode: { questions: 10, timeSeconds: 0 }, examMode: { questions: 20, timeSeconds: 20 * 60 },
-  questionsPerBank: 500, coinsPerCorrect: 20, examCoinMultiplier: 1.5, perfectBonus: 100, startingCoins: 100,
-  xpPerCorrect: 10, examXpMultiplier: 1.5, perfectXpBonus: 50,
-  formSubmitEndpoint: "https://formsubmit.co/ajax/ydvir.souza@escola.pr.gov.br"
+  questionsPerBank: 500, coinsPerCorrect: 20, coinsPerWrong: 10, perfectBonus: 100, startingCoins: 100,
+  xpPerCorrect: 10, perfectXpBonus: 50
 };
 
 const LEVELS = [{level:1,xp:0,unlock:null},{level:2,xp:100,unlock:'elephant'},{level:3,xp:300,unlock:'giraffe'},{level:4,xp:600,unlock:'turtle'},{level:5,xp:1000,unlock:'snake'},{level:6,xp:1500,unlock:'koala'},{level:7,xp:2100,unlock:'rhino'},{level:8,xp:2800,unlock:'tiger'},{level:9,xp:3600,unlock:'jaguar'},{level:10,xp:4500,unlock:'hyena'}];
@@ -626,7 +636,7 @@ function showToast(msg, type='success'){
 }
 
 /* ============================================================
-   CORREÇÃO DE DUPLICATAS E GERADORES
+   UTILITÁRIOS
    ============================================================ */
 const rd = (a,b)=>Math.floor(Math.random()*(b-a+1))+a;
 const pk = a=>a[Math.floor(Math.random()*a.length)];
@@ -647,7 +657,7 @@ function MQ(q, correct, wrongs, diff='médio'){
 }
 
 /* ============================================================
-   AVATARES E LOJA (ITENS ESTILO CHIBI)
+   AVATARES E LOJA (ESTILO LEAGUE OF LEGENDS / CHIBI)
    ============================================================ */
 const SKINS = {light:{name:'Pele Clara',price:0,color:'#FFE0BD',rarity:'Grátis'},medium:{name:'Pele Morena',price:0,color:'#F5C99A',rarity:'Grátis'},dark:{name:'Pele Negra',price:0,color:'#8D5524',rarity:'Grátis'}};
 const HAIRS = {none:{name:'Careca',price:0,color:'transparent',rarity:'Grátis'},short:{name:'Curtinho',price:0,color:'#6F4E37',rarity:'Grátis'},long:{name:'Comprido',price:50,color:'#1C1C1C',rarity:'Comum'},spiky:{name:'Moicano',price:100,color:'#FF69B4',rarity:'Raro'},curly:{name:'Cacheado',price:100,color:'#F4D03F',rarity:'Raro'}};
@@ -731,7 +741,7 @@ function createProfile(email, name, turma){
 function getTurmaMembers(turma){const profiles=loadProfiles();return Object.values(profiles).filter(p=>(p.turma||'')===turma).map(migrateProfile);}
 
 function getGSConfig(){
-  const urlFixa = "https://script.google.com/macros/s/AKfycbwcQonhQC8PXONcqyRBb_CEFStjIjxt3aSBNdkUvvUq6jmnd3ej1inhT6-dMZSH_IS8/exec"; 
+  const urlFixa = "https://script.google.com/macros/s/AKfycbydhUPEj769e5oq8JkoJ62qYG1AciLbtSAuztcUeHT2OjBwc_jlpdk44-wc6aztq1k/exec"; 
   try { const local = JSON.parse(localStorage.getItem("aprendeai_gs")||'{"url":""}'); return { url: local.url || urlFixa }; } catch(e) { return { url: urlFixa }; }
 }
 function saveGSConfig(){const url = document.getElementById("gs-url").value.trim();const msg = document.getElementById("gs-msg");localStorage.setItem("aprendeai_gs", JSON.stringify({url}));msg.className="status-msg ok";msg.textContent = url ? "✅ URL salva!" : "⚠️ URL removida.";}
@@ -766,7 +776,7 @@ async function clearAllHistory(){
 }
 
 /* ============================================================
-   DESENHO DO AVATAR ESTILO CHIBI (LEAGUE OF LEGENDS)
+   DESENHO DO AVATAR ESTILO CHIBI
    ============================================================ */
 function getAvatarHTML(avatar, size){
   const skin = (SKINS[avatar.skin]||SKINS.medium).color;
@@ -787,17 +797,17 @@ function getAvatarHTML(avatar, size){
   const auraStyle = aura.color ? `background: radial-gradient(circle, ${aura.color} 0%, transparent 70%);` : '';
 
   let eyesSVG = '';
-  if (eyesData.style === 'normal') eyesSVG = `<circle cx="42" cy="45" r="4" fill="#2D1B4E"/><circle cx="58" cy="45" r="4" fill="#2D1B4E"/>`;
-  else if (eyesData.style === 'happy') eyesSVG = `<path d="M 38 45 Q 42 41 46 45" stroke="#2D1B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M 54 45 Q 58 41 62 45" stroke="#2D1B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
-  else if (eyesData.style === 'star') eyesSVG = `<text x="42" y="50" font-size="10" text-anchor="middle">⭐</text><text x="58" y="50" font-size="10" text-anchor="middle">⭐</text>`;
-  else if (eyesData.style === 'cool') eyesSVG = `<rect x="35" y="40" width="12" height="7" rx="2" fill="#111" /><rect x="53" y="40" width="12" height="7" rx="2" fill="#111" /><line x1="47" y1="43" x2="53" y2="43" stroke="#111" stroke-width="2"/>`;
+  if (eyesData.style === 'normal') eyesSVG = `<circle cx="42" cy="45" r="5" fill="#2D1B4E"/><circle cx="58" cy="45" r="5" fill="#2D1B4E"/><circle cx="43" cy="43" r="1.5" fill="#FFF"/><circle cx="59" cy="43" r="1.5" fill="#FFF"/>`;
+  else if (eyesData.style === 'happy') eyesSVG = `<path d="M 38 45 Q 42 40 46 45" stroke="#2D1B4E" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M 54 45 Q 58 40 62 45" stroke="#2D1B4E" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+  else if (eyesData.style === 'star') eyesSVG = `<text x="42" y="51" font-size="12" text-anchor="middle">⭐</text><text x="58" y="51" font-size="12" text-anchor="middle">⭐</text>`;
+  else if (eyesData.style === 'cool') eyesSVG = `<rect x="33" y="40" width="14" height="8" rx="3" fill="#111" /><rect x="53" y="40" width="14" height="8" rx="3" fill="#111" /><line x1="47" y1="44" x2="53" y2="44" stroke="#111" stroke-width="3"/>`;
 
   let hairSVG = '';
   if (avatar.hair !== 'none') {
-    if (avatar.hair === 'spiky') hairSVG = `<polygon points="25,35 35,10 45,30 50,5 55,30 65,10 75,35" fill="${hairData.color}"/>`;
-    else if (avatar.hair === 'long') hairSVG = `<path d="M 25 40 Q 25 10 50 10 Q 75 10 75 40 L 75 75 L 65 75 L 65 45 Q 60 25 50 25 Q 40 25 35 45 L 35 75 L 25 75 Z" fill="${hairData.color}"/>`;
-    else if (avatar.hair === 'curly') hairSVG = `<circle cx="30" cy="35" r="12" fill="${hairData.color}"/><circle cx="50" cy="15" r="14" fill="${hairData.color}"/><circle cx="70" cy="35" r="12" fill="${hairData.color}"/>`;
-    else hairSVG = `<path d="M 27 40 Q 27 12 50 12 Q 73 12 73 40 L 73 35 Q 73 25 65 22 Q 55 18 50 20 Q 45 18 35 22 Q 27 25 27 35 Z" fill="${hairData.color}"/>`;
+    if (avatar.hair === 'spiky') hairSVG = `<polygon points="22,35 35,5 45,30 50,0 55,30 65,5 78,35" fill="${hairData.color}"/>`;
+    else if (avatar.hair === 'long') hairSVG = `<path d="M 22 40 Q 22 5 50 5 Q 78 5 78 40 L 78 80 L 65 80 L 65 45 Q 60 25 50 25 Q 40 25 35 45 L 35 80 L 22 80 Z" fill="${hairData.color}"/>`;
+    else if (avatar.hair === 'curly') hairSVG = `<circle cx="25" cy="35" r="14" fill="${hairData.color}"/><circle cx="50" cy="10" r="16" fill="${hairData.color}"/><circle cx="75" cy="35" r="14" fill="${hairData.color}"/>`;
+    else hairSVG = `<path d="M 22 40 Q 22 10 50 10 Q 78 10 78 40 L 78 35 Q 78 25 65 22 Q 55 18 50 20 Q 45 18 35 22 Q 22 25 22 35 Z" fill="${hairData.color}"/>`;
   }
 
   return `
@@ -805,28 +815,28 @@ function getAvatarHTML(avatar, size){
       ${auraStyle ? `<div class="avatar-aura" style="${auraStyle}"></div>` : ''}
       ${wingEmoji ? `<div class="avatar-wing wing-l">${wingEmoji}</div><div class="avatar-wing wing-r">${wingEmoji}</div>` : ''}
       
-      <!-- SVG DO CHIBI (CABEÇA GRANDE, CORPO PEQUENO) -->
+      <!-- SVG DO CHIBI -->
       <svg viewBox="0 0 100 140" preserveAspectRatio="xMidYMid meet" style="position:relative;z-index:1;">
         <ellipse cx="50" cy="134" rx="22" ry="4" fill="rgba(0,0,0,0.18)"/>
         <!-- Pernas Curtas -->
-        <rect x="40" y="105" width="8" height="20" rx="3" fill="${skin}"/>
-        <rect x="52" y="105" width="8" height="20" rx="3" fill="${skin}"/>
-        <ellipse cx="44" cy="128" rx="8" ry="5" fill="${shoes}"/>
-        <ellipse cx="56" cy="128" rx="8" ry="5" fill="${shoes}"/>
+        <rect x="40" y="105" width="8" height="20" rx="4" fill="${skin}"/>
+        <rect x="52" y="105" width="8" height="20" rx="4" fill="${skin}"/>
+        <ellipse cx="44" cy="128" rx="9" ry="6" fill="${shoes}"/>
+        <ellipse cx="56" cy="128" rx="9" ry="6" fill="${shoes}"/>
         <!-- Braços Curtos -->
-        <rect x="28" y="70" width="7" height="25" rx="3.5" fill="${skin}"/>
-        <rect x="65" y="70" width="7" height="25" rx="3.5" fill="${skin}"/>
+        <rect x="25" y="75" width="8" height="20" rx="4" fill="${skin}"/>
+        <rect x="67" y="75" width="8" height="20" rx="4" fill="${skin}"/>
         <!-- Corpo Pequeno -->
-        <rect x="33" y="68" width="34" height="38" rx="10" fill="${shirt}"/>
+        <rect x="32" y="68" width="36" height="40" rx="12" fill="${shirt}"/>
         <!-- Cabeça Grande -->
-        <circle cx="50" cy="42" r="28" fill="${skin}"/>
+        <circle cx="50" cy="42" r="30" fill="${skin}"/>
         ${hairSVG}
         ${eyesSVG}
         <!-- Boca Fofa -->
-        <path d="M 45 52 Q 50 57 55 52" stroke="#2D1B4E" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M 45 53 Q 50 58 55 53" stroke="#2D1B4E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
         <!-- Bochechas -->
-        <circle cx="30" cy="50" r="4" fill="#FFB3C6" opacity="0.6"/>
-        <circle cx="70" cy="50" r="4" fill="#FFB3C6" opacity="0.6"/>
+        <circle cx="28" cy="52" r="5" fill="#FFB3C6" opacity="0.6"/>
+        <circle cx="72" cy="52" r="5" fill="#FFB3C6" opacity="0.6"/>
       </svg>
       
       ${hatEmoji ? `<div class="avatar-hat" style="font-size:${size*0.5}px;">${hatEmoji}</div>` : ''}
@@ -916,13 +926,15 @@ function nextQ(){if(state.answers[state.current]===null){alert("Escolha uma alte
 function stopTimer(){if(state.timer){clearInterval(state.timer);state.timer=null;}}
 function startTimer(){stopTimer();state.timeLeft=CONFIG.examMode.timeSeconds;updateTimerDisplay();state.timer=setInterval(()=>{state.timeLeft--;updateTimerDisplay();if(state.timeLeft<=0){stopTimer();alert("⏰ Tempo esgotado!");finishQuiz();}},1000);}
 function updateTimerDisplay(){const el=document.getElementById("timer-text");const box=document.getElementById("timer");if(!el||!box) return;const min=Math.floor(Math.max(0,state.timeLeft)/60);const sec=Math.max(0,state.timeLeft)%60;el.textContent=`${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;box.classList.toggle("warning", state.timeLeft<=120 && state.timeLeft>30);box.classList.toggle("danger", state.timeLeft<=30);}
+
 function calculateCoins(c,t,m){
-  let cE=c*CONFIG.coinsPerCorrect;
-  if(m==='exam') cE=Math.round(cE*CONFIG.examCoinMultiplier);
-  if(c===t && t>0) cE+=CONFIG.perfectBonus;
-  return cE;
+  let cE = c * CONFIG.coinsPerCorrect;
+  let penalty = (t - c) * CONFIG.coinsPerWrong;
+  let total = cE - penalty;
+  if(c === t && t > 0) total += CONFIG.perfectBonus;
+  return Math.max(0, total); // Não deixa ficar negativo
 }
-function calculateXP(c,t,m){let x=c*CONFIG.xpPerCorrect;if(m==='exam') x=Math.round(x*CONFIG.examXpMultiplier);if(c===t && t>0) x+=CONFIG.perfectXpBonus;return x;}
+function calculateXP(c,t,m){let x=c*CONFIG.xpPerCorrect;if(c===t && t>0) x+=CONFIG.perfectXpBonus;return x;}
 
 function finishQuiz(){
   stopTimer(); let correct=0; state.questions.forEach((q,i)=>{if(state.answers[i]===q.a) correct++;});
@@ -936,7 +948,7 @@ function finishQuiz(){
   const entry = { name:profile.name, email:profile.email, turma:profile.turma, activity:state.activity.name, emoji: state.activity.emoji, mode:state.mode, correct, total, grade, coinsEarned, xp:xpEarned, date:new Date().toISOString() };
   const h = JSON.parse(localStorage.getItem("aprendeai_history")||"[]"); h.push(entry); localStorage.setItem("aprendeai_history", JSON.stringify(h));
   
-  submitToGlobal({ name: profile.name, email: profile.email, turma: profile.turma, activity: state.activity.name, mode: state.mode, correct, total, grade, coins: coinsEarned, xp: xpEarned, date: entry.date });
+  submitToGlobal({ action: 'quiz_result', name: profile.name, email: profile.email, turma: profile.turma, activity: state.activity.name, mode: state.mode, correct, total, grade, coins: coinsEarned, xp: xpEarned, date: entry.date });
   
   document.getElementById("res-score").textContent=correct; document.getElementById("res-total").textContent=total; document.getElementById("res-grade").textContent=grade; document.getElementById("res-coins").textContent=coinsEarned; document.getElementById("res-xp").textContent=xpEarned; document.getElementById("res-name").textContent=profile.name; document.getElementById("res-activity").textContent=state.activity.name; document.getElementById("res-correct").textContent=correct; document.getElementById("res-wrong").textContent=total-correct; document.getElementById("result-hero").classList.toggle("low", correct/total < 0.6);
   
@@ -953,53 +965,54 @@ function finishQuiz(){
 function retryQuiz(){selectActivity(state.activity.id);}
 
 /* ============================================================
-   ENVIO E-MAIL (CORRIGIDO)
+   ENVIO E-MAIL (VIA GOOGLE APPS SCRIPT)
    ============================================================ */
 async function sendResult(){
   if(state.sending) return;
   const btn=document.getElementById("btn-send");
   const msg=document.getElementById("send-msg");
   state.sending=true; btn.disabled=true; btn.textContent="📤 Enviando...";
-  msg.className="status-msg info"; msg.textContent="Enviando...";
+  msg.className="status-msg info"; msg.textContent="Enviando resultado...";
   
   const payload = {
-    _subject: `[Aprende AI] ${state.user.name} (${state.user.turma}) — ${state.activity.name} — Nota ${state.lastResult.grade}`,
-    _template: "table",
-    _captcha: "false",
-    Estudante: state.user.name,
-    Email: state.user.email,
-    Turma: state.user.turma,
-    Atividade: state.activity.name,
-    Modo: state.mode === 'exam' ? 'Prova' : 'Treino',
-    Acertos: `${state.lastResult.correct} de ${state.lastResult.total}`,
-    Nota: `${state.lastResult.grade}/10`,
-    Moedas: state.lastResult.coinsEarned,
-    XP: state.lastResult.xpEarned,
-    Data: new Date().toLocaleString("pt-BR")
+    action: 'quiz_result',
+    name: state.user.name, email: state.user.email, turma: state.user.turma,
+    activity: state.activity.name, mode: state.mode,
+    correct: state.lastResult.correct, total: state.lastResult.total,
+    grade: state.lastResult.grade, coins: state.lastResult.coinsEarned,
+    xp: state.lastResult.xpEarned, date: new Date().toISOString()
   };
 
-  try {
-    const res = await fetch(CONFIG.formSubmitEndpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    if(!res.ok) throw new Error("Falha HTTP " + res.status);
-    const data = await res.json().catch(()=>({}));
-    if(data.success === "false" || data.success === false) throw new Error("FormSubmit recusou.");
-    
-    msg.className="status-msg ok"; 
-    msg.textContent="✅ Resultado enviado ao professor!";
-    btn.textContent="✅ Enviado";
-  } catch(err) {
-    msg.className="status-msg err";
-    msg.innerHTML = `❌ Falha no envio automático.<br><br>
+  let sucesso = false;
+  const cfg = getGSConfig();
+
+  if (cfg.url) {
+    try {
+      await fetch(cfg.url, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      });
+      sucesso = true;
+    } catch (e) {
+      console.warn("Falha no envio via Google Sheets", e);
+    }
+  }
+
+  if (sucesso) {
+    msg.className = "status-msg ok";
+    msg.textContent = "✅ Resultado enviado com sucesso! O professor receberá um e-mail.";
+    btn.textContent = "✅ Enviado";
+    btn.disabled = false;
+  } else {
+    msg.className = "status-msg err";
+    msg.innerHTML = `❌ Falha na conexão.<br><br>
       <button class="btn yellow small" onclick="abrirEmailManual()">📧 Abrir E-mail Manualmente</button>
       <button class="btn ghost small" onclick="copiarResultado()">📋 Copiar Resultado</button>`;
-    btn.disabled=false; btn.textContent="🔁 Tentar Novamente";
-  } finally {
-    state.sending=false;
+    btn.disabled = false;
+    btn.textContent = "🔁 Tentar Novamente";
   }
+  state.sending = false;
 }
 
 function abrirEmailManual() {
@@ -1012,6 +1025,8 @@ function copiarResultado() {
   const text = `Estudante: ${state.user.name}\nTurma: ${state.user.turma}\nAtividade: ${state.activity.name}\nNota: ${state.lastResult.grade}/10`;
   navigator.clipboard.writeText(text).then(() => showToast("Copiado! ✅"));
 }
+
+function copyResult() { copiarResultado(); } // Compatibilidade
 
 /* ============================================================
    LOJA E AVATAR (COMPRA CORRIGIDA E DIVERTIDA)
@@ -1081,7 +1096,7 @@ function handleShopClick(category, id){
 }
 
 /* ============================================================
-   MONTANHA (REALISTA E COM OBSTÁCULOS)
+   MONTANHA
    ============================================================ */
 const PATH_POINTS=[{left:18.75,bottom:7.14},{left:27.5,bottom:28.57},{left:37.5,bottom:42.86},{left:47.5,bottom:57.14},{left:52.5,bottom:71.43},{left:50,bottom:87.14}];
 function getPathPosition(progress){const idx=progress*(PATH_POINTS.length-1);const i=Math.min(Math.floor(idx), PATH_POINTS.length-1);const frac=idx-i;const a=PATH_POINTS[i], b=PATH_POINTS[Math.min(i+1, PATH_POINTS.length-1)];return {left:a.left+(b.left-a.left)*frac, bottom:a.bottom+(b.bottom-a.bottom)*frac};}
@@ -1093,7 +1108,6 @@ function openTurmaView(){
   if(mountainInterval) clearInterval(mountainInterval);
   mountainInterval = setInterval(renderMountain, 10000);
   
-  // Alerta de montanha escorregadia
   const alertBox = document.getElementById("mountain-alert");
   alertBox.style.display = "block";
   setTimeout(() => { alertBox.style.display = "none"; }, 5000);
